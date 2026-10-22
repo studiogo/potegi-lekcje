@@ -1,0 +1,4710 @@
+<title>Potęgi w 7 lekcjach</title>
+<meta name="claude:viewport-fit-sides" content="cover" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Saira+Condensed:wght@600;800&family=STIX+Two+Text:wght@400;600&display=swap"
+/>
+<style>
+  /* Układ: jedna kolumna jak zeszyt; zielony pasek u góry, lista lekcji, potem lekcja: wyprowadzenie zasady obrazkiem, przykład, ćwiczenia z klawiaturą liczb, test. */
+  :root {
+    --bg: #f1f5f1;
+    --surface: #ffffff;
+    --ink: #13241b;
+    --muted: #56685d;
+    --line: #d3ddd6;
+    --pitch: #1d7543;
+    --pitch-ink: #ffffff;
+    --pitch-soft: #e0efe5;
+    --yellow: #e9b21c;
+    --yellow-soft: #fcf2d2;
+    --on-yellow: #231b02;
+    --red: #c23a3a;
+    --red-soft: #f8e0df;
+    --blue: #2c67b0;
+    --display: "Saira Condensed", "Arial Narrow", sans-serif;
+    --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+    --math: "STIX Two Text", "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1611;
+      --surface: #15221a;
+      --ink: #e5eee8;
+      --muted: #9bb0a3;
+      --line: #293a30;
+      --pitch: #37b06a;
+      --pitch-ink: #07130b;
+      --pitch-soft: #1a3424;
+      --yellow: #f0c23e;
+      --yellow-soft: #382f14;
+      --on-yellow: #231b02;
+      --red: #ff7c72;
+      --red-soft: #3b1d1b;
+      --blue: #6fa8e8;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1611;
+    --surface: #15221a;
+    --ink: #e5eee8;
+    --muted: #9bb0a3;
+    --line: #293a30;
+    --pitch: #37b06a;
+    --pitch-ink: #07130b;
+    --pitch-soft: #1a3424;
+    --yellow: #f0c23e;
+    --yellow-soft: #382f14;
+    --on-yellow: #231b02;
+    --red: #ff7c72;
+    --red-soft: #3b1d1b;
+    --blue: #6fa8e8;
+    color-scheme: dark;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0 40px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--display);
+    line-height: 1.1;
+    text-wrap: balance;
+    margin: 0;
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  button:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 2px;
+  }
+  .m {
+    font-family: var(--math);
+    font-size: 1.12em;
+    white-space: nowrap;
+  }
+  .m sup {
+    font-size: 0.68em;
+    line-height: 0;
+  }
+  .fr {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.86em;
+    line-height: 1.15;
+    margin: 0 0.08em;
+  }
+  .fr > span:first-child {
+    border-bottom: 1.5px solid currentColor;
+    padding: 0 0.2em;
+  }
+  .fr > span:last-child {
+    padding: 0 0.2em;
+  }
+  sup .fr {
+    font-size: 0.95em;
+  }
+  .pa {
+    font-size: 1.45em;
+    font-weight: 400;
+    vertical-align: -0.14em;
+    line-height: 0;
+  }
+  .rt {
+    white-space: nowrap;
+  }
+  .rs {
+    margin-right: -0.05em;
+  }
+  .rx {
+    border-top: 1.5px solid currentColor;
+    padding: 0 0.12em;
+  }
+  .ri {
+    font-size: 0.6em;
+    vertical-align: 0.95em;
+    margin-right: -0.35em;
+  }
+
+  .band {
+    background: var(--pitch);
+    color: var(--pitch-ink);
+  }
+  .band .wrap {
+    padding-block: 22px 22px;
+  }
+  .kicker {
+    font-family: var(--display);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  .band h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-top: 4px;
+  }
+  .band p {
+    margin: 8px 0 0;
+    max-width: 36ch;
+  }
+  .xpbar {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .xpbar b {
+    font-size: 26px;
+    font-weight: 800;
+  }
+
+  section {
+    margin-top: 26px;
+  }
+  section > h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .flow span {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 4px 12px;
+  }
+  .flow i {
+    font-style: normal;
+    color: var(--muted);
+  }
+  .note {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 8px 0 0;
+  }
+  .table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 14px;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    background: none;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    width: 100%;
+  }
+  .row:first-child {
+    border-top: 0;
+  }
+  .row .nr {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--pitch);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .row .tt {
+    min-width: 0;
+  }
+  .row .tt b {
+    display: block;
+    font-size: 17px;
+  }
+  .row .tt small {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .row.biezaca {
+    background: var(--pitch-soft);
+  }
+  .chip {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 3px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .chip.done {
+    background: var(--pitch);
+    color: var(--pitch-ink);
+    border-color: var(--pitch);
+  }
+  .chip.go {
+    border-color: var(--pitch);
+    color: var(--pitch);
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .topic b {
+    display: block;
+  }
+  .topic small {
+    color: var(--muted);
+  }
+  details.sciaga {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  details.sciaga summary {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  details.sciaga ul {
+    margin: 10px 0 0;
+    padding-left: 20px;
+  }
+  details.sciaga li {
+    margin: 6px 0;
+  }
+  .reset {
+    margin-top: 26px;
+    color: var(--muted);
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .linkbtn {
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    color: var(--muted);
+    padding: 4px 0;
+  }
+
+  .top {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 5;
+    background: var(--pitch);
+    color: var(--pitch-ink);
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: var(--pitch);
+  }
+  .top .wrap {
+    padding-block: 10px 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .top .ttl {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .clock {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 20px;
+    font-variant-numeric: tabular-nums;
+  }
+  .x {
+    background: none;
+    border: 1.5px solid currentColor;
+    border-radius: 8px;
+    padding: 2px 10px;
+    font-weight: 700;
+  }
+  .prog {
+    height: 6px;
+    background: var(--pitch-soft);
+  }
+  .prog i {
+    display: block;
+    height: 100%;
+    background: var(--yellow);
+    transition: width 0.3s;
+  }
+  .stage {
+    font-family: var(--display);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--pitch);
+    font-size: 15px;
+    margin-top: 18px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 8px;
+  }
+  .prompt {
+    font-size: 19px;
+  }
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .steps li {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 10px;
+    align-items: start;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--bg);
+  }
+  .steps li span.n {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--pitch);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .steps li div {
+    min-width: 0;
+  }
+  .hintbox {
+    margin-top: 12px;
+    background: var(--yellow-soft);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .ans {
+    margin-top: 14px;
+    min-height: 56px;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: var(--math);
+    font-size: 28px;
+    font-variant-numeric: tabular-nums;
+    overflow-x: auto;
+  }
+  .ans:empty::before {
+    content: "wpisz wynik";
+    color: var(--muted);
+    font-family: var(--body);
+    font-size: 17px;
+  }
+  .ans.ok {
+    border-color: var(--pitch);
+  }
+  .ans.bad {
+    border-color: var(--red);
+  }
+  .pad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .pad button {
+    min-height: 52px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    font-family: var(--math);
+    font-size: 24px;
+  }
+  .pad button.fn {
+    font-family: var(--body);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .pad button.go {
+    background: var(--pitch);
+    color: var(--pitch-ink);
+    border-color: var(--pitch);
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 800;
+  }
+  .padnote {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .opts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .opts button {
+    text-align: left;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 2px solid var(--line);
+    background: var(--bg);
+    font-size: 17px;
+  }
+  .opts button[disabled] {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .opts button.right {
+    border-color: var(--pitch);
+    background: var(--pitch-soft);
+    opacity: 1;
+  }
+  .opts button.wrong {
+    border-color: var(--red);
+    background: var(--red-soft);
+  }
+  .fb {
+    margin-top: 12px;
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .fb.ok {
+    background: var(--pitch-soft);
+  }
+  .fb.warn {
+    background: var(--yellow-soft);
+  }
+  .fb.bad {
+    background: var(--red-soft);
+  }
+  .next {
+    margin-top: 14px;
+    width: 100%;
+    min-height: 52px;
+    border-radius: 12px;
+    border: 0;
+    background: var(--pitch);
+    color: var(--pitch-ink);
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+  .next.ghost {
+    background: none;
+    border: 2px solid var(--pitch);
+    color: var(--pitch);
+  }
+  .score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 10px 0;
+    font-family: var(--display);
+    font-weight: 800;
+  }
+  .score div {
+    text-align: center;
+  }
+  .score b {
+    display: block;
+    font-size: 64px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .score small {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .score .colon {
+    font-size: 48px;
+    color: var(--muted);
+  }
+
+  /* obrazek z wyprowadzeniem */
+  .scene {
+    padding: 12px 12px 14px;
+  }
+  .dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .dots i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+  .dots i.d {
+    background: var(--pitch);
+  }
+  .dots i.c {
+    background: var(--yellow);
+  }
+  .viz {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .vizh {
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-size: 24px;
+    padding: 8px 0;
+  }
+  .vizh > div {
+    transition: opacity 0.45s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+  }
+  .vizh > .t {
+    font-size: 18px;
+    color: var(--muted);
+  }
+  .mini .dot {
+    fill: var(--pitch);
+  }
+  .mini .hl {
+    fill: var(--yellow);
+  }
+  .mini text {
+    fill: var(--ink);
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .cap {
+    min-height: 4.6em;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 4px;
+    padding: 0 4px;
+  }
+  .sbtns {
+    display: flex;
+    gap: 10px;
+  }
+  .sbtns .next {
+    flex: 1;
+    margin-top: 8px;
+  }
+  .again {
+    margin-top: 8px;
+    width: 56px;
+    border-radius: 12px;
+    border: 2px solid var(--line);
+    background: var(--bg);
+    font-size: 22px;
+  }
+  .viz .mv,
+  .viz text {
+    transition:
+      transform 0.6s cubic-bezier(0.25, 0.8, 0.3, 1),
+      opacity 0.45s;
+  }
+  .viz .tx {
+    fill: var(--ink);
+    font-family: var(--math);
+  }
+  .viz .big2 {
+    fill: var(--ink);
+    font-family: var(--math);
+    font-size: 40px;
+  }
+  .viz .expb {
+    fill: var(--ink);
+    font-family: var(--math);
+    font-size: 26px;
+  }
+  .viz .neg {
+    fill: var(--red);
+  }
+  .viz .lb {
+    fill: var(--muted);
+    font-family: var(--body);
+    font-size: 13px;
+  }
+  .viz .lb2 {
+    fill: var(--pitch);
+    font-family: var(--math);
+    font-size: 17px;
+  }
+  .viz .val {
+    fill: var(--ink);
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .viz .res {
+    fill: var(--pitch);
+    font-family: var(--math);
+    font-size: 30px;
+  }
+  .viz .res2 {
+    fill: var(--pitch);
+    font-family: var(--math);
+    font-size: 24px;
+  }
+  .viz .tile {
+    fill: var(--pitch);
+  }
+  .viz .tl {
+    fill: var(--pitch-ink);
+    font-family: var(--math);
+  }
+  .viz .b .tile {
+    fill: var(--blue);
+  }
+  .viz .y .tile {
+    fill: var(--yellow);
+  }
+  .viz .y .tl {
+    fill: var(--on-yellow);
+  }
+  .viz .r .tile {
+    fill: var(--red);
+  }
+  .viz .d .tile {
+    fill: var(--surface);
+    stroke: var(--line);
+    stroke-width: 1.5;
+  }
+  .viz .d .tl {
+    fill: var(--ink);
+  }
+  .viz .pl {
+    stroke: var(--pitch);
+    stroke-width: 2;
+    fill: none;
+  }
+  .viz .arcp {
+    fill: none;
+    stroke: var(--pitch);
+    stroke-width: 2.5;
+  }
+  .viz .brk {
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 2;
+  }
+  .viz .box {
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 2;
+    stroke-dasharray: 5 4;
+  }
+  .viz .mcirc {
+    fill: var(--red);
+  }
+  .viz .mtxt {
+    fill: var(--pitch-ink);
+    font-family: var(--math);
+    font-size: 24px;
+  }
+  .viz .fl {
+    stroke: var(--ink);
+    stroke-width: 2.5;
+  }
+  .viz .cut {
+    stroke: var(--red);
+    stroke-width: 3;
+  }
+  .viz .bar {
+    fill: var(--pitch);
+  }
+  .viz .y .bar {
+    fill: var(--yellow);
+  }
+  .viz .r .bar {
+    fill: var(--red);
+  }
+  .viz .barlab {
+    fill: var(--pitch-ink);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 16px;
+  }
+  .viz .y .barlab {
+    fill: var(--on-yellow);
+  }
+  .viz .comma {
+    fill: var(--yellow);
+    stroke: var(--ink);
+    stroke-width: 1.5;
+  }
+  .viz .zone {
+    fill: var(--pitch-soft);
+  }
+  .viz .mk {
+    fill: var(--muted);
+  }
+  .viz .ok .mk {
+    fill: var(--pitch);
+  }
+  .viz .no .mk {
+    fill: var(--red);
+  }
+  .viz .hl {
+    fill: var(--yellow);
+  }
+  .viz.rys {
+    margin: 12px auto 4px;
+    max-width: 400px;
+  }
+  .viz .ln {
+    stroke: var(--pitch);
+    stroke-width: 2;
+    fill: none;
+  }
+  .viz .siat {
+    stroke: var(--pitch);
+    stroke-width: 1;
+    opacity: 0.3;
+  }
+  .viz .srf {
+    fill: var(--surface);
+  }
+  .viz .zone2 {
+    fill: var(--line);
+  }
+  .vizh .mix {
+    color: var(--muted);
+    font-size: 18px;
+    text-align: center;
+  }
+  .viz .valm {
+    fill: var(--ink);
+    font-family: var(--math);
+    font-size: 19px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prog i {
+      transition: none;
+    }
+    .viz *,
+    .vizh > div {
+      transition: none !important;
+    }
+  }
+</style>
+
+<div id="app"></div>
+
+<script type="application/json" id="dane">
+{
+  "karty": [
+    {
+      "temat": "1.7 Potęga o wykładniku naturalnym",
+      "strony": "s. 35–36",
+      "kolejki": [
+        1,
+        2
+      ]
+    },
+    {
+      "temat": "1.8 Potęga o wykładniku całkowitym. Notacja wykładnicza",
+      "strony": "s. 37–40",
+      "kolejki": [
+        3,
+        4
+      ]
+    },
+    {
+      "temat": "1.9 Potęga o wykładniku wymiernym",
+      "strony": "s. 42–44",
+      "kolejki": [
+        5,
+        6
+      ]
+    }
+  ],
+  "sciaga": [
+    "$a^{n} = a*a*…*a$ ($n$ czynników), $a^{1} = a$, $a^{0} = 1$ dla $a ≠ 0$.",
+    "Minus w podstawie: parzysty wykładnik daje plus, nieparzysty minus. $-2^{4} = -16$, ale $(-2)^{4} = 16$.",
+    "$a^{m} * a^{n} = a^{m+n}$ i $a^{m} : a^{n} = a^{m-n}$.",
+    "$(a^{m})^{n} = a^{m*n}$.",
+    "$a^{n} * b^{n} = (ab)^{n}$ i $a^{n} : b^{n} = ~p{~f{a}{b}}^{n}$.",
+    "$a^{-n} = ~f{1}{a^{n}}$ i $~p{~f{a}{b}}^{-n} = ~p{~f{b}{a}}^{n}$.",
+    "Notacja wykładnicza: $x * 10^{n}$, gdzie $1 ≤ x < 10$. Duża liczba: $n$ dodatnie, mała: $n$ ujemne.",
+    "$a^{~f{1}{n}} = ~r{n}{a}$ i $a^{~f{m}{n}} = (~r{n}{a})^{m}$.",
+    "Pierwiastek jako potęga: $~r{}{2} = 2^{~f{1}{2}}$, $~r{3}{4} = 2^{~f{2}{3}}$."
+  ],
+  "sesje": [
+    {
+      "nr": 1,
+      "tytul": "Co to jest potęga",
+      "karty": "1.7, s. 35",
+      "bloki": [
+        {
+          "tytul": "Co to jest potęga",
+          "sceny": [
+            "s1_skrot",
+            "s1_nazwy",
+            "s1_nie_razy",
+            "s1a"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $3^{4}$.",
+              "a": "81",
+              "py": "3**4",
+              "hint": "$3^{4} = 3*3*3*3$. Mnóż po kolei: 9, 27…",
+              "sol": "$3*3*3*3 = 81$."
+            },
+            {
+              "t": "Ile to $2^{3}$?",
+              "opts": [
+                "$6$",
+                "$8$",
+                "$9$"
+              ],
+              "ok": 1,
+              "py": "2**3 == 8",
+              "hint": "To nie $2*3$. Ile dwójek mnożysz?",
+              "sol": "$2*2*2 = 8$. Wynik 6 to $2*3$, czyli dodawanie trzech dwójek."
+            },
+            {
+              "t": "Zapisz $7*7*7*7*7$ jako potęgę $7^{?}$. Wpisz wykładnik.",
+              "a": "5",
+              "py": "math.log(7**5,7)",
+              "hint": "Policz siódemki.",
+              "sol": "Pięć siódemek: $7^{5}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Wykładnik 1 i 0",
+          "sceny": [
+            "s1b",
+            "s1_zero"
+          ],
+          "pytania": [
+            {
+              "t": "Ile to $5^{1}$?",
+              "a": "5",
+              "py": "5**1",
+              "hint": "Jedna piątka, nic więcej nie mnożysz.",
+              "sol": "$5^{1} = 5$."
+            },
+            {
+              "t": "Ile to $16^{0}$?",
+              "a": "1",
+              "py": "16**0",
+              "hint": "Przypomnij sobie tabelkę: wiersz z wykładnikiem 0.",
+              "sol": "$16^{0} = 1$, jak każda liczba różna od zera do potęgi 0."
+            },
+            {
+              "t": "Ile to $(-7)^{0}$?",
+              "opts": [
+                "$-7$",
+                "$0$",
+                "$1$"
+              ],
+              "ok": 2,
+              "py": "(-7)**0 == 1",
+              "hint": "Zasada $a^{0} = 1$ działa dla każdej liczby różnej od zera, także ujemnej.",
+              "sol": "$(-7)^{0} = 1$."
+            }
+          ]
+        },
+        {
+          "tytul": "Minus w podstawie",
+          "sceny": [
+            "s1c",
+            "s1_znaki",
+            "s1d"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $(-1)^{5}$.",
+              "a": "-1",
+              "py": "(-1)**5",
+              "hint": "Pięć minusów: dwie pary i jeden bez pary.",
+              "sol": "$(-1)^{5} = -1$."
+            },
+            {
+              "t": "Oblicz $(-3)^{2}$.",
+              "a": "9",
+              "py": "(-3)**2",
+              "hint": "Dwa minusy tworzą parę.",
+              "sol": "$(-3)*(-3) = 9$."
+            },
+            {
+              "t": "Ile to $-3^{2}$?",
+              "opts": [
+                "$9$",
+                "$-9$"
+              ],
+              "ok": 1,
+              "py": "-3**2 == -9",
+              "hint": "Bez nawiasu wykładnik obejmuje tylko 3.",
+              "sol": "$-3^{2} = -(3*3) = -9$."
+            }
+          ]
+        },
+        {
+          "tytul": "Ułamek do potęgi",
+          "sceny": [
+            "s1_pole",
+            "s1e",
+            "s1_minus_ulamek"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $~p{~f{3}{4}}^{2}$.",
+              "a": "9/16",
+              "py": "F(3,4)**2",
+              "hint": "Liczniki razem: $3*3$. Mianowniki razem: $4*4$.",
+              "sol": "$~f{9}{16}$."
+            },
+            {
+              "t": "Oblicz $~p{~f{1}{3}}^{3}$.",
+              "a": "1/27",
+              "py": "F(1,3)**3",
+              "hint": "$~f{1*1*1}{3*3*3}$.",
+              "sol": "$~f{1}{27}$."
+            },
+            {
+              "t": "Oblicz $~p{-~f{2}{5}}^{2}$.",
+              "a": "4/25",
+              "py": "F(-2,5)**2",
+              "hint": "Najpierw znak: dwa minusy to para. Potem liczby.",
+              "sol": "$~f{4}{25}$, wynik dodatni."
+            }
+          ]
+        }
+      ],
+      "trening": [
+        {
+          "t": "Oblicz $~p{-~f{2}{5}}^{3}$.",
+          "a": "-8/125",
+          "py": "F(-2,5)**3",
+          "hint": "Trzy minusy: jedna para i jeden bez pary, więc wynik ujemny.",
+          "sol": "$-~f{2^{3}}{5^{3}} = -~f{8}{125}$."
+        },
+        {
+          "t": "Który wynik jest ujemny?",
+          "opts": [
+            "$(-3)^{4}$",
+            "$-3^{4}$",
+            "$(-3)^{0}$",
+            "$3^{4}$"
+          ],
+          "ok": 1,
+          "py": "-3**4 < 0 and (-3)**4 > 0 and (-3)**0 > 0 and 3**4 > 0",
+          "hint": "Sprawdź, gdzie stoi nawias. Bez nawiasu wykładnik obejmuje tylko 3.",
+          "sol": "$-3^{4} = -81$: potęgujesz samo 3, minus zostaje z przodu. $(-3)^{4} = 81$, $(-3)^{0} = 1$."
+        },
+        {
+          "t": "Kuba napisał: $(-2)^{4} = -16$. Co jest nie tak?",
+          "opts": [
+            "Nic, jest dobrze",
+            "Wykładnik parzysty, więc wynik dodatni: 16",
+            "$2^{4}$ to 8, więc wynik to $-8$"
+          ],
+          "ok": 1,
+          "py": "(-2)**4 == 16",
+          "hint": "Policz minusy. Ile ich jest i czy łączą się w pary?",
+          "sol": "Cztery minusy to dwie pary, więc $(-2)^{4} = 16$."
+        },
+        {
+          "t": "Liczba królików podwaja się co pół roku. Na początku jest 1 para. Po ilu półroczach będzie 64 pary?",
+          "a": "6",
+          "py": "math.log2(64)",
+          "hint": "Szukasz wykładnika: $2^{?} = 64$. Licz po kolei: 2, 4, 8, 16…",
+          "sol": "$2^{6} = 64$, więc po 6 półroczach."
+        },
+        {
+          "t": "Która liczba jest najmniejsza?",
+          "opts": [
+            "$(-2)^{9}$",
+            "$(-3)^{4}$",
+            "$(-3)^{9}$",
+            "$(-2)^{0}$"
+          ],
+          "ok": 2,
+          "py": "(-3)**9 == min((-2)**9, (-3)**4, (-3)**9, (-2)**0)",
+          "hint": "Ujemne wyniki dają tylko nieparzyste wykładniki. Z dwóch ujemnych mniejsza jest ta dalej od zera.",
+          "sol": "$(-3)^{9} = -19683$, a $(-2)^{9} = -512$. Im dalej od zera po stronie minusa, tym mniejsza liczba."
+        }
+      ],
+      "test": [
+        {
+          "t": "Oblicz $~p{-~f{1}{2}}^{5}$.",
+          "a": "-1/32",
+          "py": "F(-1,2)**5",
+          "sol": "Pięć minusów, nieparzyście, więc $-~f{1}{32}$."
+        },
+        {
+          "t": "Oblicz $~p{~f{2}{3}}^{4}$.",
+          "a": "16/81",
+          "py": "F(2,3)**4",
+          "sol": "$~f{2^{4}}{3^{4}} = ~f{16}{81}$."
+        },
+        {
+          "t": "Ile to $(-5)^{0}$?",
+          "opts": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$-5$"
+          ],
+          "ok": 2,
+          "py": "(-5)**0 == 1",
+          "sol": "Każda liczba różna od zera do potęgi 0 daje 1."
+        },
+        {
+          "t": "Oblicz $3 * 3^{4}$.",
+          "a": "243",
+          "py": "3*3**4",
+          "sol": "$3 * 81 = 243$, czyli $3^{5}$."
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "tytul": "Prawa działań na potęgach",
+      "karty": "1.7, s. 36",
+      "rozgrzewka": [
+        {
+          "t": "Powtórka z lekcji 1: oblicz $(-2)^{3}$.",
+          "a": "-8",
+          "py": "(-2)**3",
+          "hint": "Nieparzysty wykładnik zostawia minus.",
+          "sol": "$(-2)*(-2)*(-2) = -8$."
+        },
+        {
+          "t": "Ile to $-2^{2}$?",
+          "opts": [
+            "$4$",
+            "$-4$"
+          ],
+          "ok": 1,
+          "py": "-2**2 == -4",
+          "hint": "Bez nawiasu potęgujesz samo 2.",
+          "sol": "$-2^{2} = -(2*2) = -4$."
+        }
+      ],
+      "bloki": [
+        {
+          "tytul": "Mnożenie potęg",
+          "sceny": [
+            "s2a",
+            "s2_pulapki"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $2^{2} * 2^{3}$.",
+              "a": "32",
+              "py": "2**2*2**3",
+              "hint": "Dwie dwójki i trzy dwójki. Ile dwójek razem?",
+              "sol": "$2^{2+3} = 2^{5} = 32$."
+            },
+            {
+              "t": "Zapisz $5^{4} * 5^{3}$ jako jedną potęgę $5^{?}$. Wpisz wykładnik.",
+              "a": "7",
+              "py": "math.log(5**4*5**3,5)",
+              "hint": "Cztery piątki i trzy piątki. Dodaj wykładniki.",
+              "sol": "$5^{4+3} = 5^{7}$."
+            },
+            {
+              "t": "Składasz kartkę na pół. Każde złożenie podwaja liczbę warstw. Składasz 3 razy, a potem jeszcze 4 razy. Ile warstw masz na końcu? Zapisz to jako potęgę $2^{?}$ i wpisz wykładnik.",
+              "a": "7",
+              "py": "math.log2(2**3*2**4)",
+              "hint": "Policz kafelki na rysunku. Każdy to jedno mnożenie przez 2.",
+              "sol": "$2^{3} * 2^{4} = 2^{3+4} = 2^{7}$, czyli 128 warstw.",
+              "rys": {
+                "typ": "grupy",
+                "gora": "każde złożenie: liczba warstw razy 2",
+                "grupy": [
+                  {
+                    "n": 3,
+                    "lab": "2",
+                    "pod": "3 złożenia"
+                  },
+                  {
+                    "n": 4,
+                    "lab": "2",
+                    "pod": "4 złożenia",
+                    "kol": "b"
+                  }
+                ],
+                "wynik": "2³ · 2⁴ = ?",
+                "opis": "Siedem kafelków z dwójką: trzy zielone za pierwsze złożenia, cztery niebieskie za kolejne"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Dzielenie potęg",
+          "sceny": [
+            "s2b",
+            "s2_rowne"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $3^{7} : 3^{5}$.",
+              "a": "9",
+              "py": "F(3**7,3**5)",
+              "hint": "Skróć pięć trójek. Ile zostało na górze?",
+              "sol": "$3^{7-5} = 3^{2} = 9$."
+            },
+            {
+              "t": "Ile to $7^{4} : 7^{4}$?",
+              "opts": [
+                "$0$",
+                "$1$",
+                "$7$"
+              ],
+              "ok": 1,
+              "py": "F(7**4,7**4) == 1",
+              "hint": "Na górze i na dole tyle samo siódemek. Wszystkie się skracają.",
+              "sol": "$7^{4-4} = 7^{0} = 1$. Liczba podzielona przez siebie daje 1."
+            },
+            {
+              "t": "Na pendrivie jest $2^{10}$ MB miejsca. Jeden film zajmuje $2^{6}$ MB. Ile filmów się zmieści?",
+              "a": "16",
+              "py": "F(2**10,2**6)",
+              "hint": "Ile razy $2^{6}$ mieści się w $2^{10}$? To dzielenie: odejmij wykładniki.",
+              "sol": "$2^{10} : 2^{6} = 2^{4} = 16$ filmów.",
+              "rys": {
+                "typ": "pasek",
+                "calosc": "cały pendrive: 2¹⁰ MB",
+                "czesc": "jeden film: 2⁶ MB",
+                "ile": 16,
+                "pokaz": 2,
+                "pyt": "ile filmów? 2¹⁰ : 2⁶",
+                "opis": "Długi pasek to cały pendrive, krótkie kawałki na początku to filmy"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Potęga potęgi",
+          "sceny": [
+            "s2c",
+            "s2_porown"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $(2^{3})^{2}$ jako potęgę $2^{?}$. Wpisz wykładnik.",
+              "a": "6",
+              "py": "math.log2((2**3)**2)",
+              "hint": "Dwa rzędy po trzy dwójki. Pomnóż wykładniki.",
+              "sol": "$(2^{3})^{2} = 2^{3*2} = 2^{6}$."
+            },
+            {
+              "t": "Który zapis jest równy $(5^{2})^{3}$?",
+              "opts": [
+                "$5^{5}$",
+                "$5^{6}$",
+                "$5^{8}$"
+              ],
+              "ok": 1,
+              "py": "(5**2)**3 == 5**6",
+              "hint": "Trzy razy $5^{2}$: ile piątek razem?",
+              "sol": "$5^{2} * 5^{2} * 5^{2} = 5^{6}$. Wynik $5^{5}$ wychodzi z dodania, a tu jest potęga potęgi."
+            },
+            {
+              "t": "Kostka ma krawędź $2^{2}$ cm. Objętość kostki to krawędź do potęgi 3. Ile cm³ ma ta kostka?",
+              "a": "64",
+              "py": "(2**2)**3",
+              "hint": "$(2^{2})^{3}$ to potęga potęgi: pomnóż wykładniki.",
+              "sol": "$(2^{2})^{3} = 2^{6} = 64$ cm³.",
+              "rys": {
+                "typ": "kostka",
+                "a": "2² cm",
+                "srodek": "objętość = (2²)³",
+                "opis": "Sześcian, każda krawędź ma 2 do kwadratu centymetrów"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Ten sam wykładnik",
+          "sceny": [
+            "s2d",
+            "s2e"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $2^{3} * 5^{3}$.",
+              "a": "1000",
+              "py": "2**3*5**3",
+              "hint": "Ten sam wykładnik: połącz dwójki i piątki w pary, $2 * 5 = 10$.",
+              "sol": "$10^{3} = 1000$."
+            },
+            {
+              "t": "Oblicz $15^{2} : 5^{2}$.",
+              "a": "9",
+              "py": "F(15**2,5**2)",
+              "hint": "Ten sam wykładnik: podziel podstawy, $15 : 5 = 3$.",
+              "sol": "$(15 : 5)^{2} = 3^{2} = 9$."
+            },
+            {
+              "t": "Prostokąt ma boki $25^{2}$ cm i $4^{2}$ cm. Ile cm² ma jego pole?",
+              "a": "10000",
+              "py": "4**2*25**2",
+              "hint": "Pole to bok razy bok. Ten sam wykładnik: połącz podstawy w pary, $4 * 25 = 100$.",
+              "sol": "$25^{2} * 4^{2} = 100^{2} = 10 000$ cm².",
+              "rys": {
+                "typ": "prost",
+                "a": "25² cm",
+                "b": "4² cm",
+                "srodek": "pole = 25² · 4²",
+                "w": 240,
+                "h": 84,
+                "opis": "Długi, niski prostokąt z bokami 25 do kwadratu i 4 do kwadratu centymetrów"
+              }
+            }
+          ]
+        }
+      ],
+      "trening": [
+        {
+          "t": "Oblicz $2^{4} * 2^{3} : 2^{5}$.",
+          "a": "4",
+          "py": "F(2**4*2**3,2**5)",
+          "hint": "Najpierw mnożenie: dodaj wykładniki. Potem dzielenie: odejmij.",
+          "sol": "$2^{4+3-5} = 2^{2} = 4$."
+        },
+        {
+          "t": "W probówce jest $2^{5}$ bakterii. Co godzinę każda dzieli się na dwie. Ile bakterii będzie po 3 godzinach? Zapisz jako potęgę $2^{?}$ i wpisz wykładnik.",
+          "a": "8",
+          "py": "math.log2(2**5*2**3)",
+          "hint": "Na start $2^{5}$, potem trzy razy mnożysz przez 2. Dodaj wykładniki.",
+          "sol": "$2^{5} * 2^{3} = 2^{8}$, czyli 256 bakterii.",
+          "rys": {
+            "typ": "grupy",
+            "gora": "co godzinę liczba bakterii razy 2",
+            "lead": {
+              "lab": "2⁵",
+              "pod": "na start"
+            },
+            "grupy": [
+              {
+                "n": 3,
+                "lab": "2",
+                "pod": "3 godziny",
+                "kol": "b"
+              }
+            ],
+            "wynik": "2⁵ · 2³ = ?",
+            "opis": "Żółty kafelek 2 do piątej na start i trzy niebieskie dwójki, po jednej na godzinę"
+          }
+        },
+        {
+          "t": "Ola napisała: $2^{3} * 2^{4} = 2^{12}$. Gdzie błąd?",
+          "opts": [
+            "Pomnożyła wykładniki, a przy mnożeniu potęg się je dodaje: $2^{7}$",
+            "Nie ma błędu",
+            "Powinno być $4^{7}$"
+          ],
+          "ok": 0,
+          "py": "2**3*2**4 == 2**7",
+          "hint": "Policz dwójki: ile ich jest w $2^{3}$, a ile w $2^{4}$?",
+          "sol": "Trzy dwójki i cztery dwójki to siedem: $2^{7}$. Wykładniki mnożysz tylko przy potędze potęgi."
+        },
+        {
+          "t": "Kwadratowy obrazek ma $2^{5}$ pikseli szerokości i $2^{5}$ pikseli wysokości. Ile pikseli ma razem? Zapisz jako potęgę $2^{?}$ i wpisz wykładnik.",
+          "a": "10",
+          "py": "math.log2(2**5*2**5)",
+          "hint": "Liczba pikseli to szerokość razy wysokość: $2^{5} * 2^{5}$.",
+          "sol": "$2^{5} * 2^{5} = 2^{10} = 1024$ piksele.",
+          "rys": {
+            "typ": "prost",
+            "a": "2⁵ pikseli",
+            "b": "2⁵ pikseli",
+            "srodek": "? pikseli",
+            "w": 150,
+            "h": 150,
+            "kol": 8,
+            "wier": 8,
+            "opis": "Kwadrat w kratkę, bok 2 do piątej pikseli"
+          }
+        },
+        {
+          "t": "Oblicz $~p{~f{1}{3}}^{4} * 3^{6}$.",
+          "a": "9",
+          "py": "F(1,3)**4*3**6",
+          "hint": "$~p{~f{1}{3}}^{4} = ~f{1}{3^{4}}$. Cztery trójki z dołu skrócą się z czterema trójkami z $3^{6}$.",
+          "sol": "$~f{3^{6}}{3^{4}} = 3^{2} = 9$."
+        }
+      ],
+      "test": [
+        {
+          "t": "Oblicz $2^{5} * 2 * 2^{5}$.",
+          "a": "2048",
+          "py": "2**5*2*2**5",
+          "sol": "$2 = 2^{1}$, więc $5+1+5 = 11$: $2^{11} = 2048$."
+        },
+        {
+          "t": "Oblicz $(3^{2})^{3} : 3^{4}$.",
+          "a": "9",
+          "py": "F((3**2)**3,3**4)",
+          "sol": "$(3^{2})^{3} = 3^{6}$, a $3^{6} : 3^{4} = 3^{2} = 9$."
+        },
+        {
+          "t": "Oblicz $(3^{5} * 2^{5}) : 6^{4}$.",
+          "a": "6",
+          "py": "F(3**5*2**5,6**4)",
+          "sol": "$3^{5}*2^{5} = 6^{5}$, a $6^{5} : 6^{4} = 6$."
+        },
+        {
+          "t": "W magazynie jest $3^{8}$ jabłek. Pakujesz je do skrzynek po $3^{5}$ jabłek. Ile skrzynek zapełnisz?",
+          "a": "27",
+          "py": "F(3**8,3**5)",
+          "sol": "$3^{8} : 3^{5} = 3^{3} = 27$ skrzynek.",
+          "rys": {
+            "typ": "pasek",
+            "calosc": "wszystkie jabłka: 3⁸",
+            "czesc": "jedna skrzynka: 3⁵",
+            "ile": 27,
+            "pokaz": 3,
+            "pyt": "ile skrzynek? 3⁸ : 3⁵",
+            "opis": "Długi pasek to wszystkie jabłka, krótkie kawałki na początku to skrzynki"
+          }
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "tytul": "Wykładnik ujemny",
+      "karty": "1.8, s. 37 i 39",
+      "rozgrzewka": [
+        {
+          "t": "Powtórka z lekcji 2: oblicz $2^{6} : 2^{4}$.",
+          "a": "4",
+          "py": "F(2**6,2**4)",
+          "hint": "Dzielenie potęg o tej samej podstawie: odejmij wykładniki.",
+          "sol": "$2^{6-4} = 2^{2} = 4$."
+        },
+        {
+          "t": "Ile to $5^{0}$?",
+          "opts": [
+            "$0$",
+            "$1$",
+            "$5$"
+          ],
+          "ok": 1,
+          "py": "5**0 == 1",
+          "hint": "Przypomnij sobie tabelkę z lekcji 1: wiersz z wykładnikiem 0.",
+          "sol": "$5^{0} = 1$."
+        }
+      ],
+      "bloki": [
+        {
+          "tytul": "Wykładnik poniżej zera",
+          "sceny": [
+            "s3a",
+            "s3_pol"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $2^{-3}$.",
+              "a": "1/8",
+              "py": "F(2)**-3",
+              "hint": "Zejdź w tabelce trzy wiersze poniżej $2^{0} = 1$. Za każdym razem dziel przez 2.",
+              "sol": "$2^{-3} = ~f{1}{2^{3}} = ~f{1}{8}$."
+            },
+            {
+              "t": "Ile to $10^{-2}$?",
+              "opts": [
+                "$-100$",
+                "$-20$",
+                "$~f{1}{100}$"
+              ],
+              "ok": 2,
+              "py": "F(10)**-2 == F(1,100)",
+              "hint": "Minus w wykładniku nie robi liczby ujemnej. Dwa razy dzielisz przez 10.",
+              "sol": "$10^{-2} = ~f{1}{10^{2}} = ~f{1}{100}$."
+            },
+            {
+              "t": "W organizmie jest dawka leku. Co 6 godzin zostaje z niej połowa. Jaka część dawki zostanie po 24 godzinach? Wpisz ułamek.",
+              "a": "1/16",
+              "py": "F(1,2)**4",
+              "hint": "24 godziny to 4 razy po 6 godzin. Cztery razy bierzesz połowę.",
+              "sol": "$~p{~f{1}{2}}^{4} = 2^{-4} = ~f{1}{16}$ dawki.",
+              "rys": {
+                "typ": "spadek",
+                "wart": [
+                  "1",
+                  "½",
+                  "¼",
+                  "⅛",
+                  "?"
+                ],
+                "czas": [
+                  "0 h",
+                  "6 h",
+                  "12 h",
+                  "18 h",
+                  "24 h"
+                ],
+                "dol": "co 6 h: połowa tego, co było",
+                "opis": "Pięć słupków, każdy o połowę niższy od poprzedniego"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Dzielenie, które daje ułamek",
+          "sceny": [
+            "s3b",
+            "s3_pulapka"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $5^{2} : 5^{6}$ jako potęgę $5^{?}$. Wpisz wykładnik.",
+              "a": "-4",
+              "py": "math.log(F(5**2,5**6),5)",
+              "hint": "Odejmij wykładniki: $2 - 6$.",
+              "sol": "$5^{2-6} = 5^{-4}$."
+            },
+            {
+              "t": "Oblicz $3^{4} : 3^{6}$.",
+              "a": "1/9",
+              "py": "F(3**4,3**6)",
+              "hint": "Skróć cztery trójki. Na dole zostaną dwie.",
+              "sol": "$3^{4-6} = 3^{-2} = ~f{1}{9}$."
+            },
+            {
+              "t": "Taśma ma $2^{5}$ cm długości. Odcinasz kawałek długości $2^{2}$ cm. Jaką częścią całej taśmy jest ten kawałek? Wpisz ułamek.",
+              "a": "1/8",
+              "py": "F(2**2,2**5)",
+              "hint": "Podziel kawałek przez całość: $2^{2} : 2^{5}$. Odejmij wykładniki.",
+              "sol": "$2^{2-5} = 2^{-3} = ~f{1}{8}$ taśmy.",
+              "rys": {
+                "typ": "pasek",
+                "tryb": "kawalek",
+                "calosc": "cała taśma: 2⁵ cm",
+                "czesc": "kawałek: 2² cm",
+                "ile": 8,
+                "pokaz": 1,
+                "pyt": "2² : 2⁵ = ?",
+                "opis": "Długi pasek taśmy z zaznaczonym żółtym kawałkiem na początku"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Ułamek z minusem w wykładniku",
+          "sceny": [
+            "s3c"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $~p{~f{1}{2}}^{-3}$.",
+              "a": "8",
+              "py": "F(1,2)**-3",
+              "hint": "Odwróć ułamek i usuń minus: $~p{~f{2}{1}}^{3} = 2^{3}$.",
+              "sol": "$~p{~f{1}{2}}^{-3} = 2^{3} = 8$."
+            },
+            {
+              "t": "Oblicz $~p{~f{3}{4}}^{-2}$.",
+              "a": "16/9",
+              "py": "F(3,4)**-2",
+              "hint": "Odwróć ułamek: $~p{~f{4}{3}}^{2}$.",
+              "sol": "$~f{4^{2}}{3^{2}} = ~f{16}{9}$."
+            },
+            {
+              "t": "Arkusz A0 ma pole 1 m². Przecinasz go na pół i masz A1. A1 na pół to A2, i tak dalej. Kartka A4 ma pole $~p{~f{1}{2}}^{4}$ m². Ile kartek A4 wytniesz z jednego arkusza A0?",
+              "a": "16",
+              "py": "1/F(1,2)**4",
+              "hint": "Ile razy pole A4 mieści się w 1? To $1 : ~p{~f{1}{2}}^{4} = ~p{~f{1}{2}}^{-4}$. Odwróć ułamek.",
+              "sol": "$~p{~f{1}{2}}^{-4} = 2^{4} = 16$ kartek.",
+              "rys": {
+                "typ": "polowki",
+                "n": 4,
+                "lab": [
+                  "A1",
+                  "A2",
+                  "A3",
+                  "A4"
+                ],
+                "gora": "arkusz A0 = 1 m²",
+                "dol": "1 : (½)⁴ = ?",
+                "opis": "Prostokąt A0 dzielony na pół cztery razy, ostatni kawałek A4 na żółto"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Prawa potęg z minusem",
+          "sceny": [
+            "s3d",
+            "s3_pp"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $2^{5} * 2^{-3}$.",
+              "a": "4",
+              "py": "2**5*F(2)**-3",
+              "hint": "Dodaj wykładniki: $5 + (-3)$.",
+              "sol": "$2^{5-3} = 2^{2} = 4$."
+            },
+            {
+              "t": "Zapisz $(3^{-2})^{2}$ jako potęgę $3^{?}$. Wpisz wykładnik.",
+              "a": "-4",
+              "py": "math.log((F(3)**-2)**2,3)",
+              "hint": "Potęga potęgi: pomnóż wykładniki, $-2 * 2$.",
+              "sol": "$3^{-2*2} = 3^{-4}$."
+            },
+            {
+              "t": "Płytka ma szerokość $2^{-3}$ m. Ile takich płytek ułożysz obok siebie na pasie długości $2^{2}$ m?",
+              "a": "32",
+              "py": "F(2**2)/F(2)**-3",
+              "hint": "Dzielisz: $2^{2} : 2^{-3}$. Odejmij wykładniki: $2 - (-3) = 5$.",
+              "sol": "$2^{2-(-3)} = 2^{5} = 32$ płytki.",
+              "rys": {
+                "typ": "pasek",
+                "calosc": "pas: 2² m",
+                "czesc": "płytka: 2⁻³ m",
+                "ile": 32,
+                "pokaz": 3,
+                "pyt": "ile płytek? 2² : 2⁻³",
+                "opis": "Długi pas, na początku trzy wąskie płytki"
+              }
+            }
+          ]
+        }
+      ],
+      "trening": [
+        {
+          "t": "Oblicz $4^{-2}$.",
+          "a": "1/16",
+          "py": "F(4)**-2",
+          "hint": "$4^{-2} = ~f{1}{4^{2}}$.",
+          "sol": "$~f{1}{16}$."
+        },
+        {
+          "t": "Który zapis jest równy $~f{1}{7^{3}}$?",
+          "opts": [
+            "$7^{-3}$",
+            "$-7^{3}$",
+            "$(-7)^{3}$"
+          ],
+          "ok": 0,
+          "py": "F(7)**-3 == F(1,7**3) and -7**3 < 0 and (-7)**3 < 0",
+          "hint": "Ułamek z jedynką na górze to wykładnik ujemny, a nie liczba ujemna.",
+          "sol": "$7^{-3} = ~f{1}{7^{3}}$. Dwa pozostałe zapisy to liczby ujemne."
+        },
+        {
+          "t": "Ile to $~p{-~f{1}{3}}^{-2}$?",
+          "opts": [
+            "$9$",
+            "$-9$",
+            "$~f{1}{9}$"
+          ],
+          "ok": 0,
+          "py": "F(-1,3)**-2 == 9",
+          "hint": "Najpierw odwróć ułamek: $(-3)^{2}$. Potem znak: dwa minusy to para.",
+          "sol": "$~p{-~f{1}{3}}^{-2} = (-3)^{2} = 9$."
+        },
+        {
+          "t": "Masz szklankę soku. Wylewasz połowę i dolewasz wody do pełna. Robisz tak 3 razy. Jaką częścią szklanki jest teraz sok? Zapisz jako potęgę $2^{?}$ i wpisz wykładnik.",
+          "a": "-3",
+          "py": "math.log2(F(1,2)**3)",
+          "hint": "Trzy razy bierzesz połowę: $~p{~f{1}{2}}^{3} = ~f{1}{8}$. A $~f{1}{8}$ to $2$ do jakiej potęgi?",
+          "sol": "$~p{~f{1}{2}}^{3} = ~f{1}{2^{3}} = 2^{-3}$.",
+          "rys": {
+            "typ": "spadek",
+            "wart": [
+              "1",
+              "½",
+              "¼",
+              "?"
+            ],
+            "czas": [
+              "start",
+              "1 raz",
+              "2 razy",
+              "3 razy"
+            ],
+            "dol": "ile soku zostaje w szklance",
+            "opis": "Cztery słupki soku, każdy o połowę niższy od poprzedniego"
+          }
+        },
+        {
+          "t": "Kuba napisał: $2^{-3} = -8$. Co jest nie tak?",
+          "opts": [
+            "Nic, jest dobrze",
+            "Minus w wykładniku nie robi liczby ujemnej: $2^{-3} = ~f{1}{8}$",
+            "Powinno być $-6$"
+          ],
+          "ok": 1,
+          "py": "F(2)**-3 == F(1,8)",
+          "hint": "Zajrzyj do tabelki: co wyszło w wierszu z wykładnikiem $-3$?",
+          "sol": "$2^{-3} = ~f{1}{2^{3}} = ~f{1}{8}$, liczba dodatnia."
+        }
+      ],
+      "test": [
+        {
+          "t": "Oblicz $~p{~f{2}{5}}^{-2}$.",
+          "a": "25/4",
+          "py": "F(2,5)**-2",
+          "sol": "Odwracasz ułamek: $~p{~f{5}{2}}^{2} = ~f{25}{4}$."
+        },
+        {
+          "t": "Oblicz $3^{-2} * 3^{5}$.",
+          "a": "27",
+          "py": "F(3)**-2*3**5",
+          "sol": "$3^{-2+5} = 3^{3} = 27$."
+        },
+        {
+          "t": "Oblicz $(2^{-1})^{-3}$.",
+          "a": "8",
+          "py": "(F(2)**-1)**-3",
+          "sol": "Mnożysz wykładniki: $-1 * (-3) = 3$, więc $2^{3} = 8$."
+        },
+        {
+          "t": "W organizmie jest dawka leku. Co 8 godzin zostaje z niej połowa. Jaka część dawki zostanie po 48 godzinach? Wpisz ułamek.",
+          "a": "1/64",
+          "py": "F(1,2)**6",
+          "sol": "48 godzin to 6 razy po 8 godzin. $~p{~f{1}{2}}^{6} = 2^{-6} = ~f{1}{64}$ dawki.",
+          "rys": {
+            "typ": "spadek",
+            "wart": [
+              "1",
+              "½",
+              "¼",
+              "⅛",
+              "",
+              "",
+              "?"
+            ],
+            "czas": [
+              "0 h",
+              "8",
+              "16",
+              "24",
+              "32",
+              "40",
+              "48 h"
+            ],
+            "dol": "co 8 h: połowa tego, co było",
+            "opis": "Siedem słupków, każdy o połowę niższy od poprzedniego"
+          }
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "tytul": "Notacja wykładnicza",
+      "karty": "1.8, s. 38 i 40",
+      "sceny": [
+        "s4a",
+        "s4b",
+        "s4c"
+      ],
+      "rozgrzewka": [
+        {
+          "t": "Powtórka z lekcji 3: oblicz $2^{-3}$.",
+          "a": "1/8",
+          "py": "F(2)**-3",
+          "hint": "$2^{-3} = ~f{1}{2^{3}}$.",
+          "sol": "$~f{1}{8}$."
+        },
+        {
+          "t": "Powtórka z lekcji 3: oblicz $~p{~f{2}{3}}^{-2}$.",
+          "a": "9/4",
+          "py": "F(2,3)**-2",
+          "hint": "Odwróć ułamek i usuń minus z wykładnika.",
+          "sol": "$~p{~f{3}{2}}^{2} = ~f{9}{4}$."
+        }
+      ],
+      "przyklad": {
+        "t": "Zapisz $0,00027$ w notacji wykładniczej.",
+        "kroki": [
+          "Przesuń przecinek za pierwszą cyfrę różną od zera: $2,7$.",
+          "Policz przesunięcia: z 0,00027 do 2,7 są 4 miejsca w prawo, czyli mnożenie przez $10^{4}$.",
+          "Żeby wrócić do 0,00027, dzielisz przez $10^{4}$: $2,7 * 10^{-4}$."
+        ]
+      },
+      "razem": {
+        "t": "Twoja kolej: $6 320 000 = 6,32 * 10^{?}$. Wpisz wykładnik.",
+        "a": "6",
+        "py": "math.log10(6320000/6.32)",
+        "hint": "Ile razy trzeba podzielić przez 10, żeby przecinek stanął zaraz po szóstce?",
+        "sol": "6 razy: $6,32 * 10^{6}$."
+      },
+      "trening": [
+        {
+          "t": "$109 000 000 = 1,09 * 10^{?}$. Wpisz wykładnik.",
+          "a": "8",
+          "py": "math.log10(109000000/1.09)",
+          "hint": "Policz cyfry stojące za pierwszą jedynką.",
+          "sol": "8 miejsc: $1,09 * 10^{8}$."
+        },
+        {
+          "t": "$0,00065 = 6,5 * 10^{?}$. Wpisz wykładnik.",
+          "a": "-4",
+          "py": "math.log10(0.00065/6.5)",
+          "hint": "Mała liczba, więc wykładnik ujemny. Policz, o ile miejsc w prawo przesuwasz przecinek.",
+          "sol": "4 miejsca w prawo: $6,5 * 10^{-4}$."
+        },
+        {
+          "t": "Który zapis liczby $8765,2$ to poprawna notacja wykładnicza?",
+          "opts": [
+            "$87,652 * 10^{2}$",
+            "$8,7652 * 10^{3}$",
+            "$0,87652 * 10^{4}$"
+          ],
+          "ok": 1,
+          "py": "1 <= 8.7652 < 10 and abs(8.7652e3-8765.2) < 1e-9",
+          "hint": "Liczba z przodu musi być co najmniej 1 i mniejsza niż 10.",
+          "sol": "Wszystkie trzy mają tę samą wartość, ale tylko $8,7652$ mieści się między 1 a 10."
+        },
+        {
+          "t": "Zapisz $7,89 * 10^{-4}$ w postaci dziesiętnej.",
+          "a": "0.000789",
+          "py": "F(789,100)*F(10)**-4",
+          "hint": "Wykładnik $-4$: dzielisz przez $10^{4}$, czyli przesuwasz przecinek o 4 miejsca w lewo.",
+          "sol": "$0,000789$."
+        },
+        {
+          "t": "Oblicz $(3,4 * 10^{7}) * (4 * 10^{-5})$. Podaj wynik dziesiętnie.",
+          "a": "1360",
+          "py": "F(34,10)*10**7*4*F(10)**-5",
+          "hint": "$3,4 * 4 = 13,6$ oraz $10^{7} * 10^{-5} = 10^{2}$.",
+          "sol": "$13,6 * 10^{2} = 1,36 * 10^{3} = 1360$."
+        },
+        {
+          "t": "Oblicz $(4,8 * 10^{-1}) : (1,6 * 10^{-3})$. Podaj wynik dziesiętnie.",
+          "a": "300",
+          "py": "(F(48,10)*F(10)**-1)/(F(16,10)*F(10)**-3)",
+          "hint": "$4,8 : 1,6 = 3$ oraz $10^{-1} : 10^{-3} = 10^{2}$.",
+          "sol": "$3 * 10^{2} = 300$."
+        },
+        {
+          "t": "Oblicz $50 000 * 19$ i zapisz wynik jako $9,5 * 10^{?}$. Wpisz wykładnik.",
+          "a": "5",
+          "py": "math.log10(50000*19/9.5)",
+          "hint": "$50 000 * 19 = 950 000$. Ile razy podzielić przez 10, żeby zostało 9,5?",
+          "sol": "$950 000 = 9,5 * 10^{5}$."
+        },
+        {
+          "t": "Ktoś zapisał $0,0042 = 4,2 * 10^{3}$. Co jest źle?",
+          "opts": [
+            "Liczba jest mniejsza od 1, więc wykładnik musi być ujemny: $4,2 * 10^{-3}$",
+            "Powinno być $42 * 10^{-4}$",
+            "Wszystko dobrze"
+          ],
+          "ok": 0,
+          "py": "abs(4.2e-3-0.0042) < 1e-12",
+          "hint": "$4,2 * 10^{3}$ to 4200. Czy to ta sama liczba?",
+          "sol": "$0,0042 = 4,2 * 10^{-3}$."
+        }
+      ],
+      "test": [
+        {
+          "t": "$0,100324 = 1,00324 * 10^{?}$. Wpisz wykładnik.",
+          "a": "-1",
+          "py": "math.log10(0.100324/1.00324)",
+          "sol": "Jedno miejsce w prawo: $10^{-1}$."
+        },
+        {
+          "t": "Zapisz $8,34 * 10^{-5}$ w postaci dziesiętnej.",
+          "a": "0.0000834",
+          "py": "F(834,100)*F(10)**-5",
+          "sol": "$0,0000834$."
+        },
+        {
+          "t": "Oblicz $(7,2 * 10^{-3}) : (1,2 * 10^{-2})$. Podaj wynik dziesiętnie.",
+          "a": "0.6",
+          "py": "(F(72,10)*F(10)**-3)/(F(12,10)*F(10)**-2)",
+          "sol": "$6 * 10^{-1} = 0,6$."
+        },
+        {
+          "t": "Prędkość światła w próżni to 299 792 458 m/s. W notacji wykładniczej to $2,99792458 * 10^{?}$ m/s. Wpisz wykładnik.",
+          "a": "8",
+          "py": "math.log10(299792458/2.99792458)",
+          "sol": "8 miejsc w lewo: $10^{8}$."
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "tytul": "Wykładnik w postaci ułamka",
+      "karty": "1.9, s. 42",
+      "sceny": [
+        "s5a",
+        "s5b",
+        "s5c",
+        "s5d"
+      ],
+      "rozgrzewka": [
+        {
+          "t": "Powtórka z lekcji 4: $0,0005 = 5 * 10^{?}$. Wpisz wykładnik.",
+          "a": "-4",
+          "py": "math.log10(0.0005/5)",
+          "hint": "Mała liczba: wykładnik ujemny. Policz przesunięcia przecinka do piątki.",
+          "sol": "$5 * 10^{-4}$."
+        },
+        {
+          "t": "Powtórka z lekcji 3: oblicz $(-3)^{-2}$.",
+          "a": "1/9",
+          "py": "F(-3)**-2",
+          "hint": "$~f{1}{(-3)^{2}}$, a parzysty wykładnik daje plus.",
+          "sol": "$~f{1}{9}$."
+        }
+      ],
+      "przyklad": {
+        "t": "Oblicz $27^{~f{2}{3}}$.",
+        "kroki": [
+          "Mianownik 3: rozbij 27 na trzy równe czynniki. $27 = 3*3*3$, więc $27^{~f{1}{3}} = 3$.",
+          "Licznik 2: mnożysz dwa takie czynniki, $3*3$.",
+          "$27^{~f{2}{3}} = 9$."
+        ]
+      },
+      "razem": {
+        "t": "Twoja kolej: oblicz $4^{~f{3}{2}}$.",
+        "a": "8",
+        "py": "4**1.5",
+        "hint": "Mianownik 2: $4 = 2*2$, więc $4^{~f{1}{2}} = 2$. Licznik 3: mnożysz trzy takie czynniki.",
+        "sol": "$2*2*2 = 8$."
+      },
+      "trening": [
+        {
+          "t": "Oblicz $16^{~f{1}{2}}$.",
+          "a": "4",
+          "py": "16**0.5",
+          "hint": "Jaka liczba razy siebie daje 16?",
+          "sol": "$~r{}{16} = 4$."
+        },
+        {
+          "t": "Oblicz $27^{~f{1}{3}}$.",
+          "a": "3",
+          "py": "27**(1/3)",
+          "hint": "Jaka liczba razy siebie trzy razy daje 27?",
+          "sol": "$~r{3}{27} = 3$."
+        },
+        {
+          "t": "Oblicz $81^{~f{1}{4}}$.",
+          "a": "3",
+          "py": "81**0.25",
+          "hint": "Cztery równe czynniki, które dają 81. Sprawdź 3: $3*3*3*3$.",
+          "sol": "$~r{4}{81} = 3$."
+        },
+        {
+          "t": "Oblicz $8^{~f{4}{3}}$.",
+          "a": "16",
+          "py": "8**(4/3)",
+          "hint": "$8 = 2*2*2$, więc $8^{~f{1}{3}} = 2$. Licznik 4: mnożysz cztery takie czynniki.",
+          "sol": "$2^{4} = 16$."
+        },
+        {
+          "t": "Oblicz $32^{~f{3}{5}}$.",
+          "a": "8",
+          "py": "32**0.6",
+          "hint": "$32 = 2*2*2*2*2$, więc $32^{~f{1}{5}} = 2$. Mnożysz trzy takie czynniki.",
+          "sol": "$2^{3} = 8$."
+        },
+        {
+          "t": "Oblicz $125^{-~f{2}{3}}$.",
+          "a": "1/25",
+          "py": "125**(-2/3)",
+          "hint": "Najpierw bez minusa: $125^{~f{1}{3}} = 5$, a $5*5 = 25$. Minus daje odwrotność.",
+          "sol": "$~f{1}{25}$."
+        },
+        {
+          "t": "Oblicz $~p{~f{1}{81}}^{-~f{3}{4}}$.",
+          "a": "27",
+          "py": "(1/81)**(-0.75)",
+          "hint": "Minus odwraca ułamek, masz $81^{~f{3}{4}}$. $81^{~f{1}{4}} = 3$, potem $3*3*3$.",
+          "sol": "$3^{3} = 27$."
+        },
+        {
+          "t": "Maja napisała: $8^{~f{1}{3}} = ~f{8}{3}$. Co jest źle?",
+          "opts": [
+            "Nic, jest dobrze",
+            "Wykładnik $~f{1}{3}$ to pierwiastek trzeciego stopnia: $8^{~f{1}{3}} = 2$",
+            "Powinno być $8 * 3 = 24$"
+          ],
+          "ok": 1,
+          "py": "abs(8**(1/3)-2) < 1e-9",
+          "hint": "Potęga to nie dzielenie. Jaka liczba razy siebie trzy razy daje 8?",
+          "sol": "$8 = 2*2*2$, więc $8^{~f{1}{3}} = 2$."
+        }
+      ],
+      "test": [
+        {
+          "t": "Oblicz $16^{~f{3}{4}}$.",
+          "a": "8",
+          "py": "16**0.75",
+          "sol": "$16^{~f{1}{4}} = 2$, a $2*2*2 = 8$."
+        },
+        {
+          "t": "Oblicz $81^{1,5}$.",
+          "a": "729",
+          "py": "81**1.5",
+          "sol": "$1,5 = ~f{3}{2}$: $81^{~f{1}{2}} = 9$, a $9^{3} = 729$."
+        },
+        {
+          "t": "Oblicz $~p{~f{8}{27}}^{-~f{2}{3}}$.",
+          "a": "9/4",
+          "py": "(8/27)**(-2/3)",
+          "sol": "Odwróć: $~p{~f{27}{8}}^{~f{2}{3}}$. Pierwiastek trzeciego stopnia to $~f{3}{2}$, do kwadratu $~f{9}{4}$."
+        },
+        {
+          "t": "Oblicz $~r{}{4^{10}}$.",
+          "a": "1024",
+          "py": "math.sqrt(4**10)",
+          "sol": "$(4^{10})^{~f{1}{2}} = 4^{5} = 1024$."
+        }
+      ]
+    },
+    {
+      "nr": 6,
+      "tytul": "Prawa potęg z ułamkiem w wykładniku",
+      "karty": "1.9, s. 43–44",
+      "sceny": [
+        "s6a",
+        "s6b",
+        "s6c"
+      ],
+      "rozgrzewka": [
+        {
+          "t": "Powtórka z lekcji 5: oblicz $8^{~f{2}{3}}$.",
+          "a": "4",
+          "py": "8**(2/3)",
+          "hint": "$8^{~f{1}{3}} = 2$, a dwa takie czynniki to $2*2$.",
+          "sol": "$2*2 = 4$."
+        },
+        {
+          "t": "Powtórka z lekcji 4: oblicz $(5 * 10^{3}) * (2 * 10^{-1})$. Podaj wynik dziesiętnie.",
+          "a": "1000",
+          "py": "5*10**3*2*F(1,10)",
+          "hint": "$5 * 2 = 10$ oraz $10^{3} * 10^{-1} = 10^{2}$.",
+          "sol": "$10 * 10^{2} = 1000$."
+        }
+      ],
+      "przyklad": {
+        "t": "Zapisz $2~r{}{2}$ jako potęgę liczby 2.",
+        "kroki": [
+          "$2 = 2^{1}$.",
+          "$~r{}{2} = 2^{~f{1}{2}}$.",
+          "Mnożysz potęgi tej samej podstawy, więc dodajesz wykładniki: $1 + ~f{1}{2} = ~f{3}{2}$. Wynik: $2^{~f{3}{2}}$."
+        ]
+      },
+      "razem": {
+        "t": "Twoja kolej: oblicz $2^{~f{2}{3}} * 2^{~f{4}{3}}$.",
+        "a": "4",
+        "py": "2**(2/3)*2**(4/3)",
+        "hint": "Dodaj wykładniki: $~f{2}{3} + ~f{4}{3} = ~f{6}{3} = 2$.",
+        "sol": "$2^{2} = 4$."
+      },
+      "trening": [
+        {
+          "t": "Oblicz $4^{~f{9}{2}} : 4^{~f{5}{2}}$.",
+          "a": "16",
+          "py": "4**4.5/4**2.5",
+          "hint": "Dzielenie: odejmij wykładniki, $~f{9}{2} - ~f{5}{2}$.",
+          "sol": "$4^{2} = 16$."
+        },
+        {
+          "t": "Oblicz $2^{7,5} : 2^{2,5}$.",
+          "a": "32",
+          "py": "2**7.5/2**2.5",
+          "hint": "Odejmij wykładniki: $7,5 - 2,5$.",
+          "sol": "$2^{5} = 32$."
+        },
+        {
+          "t": "Oblicz $12^{~f{3}{2}} * 3^{~f{3}{2}}$.",
+          "a": "216",
+          "py": "12**1.5*3**1.5",
+          "hint": "Ten sam wykładnik: połącz podstawy, $12*3 = 36$. Potem $36^{~f{1}{2}} = 6$ i $6^{3}$.",
+          "sol": "$36^{~f{3}{2}} = 6^{3} = 216$."
+        },
+        {
+          "t": "Oblicz $24^{~f{2}{3}} * 3^{~f{1}{3}}$.",
+          "a": "12",
+          "py": "24**(2/3)*3**(1/3)",
+          "hint": "Rozbij $24 = 8*3$. Wtedy $24^{~f{2}{3}} = 8^{~f{2}{3}} * 3^{~f{2}{3}} = 4 * 3^{~f{2}{3}}$. Trójki: $~f{2}{3} + ~f{1}{3} = 1$.",
+          "sol": "$4 * 3^{1} = 12$."
+        },
+        {
+          "t": "Zapisz $~r{}{512}$ jako $2^{m}$. Podaj $m$ (może być ułamkiem, np. 3/2).",
+          "a": "9/2",
+          "kind": "exp",
+          "base": 2,
+          "py": "math.sqrt(512)",
+          "hint": "$512 = 2^{9}$, a pierwiastek kwadratowy to wykładnik $~f{1}{2}$: $~f{9}{2}$.",
+          "sol": "$~r{}{512} = 2^{~f{9}{2}}$."
+        },
+        {
+          "t": "Zapisz $~r{3}{4}$ jako $2^{m}$. Podaj $m$.",
+          "a": "2/3",
+          "kind": "exp",
+          "base": 2,
+          "py": "4**(1/3)",
+          "hint": "$4 = 2^{2}$. Pierwiastek trzeciego stopnia dzieli wykładnik przez 3.",
+          "sol": "$~r{3}{4} = 2^{~f{2}{3}}$."
+        },
+        {
+          "t": "Zapisz $49~r{}{7}$ jako $7^{m}$. Podaj $m$.",
+          "a": "5/2",
+          "kind": "exp",
+          "base": 7,
+          "py": "49*math.sqrt(7)",
+          "hint": "$49 = 7^{2}$, $~r{}{7} = 7^{~f{1}{2}}$. Dodaj wykładniki.",
+          "sol": "$7^{2+~f{1}{2}} = 7^{~f{5}{2}}$."
+        },
+        {
+          "t": "Wiesz, że $10^{0,3} ≈ 1,995262315$. Podaj $10^{2,3}$ z dokładnością do 4 miejsc po przecinku.",
+          "a": "199.5262",
+          "py": "round(100*1.995262315, 4)",
+          "hint": "$10^{2,3} = 10^{2} * 10^{0,3}$. Mnożenie przez 100 przesuwa przecinek o 2 miejsca w prawo.",
+          "sol": "$199,5262$."
+        }
+      ],
+      "test": [
+        {
+          "t": "Zapisz $9~r{}{3}$ jako $3^{m}$. Podaj $m$.",
+          "a": "5/2",
+          "kind": "exp",
+          "base": 3,
+          "py": "9*math.sqrt(3)",
+          "sol": "$3^{2} * 3^{~f{1}{2}} = 3^{~f{5}{2}}$."
+        },
+        {
+          "t": "Oblicz $2^{2} * 8^{~f{2}{3}}$.",
+          "a": "16",
+          "py": "2**2*8**(2/3)",
+          "sol": "$8^{~f{2}{3}} = 4$, więc $4*4 = 16$."
+        },
+        {
+          "t": "Oblicz $25^{~f{1}{2}} + 8^{~f{1}{3}}$.",
+          "a": "7",
+          "py": "25**0.5+8**(1/3)",
+          "sol": "$5 + 2 = 7$."
+        },
+        {
+          "t": "Zapisz $2^{~f{2}{5}} * ~r{}{2}$ jako $2^{m}$. Podaj $m$.",
+          "a": "9/10",
+          "kind": "exp",
+          "base": 2,
+          "py": "2**0.4*math.sqrt(2)",
+          "sol": "$~f{2}{5} + ~f{1}{2} = ~f{4}{10} + ~f{5}{10} = ~f{9}{10}$."
+        }
+      ]
+    },
+    {
+      "nr": 7,
+      "tytul": "Test końcowy",
+      "karty": "1.7–1.9, całość",
+      "final": true,
+      "sceny": [
+        "s1c",
+        "s2a",
+        "s3b",
+        "s4a",
+        "s5b"
+      ],
+      "test": [
+        {
+          "t": "Oblicz $(-2)^{5}$.",
+          "a": "-32",
+          "py": "(-2)**5",
+          "k": 1,
+          "sol": "Nieparzysty wykładnik: $-32$."
+        },
+        {
+          "t": "Oblicz $-3^{2} + (-3)^{2}$.",
+          "a": "0",
+          "py": "-3**2+(-3)**2",
+          "k": 1,
+          "sol": "$-9 + 9 = 0$."
+        },
+        {
+          "t": "Oblicz $(-2)^{4} + (-2)^{3}$.",
+          "a": "8",
+          "py": "(-2)**4+(-2)**3",
+          "k": 1,
+          "sol": "$16 + (-8) = 8$."
+        },
+        {
+          "t": "Oblicz $(4^{2})^{2} - 4^{3} + 4^{2}$.",
+          "a": "208",
+          "py": "(4**2)**2-4**3+4**2",
+          "k": 2,
+          "sol": "$256 - 64 + 16 = 208$."
+        },
+        {
+          "t": "Oblicz $(-0,2)^{-3}$.",
+          "a": "-125",
+          "py": "F(-1,5)**-3",
+          "k": 3,
+          "sol": "$~p{-~f{1}{5}}^{-3} = (-5)^{3} = -125$."
+        },
+        {
+          "t": "Oblicz $~p{~f{1}{3}}^{-2}$.",
+          "a": "9",
+          "py": "F(1,3)**-2",
+          "k": 3,
+          "sol": "$3^{2} = 9$."
+        },
+        {
+          "t": "Zapisz $64^{2} : 32^{-3}$ jako $2^{m}$. Podaj $m$.",
+          "a": "27",
+          "py": "math.log2(F(64)**2/F(32)**-3)",
+          "k": 3,
+          "sol": "$64^{2} = 2^{12}$, $32^{-3} = 2^{-15}$, więc $2^{12-(-15)} = 2^{27}$."
+        },
+        {
+          "t": "Oblicz $~f{(3,2 * 10^{-12}) * (1,2 * 10^{4})}{4 * 10^{-18}}$. Wynik to $9,6 * 10^{?}$. Wpisz wykładnik.",
+          "a": "9",
+          "py": "math.log10(float(F(32,10)*F(10)**-12*F(12,10)*10**4/(4*F(10)**-18))/9.6)",
+          "k": 4,
+          "sol": "$3,2*1,2 = 3,84$ i $3,84 : 4 = 0,96$. Potęgi: $-12+4-(-18) = 10$. $0,96 * 10^{10} = 9,6 * 10^{9}$."
+        },
+        {
+          "t": "$0,000001 = 10^{?}$. Wpisz wykładnik.",
+          "a": "-6",
+          "py": "math.log10(0.000001)",
+          "k": 4,
+          "sol": "6 miejsc w prawo: $10^{-6}$."
+        },
+        {
+          "t": "Oblicz $16^{0,75}$.",
+          "a": "8",
+          "py": "16**0.75",
+          "k": 5,
+          "sol": "$0,75 = ~f{3}{4}$: $16^{~f{1}{4}} = 2$, a $2*2*2 = 8$."
+        },
+        {
+          "t": "Oblicz $144^{-0,5}$.",
+          "a": "1/12",
+          "py": "144**-0.5",
+          "k": 5,
+          "sol": "$~f{1}{~r{}{144}} = ~f{1}{12}$."
+        },
+        {
+          "t": "Która liczba jest większa: $x = 2^{4} * 4^{-2}$ czy $y = 4^{-4} : 8^{-2}$?",
+          "opts": [
+            "$x$",
+            "$y$",
+            "Są równe"
+          ],
+          "ok": 0,
+          "py": "2**4*F(4)**-2 > F(4)**-4/F(8)**-2",
+          "k": 3,
+          "sol": "$x = 16 * ~f{1}{16} = 1$, a $y = 2^{-8} : 2^{-6} = 2^{-2} = ~f{1}{4}$."
+        },
+        {
+          "t": "Oblicz $9^{-~f{1}{2}} - 27^{-~f{1}{3}}$.",
+          "a": "0",
+          "py": "9**-0.5-27**(-1/3)",
+          "k": 5,
+          "sol": "$~f{1}{3} - ~f{1}{3} = 0$."
+        },
+        {
+          "t": "Uprość $(a^{8} * a^{-3}) : a^{2}$ (założenie $a ≠ 0$) i oblicz dla $a = -~f{1}{2}$.",
+          "a": "-1/8",
+          "py": "F(-1,2)**8*F(-1,2)**-3/F(-1,2)**2",
+          "k": 3,
+          "sol": "$a^{8-3-2} = a^{3} = -~f{1}{8}$."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+  /* Obrazki: każdy ma listę kroków [podpis, napis na przycisku] i funkcję, która rysuje wyprowadzenie zasady i zwraca funkcję ustawiającą krok k. */
+  var SC = (function () {
+    var NS = "http://www.w3.org/2000/svg";
+    function E(tag, a, p) {
+      var e = document.createElementNS(NS, tag);
+      if (a) for (var k in a) e.setAttribute(k, a[k]);
+      if (p) p.appendChild(e);
+      return e;
+    }
+    function G(p, cls) {
+      return E("g", cls ? { class: cls } : null, p);
+    }
+    function at(e, x, y, s, o) {
+      e.style.transform =
+        "translate(" + x + "px," + y + "px) scale(" + (s == null ? 1 : s) + ")";
+      if (o != null) e.style.opacity = o;
+      return e;
+    }
+    function op(e, o) {
+      e.style.opacity = o;
+      return e;
+    }
+    function TX(p, x, y, s, cls) {
+      var t = E(
+        "text",
+        { x: x, y: y, class: cls || "tx", "text-anchor": "middle" },
+        p,
+      );
+      t.textContent = s;
+      return t;
+    }
+    function PW(p, x, y, base, exp, tail, z) {
+      z = z || 28;
+      var t = E(
+        "text",
+        { x: x, y: y, class: "tx", "text-anchor": "middle" },
+        p,
+      );
+      t.style.fontSize = z + "px";
+      var b = E("tspan", null, t);
+      b.textContent = base;
+      var s = E("tspan", { dy: String(-z * 0.42) }, t);
+      s.style.fontSize = z * 0.62 + "px";
+      s.textContent = exp;
+      var r = E("tspan", { dy: String(z * 0.42) }, t);
+      r.textContent = tail || "";
+      t.s = s;
+      t.tail = r;
+      return t;
+    }
+    function FR(p, x, y, a, b, z) {
+      var g = G(p, "mv");
+      var t = TX(g, x, y - 8, a);
+      t.style.fontSize = z + "px";
+      var w = Math.max(a.length, b.length) * z * 0.32 + 6;
+      E("line", { x1: x - w, y1: y, x2: x + w, y2: y, class: "fl" }, g);
+      var u = TX(g, x, y + z * 0.85, b);
+      u.style.fontSize = z + "px";
+      return g;
+    }
+    function TILE(p, lab, w, h, v) {
+      var g = G(p, "mv" + (v ? " " + v : ""));
+      E(
+        "rect",
+        {
+          x: -w / 2,
+          y: -h / 2,
+          width: w,
+          height: h,
+          rx: Math.min(9, w / 5),
+          class: "tile",
+        },
+        g,
+      );
+      var t = TX(g, 0, h * 0.17, lab, "tl");
+      t.style.fontSize = Math.round(h * 0.5) + "px";
+      g.lab = t;
+      return g;
+    }
+    function BAR(p, len, U, lab, v) {
+      var g = G(p, "mv" + (v ? " " + v : ""));
+      E(
+        "rect",
+        { x: 0, y: -14, width: len * U, height: 28, rx: 5, class: "bar" },
+        g,
+      );
+      g.t = TX(g, (len * U) / 2, 6, lab, "barlab");
+      return g;
+    }
+    function axis(p, X0, U, max, y) {
+      E(
+        "line",
+        { x1: X0 - 8, y1: y, x2: X0 + max * U + 8, y2: y, class: "pl" },
+        p,
+      );
+      for (var v = 0; v <= max; v += 0.5) {
+        var big = v % 1 === 0;
+        E(
+          "line",
+          {
+            x1: X0 + v * U,
+            y1: y - (big ? 7 : 4),
+            x2: X0 + v * U,
+            y2: y + (big ? 7 : 4),
+            class: "pl",
+          },
+          p,
+        );
+        if (big) TX(p, X0 + v * U, y + 24, String(v), "lb");
+      }
+    }
+    var TIM = [];
+    function clearT() {
+      TIM.forEach(clearTimeout);
+      TIM = [];
+    }
+
+    /* ułamek z czynników: góra nT, dół nB, wspólne pary się skracają */
+    function cancel(nT, nB, lab, head, res, extra, caps) {
+      return {
+        steps: caps,
+        build: function (s) {
+          var st = 32,
+            top = [],
+            bot = [],
+            sl = [],
+            i,
+            xT = 170 - ((nT - 1) * st) / 2,
+            xB = 170 - ((nB - 1) * st) / 2,
+            m = Math.min(nT, nB),
+            rT = nT - m,
+            rB = nB - m;
+          TX(s, 170, 28, head, "expb");
+          for (i = 0; i < nT; i++) top.push(TILE(s, lab, 28, 34));
+          for (i = 0; i < nB; i++) bot.push(TILE(s, lab, 28, 34, "b"));
+          var ln = E(
+            "line",
+            {
+              x1: Math.min(xT, xB) - 24,
+              y1: 100,
+              x2: 340 - Math.min(xT, xB) + 24,
+              y2: 100,
+              class: "fl",
+            },
+            s,
+          );
+          for (i = 0; i < m; i++) {
+            sl.push(
+              E(
+                "path",
+                {
+                  d:
+                    "M" +
+                    (xT + i * st - 12) +
+                    " 80 L" +
+                    (xT + i * st + 12) +
+                    " 52",
+                  class: "cut",
+                },
+                s,
+              ),
+            );
+            sl.push(
+              E(
+                "path",
+                {
+                  d:
+                    "M" +
+                    (xB + i * st - 12) +
+                    " 148 L" +
+                    (xB + i * st + 12) +
+                    " 120",
+                  class: "cut",
+                },
+                s,
+              ),
+            );
+          }
+          var one = TX(s, 170, 84, "1", "big2"),
+            r = TX(s, 170, 206, res, "res"),
+            x = TX(s, 170, 206, extra || "", "res");
+          return function (k) {
+            top.forEach(function (t, i) {
+              var g = i < m;
+              if (k < 2) at(t, xT + i * st, 66, 1, k >= 1 && g ? 0.25 : 1);
+              else
+                at(
+                  t,
+                  170 - ((rT - 1) * st) / 2 + (i - m) * st,
+                  rB ? 66 : 100,
+                  1,
+                  g ? 0 : 1,
+                );
+            });
+            bot.forEach(function (t, i) {
+              var g = i < m;
+              if (k < 2) at(t, xB + i * st, 134, 1, k >= 1 && g ? 0.25 : 1);
+              else
+                at(
+                  t,
+                  170 - ((rB - 1) * st) / 2 + (i - m) * st,
+                  134,
+                  1,
+                  g ? 0 : 1,
+                );
+            });
+            sl.forEach(function (c) {
+              op(c, k === 1 ? 1 : 0);
+            });
+            op(ln, k >= 2 && rB === 0 ? 0 : 1);
+            op(one, k >= 2 && rT === 0 ? 1 : 0);
+            op(r, k >= 2 && !(extra && k >= 3) ? 1 : 0);
+            op(x, extra && k >= 3 ? 1 : 0);
+          };
+        },
+      };
+    }
+
+    /* tabela potęg: wiersz niżej = wykładnik o 1 mniejszy = wynik podzielony przez 2 */
+    function table(ex, vals, tiles, first, caps) {
+      return {
+        steps: caps,
+        build: function (s) {
+          var rows = [];
+          ex.forEach(function (e, i) {
+            var y = 34 + i * 41,
+              g = G(s, "mv");
+            PW(g, 40, y + 8, "2", e, "", 22);
+            var n = tiles ? Number(e) : 0;
+            for (var j = 0; j < n; j++)
+              at(TILE(g, "2", 26, 26), 84 + j * 30, y);
+            if (tiles && n === 0) TX(g, 130, y + 6, "(zero dwójek)", "lb");
+            TX(g, tiles ? 250 : 190, y + 8, "= " + vals[i], "res2");
+            if (i) TX(g, 306, y - 14, "↓ :2", "lb");
+            rows.push(g);
+          });
+          return function (k) {
+            rows.forEach(function (g, i) {
+              op(g, i <= first + k ? 1 : 0);
+            });
+          };
+        },
+      };
+    }
+
+    function hop(ds, j0, j1, fade, res, cnt, caps) {
+      return {
+        steps: caps,
+        build: function (s) {
+          var n = ds.length,
+            st = Math.min(30, 300 / n),
+            x0 = 170 - ((n - 1) * st) / 2,
+            T = [];
+          ds.forEach(function (d, i) {
+            var t = TILE(s, d, st - 4, 38, "d");
+            at(t, x0 + i * st, 80);
+            T.push(t);
+          });
+          var c = E("g", { class: "mv" }, s);
+          c.style.transition = "transform .13s linear";
+          E("circle", { r: 7, class: "comma" }, c);
+          TX(s, 170, 30, "żółta kropka = przecinek", "lb");
+          var tc = TX(s, 170, 152, "", "val"),
+            r = TX(s, 170, 200, res, "res");
+          var bx = function (j) {
+              return x0 + j * st + st / 2;
+            },
+            cur = j0,
+            last = 0,
+            d = j1 > j0 ? 1 : -1;
+          return function (k) {
+            if (k === 0) {
+              clearT();
+              cur = j0;
+              at(c, bx(j0), 112);
+              tc.textContent = "";
+            } else if (k === 1 && last === 0) {
+              (function stepH() {
+                TIM.push(
+                  setTimeout(function () {
+                    if (cur === j1) return;
+                    cur += d;
+                    at(c, bx(cur), 112);
+                    tc.textContent = cnt + ": " + Math.abs(cur - j0) + " razy";
+                    if (cur !== j1) stepH();
+                  }, 170),
+                );
+              })();
+            } else {
+              clearT();
+              cur = j1;
+              at(c, bx(j1), 112);
+              tc.textContent = cnt + ": " + Math.abs(j1 - j0) + " razy";
+            }
+            T.forEach(function (t, i) {
+              op(t, k >= 2 && fade.indexOf(i) >= 0 ? 0.18 : 1);
+            });
+            op(r, k >= 2 ? 1 : 0);
+            last = k;
+          };
+        },
+      };
+    }
+
+    /* liczba rozbita na n równych czynników */
+    function kaf(N, n, lab, stages, caps) {
+      return {
+        steps: caps,
+        build: function (s) {
+          var w = 60,
+            gap = w + 14,
+            x0 = 170 - ((n - 1) * gap) / 2,
+            i;
+          var big = TILE(s, N, Math.min(240, n * gap), 60);
+          var t = [],
+            d = [];
+          for (i = 0; i < n - 1; i++)
+            d.push(TX(s, x0 + i * gap + gap / 2, 84, "·", "big2"));
+          for (i = 0; i < n; i++) t.push(TILE(s, lab, w, w, "y"));
+          var R = stages.map(function (q) {
+            return PW(s, 170, 178, N, q[1], q[2], 28);
+          });
+          var L = TX(s, 170, 128, n + " równe czynniki", "lb");
+          return function (k) {
+            var st = stages[k - 2];
+            at(big, 170, 72, k ? 1.15 : 1, k ? 0 : 1);
+            t.forEach(function (q, i) {
+              at(
+                q,
+                k ? x0 + i * gap : 170,
+                72,
+                k ? 1 : 0.5,
+                k ? (st && i >= st[0] ? 0.25 : 1) : 0,
+              );
+            });
+            d.forEach(function (q) {
+              op(q, k ? 1 : 0);
+            });
+            op(L, k === 1 ? 1 : 0);
+            R.forEach(function (r, i) {
+              op(r, k - 2 === i ? 1 : 0);
+            });
+          };
+        },
+      };
+    }
+
+    /* obrazek z wierszami wzorów (HTML), kolejne wiersze odsłaniają się po kroku */
+    function rows(R, caps) {
+      return {
+        html: true,
+        steps: caps,
+        build: function (el) {
+          var D = R.map(function (t) {
+            var d = document.createElement("div");
+            d.innerHTML = typeof t === "function" ? t() : window.MT(t);
+            if (typeof t === "string" && t[0] !== "$") d.className = "t";
+            el.appendChild(d);
+            return d;
+          });
+          return function (k) {
+            D.forEach(function (d, i) {
+              d.style.opacity = i <= k ? 1 : 0;
+            });
+          };
+        },
+      };
+    }
+
+    var S = {};
+    S.s1a = {
+      steps: [
+        ["Jak policzyć $2^{5}$ bez kalkulatora?", "Rozpisz"],
+        [
+          "Rozpisz na pięć dwójek i mnóż od lewej, po dwie liczby naraz.",
+          "Mnóż po kolei",
+        ],
+        ["$2 * 2 = 4$", "Mnóż dalej"],
+        ["$4 * 2 = 8$", "Mnóż dalej"],
+        ["$8 * 2 = 16$", "Mnóż dalej"],
+        ["$16 * 2 = 32$. Więc $2^{5} = 32$."],
+      ],
+      build: function (s) {
+        var h = PW(s, 170, 52, "2", "5", "", 44),
+          xs = [46, 108, 170, 232, 294],
+          t = xs.map(function () {
+            return TILE(s, "2", 46, 46);
+          }),
+          d = [],
+          i;
+        for (i = 0; i < 4; i++)
+          d.push(TX(s, (xs[i] + xs[i + 1]) / 2, 130, "·", "big2"));
+        var br = E(
+            "path",
+            { d: "M24 150 L24 158 L316 158 L316 150", class: "brk" },
+            s,
+          ),
+          bl = TX(s, 170, 180, "5 czynników", "lb");
+        var res = PW(s, 170, 220, "2", "5", " = 32", 26);
+        return function (k) {
+          var c = k >= 2 ? k : 1,
+            cnt = 6 - c,
+            pos = function (j) {
+              return 170 - (cnt - 1) * 31 + j * 62;
+            };
+          t.forEach(function (q, i) {
+            if (k === 0) at(q, 170, 116, 0.4, 0);
+            else if (i < c) at(q, pos(0), 116, 1, i === 0 ? 1 : 0);
+            else at(q, pos(i - c + 1), 116, 1, 1);
+          });
+          t[0].lab.textContent = String(Math.pow(2, c));
+          d.forEach(function (q, i) {
+            q.setAttribute("x", (pos(i) + pos(i + 1)) / 2);
+            op(q, k >= 1 && i < cnt - 1 ? 1 : 0);
+          });
+          op(br, k === 1 ? 1 : 0);
+          op(bl, k === 1 ? 1 : 0);
+          op(res, k >= 5 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s1b = table(
+      ["4", "3", "2", "1", "0"],
+      ["16", "8", "4", "2", "1"],
+      true,
+      2,
+      [
+        [
+          "Wypisz potęgi dwójki od góry. Każdy wiersz niżej ma o jedną dwójkę mniej, więc wynik jest 2 razy mniejszy: 16, 8, 4.",
+          "Następny wiersz",
+        ],
+        [
+          "Zostaje jedna dwójka: $2^{1} = 2$. Potęga z wykładnikiem 1 to po prostu ta liczba: $a^{1} = a$.",
+          "Następny wiersz",
+        ],
+        [
+          "Wiersz niżej znowu dzieli przez 2: $2 : 2 = 1$. Dlatego $2^{0} = 1$. Ta sama tabelka z każdą inną liczbą różną od zera kończy się na 1, więc $a^{0} = 1$.",
+        ],
+      ],
+    );
+
+    S.s1c = {
+      steps: [
+        ["$(-2)^{4}$ to cztery czynniki $-2$.", "Połącz w pary"],
+        [
+          "Minus razy minus daje plus: $(-2) * (-2) = 4$. Każda para daje 4.",
+          "Wynik",
+        ],
+        [
+          "Dwie pary, żaden minus nie zostaje sam: $(-2)^{4} = 4 * 4 = 16$.",
+          "A do potęgi 3?",
+        ],
+        [
+          "Trzy czynniki: jedna para i jeden minus bez pary. $(-2)^{3} = 4 * (-2) = -8$. Nieparzysty wykładnik zostawia minus.",
+        ],
+      ],
+      build: function (s) {
+        var h = PW(s, 170, 30, "(−2)", "4", "", 28),
+          xs = [65, 135, 205, 275],
+          t = xs.map(function (x) {
+            var q = TILE(s, "−2", 56, 44, "r");
+            at(q, x, 84);
+            return q;
+          });
+        var a1 = E("path", { d: "M65 58 Q100 30 135 58", class: "arcp" }, s),
+          a2 = E("path", { d: "M205 58 Q240 30 275 58", class: "arcp" }, s);
+        var p1 = TX(s, 100, 138, "= 4", "res2"),
+          p2 = TX(s, 240, 138, "= 4", "res2"),
+          sam = TX(s, 205, 138, "bez pary", "lb");
+        var r = TX(s, 170, 196, "", "res");
+        return function (k) {
+          var three = k >= 3;
+          h.s.textContent = three ? "3" : "4";
+          at(t[3], 275, 84, 1, three ? 0.12 : 1);
+          op(a1, k >= 1 ? 1 : 0);
+          op(a2, k >= 1 && !three ? 1 : 0);
+          op(p1, k >= 1 ? 1 : 0);
+          op(p2, k >= 1 && !three ? 1 : 0);
+          op(sam, three ? 1 : 0);
+          r.textContent = three ? "4 · (−2) = −8" : "4 · 4 = 16";
+          op(r, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s1d = {
+      steps: [
+        ["W nawiasie wykładnik obejmuje całe $-2$.", "Rozpisz"],
+        ["Cztery czynniki $-2$: $(-2)^{4} = 16$.", "Bez nawiasu"],
+        [
+          "Bez nawiasu wykładnik obejmuje tylko 2. Minus stoi przed całością.",
+          "Wynik",
+        ],
+        ["$-2^{4} = -(2 * 2 * 2 * 2) = -16$."],
+      ],
+      build: function (s) {
+        PW(s, 50, 80, "(−2)", "4", "", 26);
+        var r1 = G(s, "mv");
+        [132, 176, 220, 264].forEach(function (x) {
+          at(TILE(r1, "−2", 40, 36, "r"), x, 72);
+        });
+        var u1 = E(
+            "rect",
+            { x: 106, y: 48, width: 184, height: 48, rx: 8, class: "box" },
+            s,
+          ),
+          l1 = TX(s, 198, 114, "potęgujesz −2", "lb"),
+          v1 = TX(s, 316, 81, "16", "res2");
+        var h2 = PW(s, 46, 170, "−2", "4", "", 26),
+          r2 = G(s, "mv");
+        E("circle", { cx: 102, cy: 162, r: 15, class: "mcirc" }, r2);
+        TX(r2, 102, 170, "−", "mtxt");
+        [142, 182, 222, 262].forEach(function (x) {
+          at(TILE(r2, "2", 34, 34), x, 162);
+        });
+        var u2 = E(
+            "rect",
+            { x: 121, y: 138, width: 162, height: 48, rx: 8, class: "box" },
+            s,
+          ),
+          l2 = TX(s, 202, 204, "potęgujesz tylko 2", "lb"),
+          v2 = TX(s, 314, 171, "−16", "res2");
+        return function (k) {
+          op(r1, k >= 1 ? 1 : 0);
+          op(u1, k >= 1 ? 1 : 0);
+          op(l1, k >= 1 ? 1 : 0);
+          op(v1, k >= 1 ? 1 : 0);
+          op(h2, k >= 2 ? 1 : 0);
+          op(r2, k >= 2 ? 1 : 0);
+          op(u2, k >= 2 ? 1 : 0);
+          op(l2, k >= 2 ? 1 : 0);
+          op(v2, k >= 3 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s1e = {
+      steps: [
+        ["$~p{~f{2}{3}}^{3}$ to trzy czynniki $~f{2}{3}$.", "Pomnóż"],
+        ["Ułamki mnożysz tak: liczniki razem, mianowniki razem.", "Policz"],
+        [
+          "$~f{2*2*2}{3*3*3} = ~f{8}{27}$. Liczniki dają $2^{3}$, mianowniki $3^{3}$.",
+        ],
+      ],
+      build: function (s) {
+        var x0 = [70, 170, 270],
+          x1 = [115, 155, 195],
+          T = [],
+          B = [],
+          L = [],
+          d0 = [],
+          d1 = [],
+          i;
+        PW(s, 170, 34, "(2/3)", "3", "", 26);
+        for (i = 0; i < 3; i++) {
+          var a = G(s, "mv");
+          TX(a, 0, 0, "2", "big2");
+          T.push(a);
+          var b = G(s, "mv");
+          TX(b, 0, 0, "3", "big2");
+          B.push(b);
+          L.push(
+            E(
+              "line",
+              { x1: x0[i] - 16, y1: 112, x2: x0[i] + 16, y2: 112, class: "fl" },
+              s,
+            ),
+          );
+        }
+        [120, 220].forEach(function (x) {
+          d0.push(TX(s, x, 124, "·", "big2"));
+        });
+        [135, 175].forEach(function (x) {
+          d1.push(TX(s, x, 98, "·", "big2"));
+          d1.push(TX(s, x, 150, "·", "big2"));
+        });
+        var big = E(
+            "line",
+            { x1: 95, y1: 112, x2: 215, y2: 112, class: "fl" },
+            s,
+          ),
+          eq = TX(s, 240, 124, "=", "big2"),
+          res = FR(s, 290, 112, "8", "27", 34);
+        return function (k) {
+          for (var i = 0; i < 3; i++) {
+            var x = k ? x1[i] : x0[i];
+            at(T[i], x, 98);
+            at(B[i], x, 150);
+            op(L[i], k ? 0 : 1);
+          }
+          d0.forEach(function (q) {
+            op(q, k ? 0 : 1);
+          });
+          d1.forEach(function (q) {
+            op(q, k ? 1 : 0);
+          });
+          op(big, k ? 1 : 0);
+          op(eq, k >= 2 ? 1 : 0);
+          op(res, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s2a = {
+      steps: [
+        ["$2^{3}$ to trzy dwójki. $2^{4}$ to cztery dwójki.", "Połącz"],
+        ["Mnożysz je, więc wszystkie stają w jednym iloczynie.", "Policz"],
+        [
+          "3 + 4 = 7 dwójek: $2^{3} * 2^{4} = 2^{7}$. Stąd prawo: mnożysz potęgi, dodajesz wykładniki.",
+        ],
+      ],
+      build: function (s) {
+        var L1 = PW(s, 44, 63, "2", "3", "", 24),
+          L2 = PW(s, 44, 143, "2", "4", "", 24),
+          ts = [],
+          ns = [],
+          i;
+        for (i = 0; i < 7; i++) ts.push(TILE(s, "2", 34, 40, i < 3 ? "" : "b"));
+        for (i = 0; i < 7; i++)
+          ns.push(TX(s, 50 + i * 40, 140, String(i + 1), "lb"));
+        var res = PW(s, 170, 200, "2", "7", "", 32);
+        return function (k) {
+          ts.forEach(function (t, i) {
+            if (k === 0) {
+              if (i < 3) at(t, 130 + i * 40, 55);
+              else at(t, 110 + (i - 3) * 40, 135);
+            } else at(t, 50 + i * 40, 92);
+          });
+          op(L1, k ? 0 : 1);
+          op(L2, k ? 0 : 1);
+          ns.forEach(function (n) {
+            op(n, k >= 2 ? 1 : 0);
+          });
+          op(res, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s2b = cancel(9, 6, "2", "2⁹ : 2⁶", "2³ = 8", "", [
+      ["$2^{9} : 2^{6}$ jako ułamek: 9 dwójek na górze, 6 na dole.", "Skróć"],
+      ["Każda dwójka z dołu skraca się z jedną z góry.", "Co zostało?"],
+      [
+        "Zostały 3 dwójki: $2^{9} : 2^{6} = 2^{3} = 8$. Stąd prawo: dzielisz potęgi, odejmujesz wykładniki.",
+      ],
+    ]);
+
+    S.s2c = {
+      steps: [
+        ["$2^{3}$ to rząd trzech dwójek.", "Do potęgi 4"],
+        ["Do potęgi 4: ten rząd mnożysz 4 razy.", "Policz"],
+        [
+          "4 rzędy po 3 = 12 dwójek. $(2^{3})^{4} = 2^{12}$: tu wykładniki mnożysz.",
+        ],
+      ],
+      build: function (s) {
+        PW(s, 170, 28, "(2³)", "4", "", 24);
+        var t = [],
+          labs = [],
+          r,
+          c;
+        for (r = 0; r < 4; r++)
+          for (c = 0; c < 3; c++) {
+            var q = TILE(s, "2", 30, 30, r % 2 ? "b" : "");
+            q.r = r;
+            q.c = c;
+            t.push(q);
+          }
+        for (r = 0; r < 4; r++)
+          labs.push(PW(s, 92, 63 + r * 38, "2", "3", "", 16));
+        var res = PW(s, 170, 220, "= 2", "12", "", 26);
+        return function (k) {
+          t.forEach(function (q) {
+            at(
+              q,
+              134 + q.c * 36,
+              57 + (k ? q.r : 0) * 38,
+              1,
+              q.r === 0 || k ? 1 : 0,
+            );
+          });
+          labs.forEach(function (l, i) {
+            op(l, i === 0 || k ? 1 : 0);
+          });
+          op(res, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s2d = {
+      steps: [
+        ["$2^{6} * 5^{6}$: sześć dwójek i sześć piątek.", "Połącz w pary"],
+        [
+          "Kolejność mnożenia nie ma znaczenia, więc łączysz je w pary. Każda para $2 * 5 = 10$.",
+          "Wynik",
+        ],
+        [
+          "$2^{6} * 5^{6} = 10^{6} = 1 000 000$. Ten sam wykładnik: mnożysz podstawy.",
+        ],
+      ],
+      build: function (s) {
+        var a = [],
+          b = [],
+          i;
+        for (i = 0; i < 6; i++) {
+          a.push(TILE(s, "2", 38, 38));
+          b.push(TILE(s, "5", 38, 38, "y"));
+        }
+        var res = PW(s, 170, 190, "10", "6", " = 1 000 000", 24);
+        return function (k) {
+          for (var i = 0; i < 6; i++) {
+            var x = 60 + i * 44;
+            if (k === 0) {
+              at(a[i], x, 60);
+              at(b[i], x, 122, 1, 1);
+              a[i].lab.textContent = "2";
+            } else {
+              at(a[i], x, 92);
+              at(b[i], x, 92, 0.6, 0);
+              a[i].lab.textContent = "10";
+            }
+          }
+          op(res, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s3a = table(
+      ["2", "1", "0", "−1", "−2"],
+      ["4", "2", "1", "½", "¼"],
+      false,
+      2,
+      [
+        [
+          "Ten sam ciąg co w lekcji 1: wykładnik mniejszy o 1, wynik podzielony przez 2.",
+          "Dalej w dół",
+        ],
+        [
+          "Wykładnik schodzi poniżej zera, a wynik dalej dzielisz przez 2: $2^{-1} = 1 : 2 = ~f{1}{2}$.",
+          "Dalej w dół",
+        ],
+        [
+          "$2^{-2} = ~f{1}{2} : 2 = ~f{1}{4} = ~f{1}{2^{2}}$. Ujemny wykładnik daje ułamek, nie liczbę ujemną.",
+        ],
+      ],
+    );
+
+    S.s3b = cancel(2, 5, "2", "2² : 2⁵", "", "2²⁻⁵ = 2⁻³", [
+      [
+        "Podziel $2^{2}$ przez $2^{5}$ na dwa sposoby. Najpierw skracanie.",
+        "Skróć",
+      ],
+      ["Dwie dwójki z góry skracają się z dwiema z dołu.", "Co zostało?"],
+      [
+        "Na górze zostaje 1, na dole trzy dwójki: wynik to $~f{1}{2^{3}}$.",
+        "Teraz prawem",
+      ],
+      [
+        "Prawo dzielenia daje $2^{2-5} = 2^{-3}$. To ta sama liczba, więc $2^{-3} = ~f{1}{2^{3}} = ~f{1}{8}$.",
+      ],
+    ]);
+
+    S.s3c = rows(
+      [
+        "$~p{~f{2}{3}}^{-2}$",
+        "$= ~f{1}{~p{~f{2}{3}}^{2}}$",
+        "$= 1 : ~f{4}{9} = ~f{9}{4}$",
+        "$= ~p{~f{3}{2}}^{2}$",
+      ],
+      [
+        ["Ułamek z ujemnym wykładnikiem. Skąd wziąć wynik?", "Rozpisz"],
+        ["Z poprzedniego obrazka: $a^{-2} = ~f{1}{a^{2}}$.", "Policz"],
+        [
+          "$~p{~f{2}{3}}^{2} = ~f{4}{9}$, a dzielenie przez ułamek to mnożenie przez jego odwrotność.",
+          "Zapisz krócej",
+        ],
+        [
+          "$~f{9}{4} = ~p{~f{3}{2}}^{2}$. Skrót: odwróć ułamek i usuń minus z wykładnika.",
+        ],
+      ],
+    );
+
+    S.s3d = cancel(9, 6, "3", "3⁹ · 3⁻⁶", "3³ = 27", "", [
+      [
+        "$3^{-6} = ~f{1}{3^{6}}$, więc $3^{9} * 3^{-6}$ to ułamek: 9 trójek na górze, 6 na dole.",
+        "Skróć",
+      ],
+      ["Sześć par się skraca.", "Wynik"],
+      [
+        "Zostają 3 trójki: $3^{9} * 3^{-6} = 3^{3} = 27$. To samo daje dodanie wykładników: $9 + (-6) = 3$.",
+      ],
+    ]);
+
+    S.s4a = hop(
+      "326000000000".split(""),
+      11,
+      0,
+      [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "3,26 · 10¹¹",
+      "dzielisz przez 10",
+      [
+        [
+          "Chcesz zapisać 326 000 000 000 krócej. Przecinek stoi na końcu liczby.",
+          "Dziel przez 10",
+        ],
+        [
+          "Każde dzielenie przez 10 przesuwa przecinek o jedno miejsce w lewo. Po 11 razach zostaje 3,26.",
+          "Zapisz",
+        ],
+        [
+          "Podzieliłeś przez 10 jedenaście razy, więc wracasz mnożeniem przez $10^{11}$: $326 000 000 000 = 3,26 * 10^{11}$.",
+        ],
+      ],
+    );
+
+    S.s4b = hop(
+      "000000097".split(""),
+      0,
+      7,
+      [0, 1, 2, 3, 4, 5, 6],
+      "9,7 · 10⁻⁷",
+      "mnożysz przez 10",
+      [
+        [
+          "Liczba 0,00000097 jest bardzo mała. Przecinek stoi zaraz za pierwszym zerem.",
+          "Mnóż przez 10",
+        ],
+        [
+          "Każde mnożenie przez 10 przesuwa przecinek o jedno miejsce w prawo. Po 7 razach jest 9,7.",
+          "Zapisz",
+        ],
+        [
+          "Pomnożyłeś przez $10^{7}$, więc wracasz dzieleniem: $9,7 : 10^{7} = 9,7 * 10^{-7}$ (lekcja 3).",
+        ],
+      ],
+    );
+
+    S.s4c = {
+      steps: [
+        [
+          "Te trzy zapisy mają tę samą wartość, 8765,2. Który z nich to notacja wykładnicza?",
+          "Sprawdź 87,652",
+        ],
+        [
+          "$87,652 * 10^{2}$: liczba z przodu jest większa niż 10. Za duża.",
+          "Sprawdź 0,87652",
+        ],
+        [
+          "$0,87652 * 10^{4}$: liczba z przodu jest mniejsza niż 1. Za mała.",
+          "Sprawdź 8,7652",
+        ],
+        [
+          "$8,7652 * 10^{3}$: liczba z przodu leży między 1 a 10. Tylko taki zapis to notacja wykładnicza.",
+        ],
+      ],
+      build: function (s) {
+        var X = function (v) {
+          return 30 + v * 23;
+        };
+        E(
+          "rect",
+          {
+            x: X(1),
+            y: 96,
+            width: X(10) - X(1),
+            height: 56,
+            rx: 6,
+            class: "zone",
+          },
+          s,
+        );
+        TX(s, (X(1) + X(10)) / 2, 88, "1 ≤ x < 10", "lb2");
+        E("line", { x1: 15, y1: 162, x2: 325, y2: 162, class: "pl" }, s);
+        [0, 1, 5, 10, 12].forEach(function (v) {
+          E("line", { x1: X(v), y1: 156, x2: X(v), y2: 168, class: "pl" }, s);
+          TX(s, X(v), 188, String(v), "lb");
+        });
+        var pts = [
+            [312, "87,652", "no"],
+            [X(0.87652), "0,87652", "no"],
+            [X(8.7652), "8,7652", "ok"],
+          ],
+          B = [];
+        pts.forEach(function (q) {
+          var g = G(s, "mv " + q[2]);
+          E("circle", { r: 7, class: "mk" }, g);
+          TX(g, 0, -14, q[1], "val");
+          B.push(g);
+        });
+        return function (k) {
+          B.forEach(function (g, i) {
+            at(g, pts[i][0], 140, k > i ? 1 : 0.5, k > i ? 1 : 0);
+          });
+        };
+      },
+    };
+
+    S.s5a = rows(
+      [
+        "$9^{~f{1}{2}} = ?$",
+        "$~p{9^{~f{1}{2}}}^{2} = 9^{~f{1}{2}*2}$ $= 9^{1} = 9$",
+        function () {
+          var h =
+            '<svg class="mini" viewBox="0 0 120 92" width="120" height="92" aria-hidden="true"><rect class="hl" x="14" y="8" width="6" height="74" rx="3"></rect><text x="4" y="51">3</text>';
+          for (var i = 0; i < 9; i++)
+            h +=
+              '<circle class="dot" cx="' +
+              (42 + (i % 3) * 26) +
+              '" cy="' +
+              (19 + Math.floor(i / 3) * 26) +
+              '" r="9"></circle>';
+          return h + "</svg>" + window.MT("$3 * 3 = 9$");
+        },
+        "$9^{~f{1}{2}} = ~r{}{9} = 3$",
+      ],
+      [
+        [
+          "Co znaczy wykładnik $~f{1}{2}$? Sprawdź, co wyjdzie po podniesieniu do kwadratu.",
+          "Do kwadratu",
+        ],
+        [
+          "Prawo potęgi potęgi: $~f{1}{2} * 2 = 1$, więc wychodzi 9. Szukasz liczby, która razy siebie daje 9.",
+          "Szukaj",
+        ],
+        ["$3 * 3 = 9$. To bok kwadratu z 9 kropek.", "Wynik"],
+        [
+          "Dlatego $9^{~f{1}{2}} = ~r{}{9} = 3$. Mianownik 2 oznacza pierwiastek kwadratowy.",
+        ],
+      ],
+    );
+
+    S.s5b = kaf(
+      "8",
+      3,
+      "2",
+      [
+        [1, "⅓", " = 2"],
+        [2, "⅔", " = 2 · 2 = 4"],
+      ],
+      [
+        [
+          "$8^{~f{1}{3}}$ to liczba, która pomnożona trzy razy przez siebie daje 8, bo $(8^{~f{1}{3}})^{3} = 8^{1} = 8$.",
+          "Rozbij 8",
+        ],
+        ["$8 = 2 * 2 * 2$: trzy równe czynniki.", "Jeden czynnik"],
+        ["Jeden czynnik to $8^{~f{1}{3}} = 2$.", "A 2/3?"],
+        [
+          "$8^{~f{2}{3}} = (8^{~f{1}{3}})^{2} = 2 * 2 = 4$. Mianownik mówi, na ile równych czynników rozbijasz, a licznik, ile z nich mnożysz.",
+        ],
+      ],
+    );
+
+    S.s5c = kaf(
+      "16",
+      4,
+      "2",
+      [[3, "¾", " = 2 · 2 · 2 = 8"]],
+      [
+        [
+          "$16^{~f{3}{4}}$. Mianownik 4: rozbij 16 na cztery równe czynniki.",
+          "Rozbij 16",
+        ],
+        ["$16 = 2 * 2 * 2 * 2$, więc $16^{~f{1}{4}} = 2$.", "Licznik 3"],
+        [
+          "Licznik 3: mnożysz trzy takie czynniki. $16^{~f{3}{4}} = 2 * 2 * 2 = 8$.",
+        ],
+      ],
+    );
+
+    S.s5d = rows(
+      ["$9^{-~f{1}{2}}$", "$= ~f{1}{9^{~f{1}{2}}}$", "$= ~f{1}{3}$"],
+      [
+        ["Wykładnik ujemny i ułamkowy naraz.", "Rozpisz"],
+        ["Minus działa jak w lekcji 3: $a^{-n} = ~f{1}{a^{n}}$.", "Policz"],
+        ["$9^{~f{1}{2}} = 3$, więc $9^{-~f{1}{2}} = ~f{1}{3}$."],
+      ],
+    );
+
+    S.s6a = {
+      steps: [
+        [
+          "$2 * ~r{}{2}$. Zapisz obie liczby jako potęgi dwójki. Długość paska to wykładnik.",
+          "Pokaż paski",
+        ],
+        [
+          "$2 = 2^{1}$: pasek długości 1. $~r{}{2} = 2^{~f{1}{2}}$: pasek długości $~f{1}{2}$.",
+          "Połącz",
+        ],
+        [
+          "Mnożysz potęgi tej samej podstawy, więc wykładniki się dodają: $1 + ~f{1}{2} = ~f{3}{2}$.",
+          "Wynik",
+        ],
+        ["$2~r{}{2} = 2^{~f{3}{2}}$"],
+      ],
+      build: function (s) {
+        var U = 80,
+          X0 = 50;
+        axis(s, X0, U, 3, 170);
+        TX(s, 170, 32, "2 · √2", "expb");
+        var a = BAR(s, 1, U, "2"),
+          b = BAR(s, 0.5, U, "√2", "y"),
+          mk = E(
+            "rect",
+            {
+              x: X0 + 1.5 * U - 3,
+              y: 150,
+              width: 6,
+              height: 40,
+              rx: 3,
+              class: "hl",
+            },
+            s,
+          ),
+          res = PW(s, 170, 224, "2", "3/2", "", 24);
+        return function (k) {
+          at(a, X0, 76, 1, k ? 1 : 0);
+          if (k < 2) at(b, X0, 120, 1, k ? 1 : 0);
+          else at(b, X0 + U, 76, 1, 1);
+          op(mk, k >= 2 ? 1 : 0);
+          op(res, k >= 3 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s6b = {
+      steps: [
+        ["$4^{~f{9}{2}} : 4^{~f{5}{2}}$. Dwa paski wykładników.", "Odejmij"],
+        [
+          "Dzielisz potęgi, więc odejmujesz wykładniki: $~f{9}{2} - ~f{5}{2} = 2$.",
+          "Wynik",
+        ],
+        ["$4^{~f{9}{2}} : 4^{~f{5}{2}} = 4^{2} = 16$"],
+      ],
+      build: function (s) {
+        var U = 52,
+          X0 = 40;
+        axis(s, X0, U, 5, 170);
+        var a = BAR(s, 4.5, U, "9/2"),
+          b = BAR(s, 2.5, U, "5/2", "r"),
+          c = BAR(s, 2, U, "zostaje 2", "y");
+        var res = PW(s, 170, 32, "4", "2", " = 16", 28);
+        return function (k) {
+          at(a, X0, 76);
+          op(a.t, k ? 0 : 1);
+          at(b, X0, k ? 76 : 120, 1, 1);
+          at(c, X0 + 2.5 * U, 120, 1, k ? 1 : 0);
+          op(res, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s6c = {
+      steps: [
+        ["$10^{2,3}$: wykładnik 2,3.", "Rozdziel"],
+        [
+          "2,3 = 2 + 0,3, więc $10^{2,3} = 10^{2} * 10^{0,3}$ (prawo mnożenia w drugą stronę).",
+          "Policz części",
+        ],
+        ["$10^{2} = 100$, a $10^{0,3} ≈ 1,995262315$ z kalkulatora.", "Pomnóż"],
+        [
+          "Mnożenie przez 100 przesuwa przecinek o 2 miejsca w prawo: $10^{2,3} ≈ 199,5262$.",
+        ],
+      ],
+      build: function (s) {
+        var U = 80,
+          X0 = 50;
+        axis(s, X0, U, 3, 170);
+        var w = BAR(s, 2.3, U, "2,3"),
+          a = BAR(s, 2, U, "2"),
+          b = BAR(s, 0.3, U, "", "y");
+        var la = TX(s, X0 + U, 120, "10² = 100", "val"),
+          lb = PW(s, X0 + 2.15 * U + 24, 122, "10", "0,3", " ≈ 1,9953", 17),
+          res = TX(s, 170, 32, "100 · 1,995262315 ≈ 199,5262", "val");
+        return function (k) {
+          at(w, X0, 76, 1, k ? 0 : 1);
+          at(a, X0, 76, 1, k ? 1 : 0);
+          at(b, X0 + 2 * U + (k ? 8 : 0), 76, 1, k ? 1 : 0);
+          op(la, k >= 2 ? 1 : 0);
+          op(lb, k >= 2 ? 1 : 0);
+          op(res, k >= 3 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s1_skrot = {
+      steps: [
+        [
+          "Ile to $2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2$? Same dwójki pomnożone przez siebie.",
+          "Policz dwójki",
+        ],
+        [
+          "Dwójek jest 11. Pisanie ich wszystkich jest długie i łatwo się pomylić.",
+          "Zapisz krócej",
+        ],
+        [
+          "Dlatego zapisuje się to krócej: $2^{11}$. Czytasz: „2 do potęgi 11”. Mała liczba u góry mówi, ile dwójek mnożysz. Wynik to 2048.",
+        ],
+      ],
+      build: function (s) {
+        var t = [],
+          n = [],
+          i;
+        for (i = 0; i < 11; i++) {
+          t.push(TILE(s, "2", 24, 30));
+          n.push(TX(s, 30 + i * 28, 112, String(i + 1), "lb"));
+        }
+        var res = PW(s, 170, 180, "2", "11", " = 2048", 38);
+        return function (k) {
+          t.forEach(function (q, i) {
+            at(q, 30 + i * 28, 80);
+          });
+          n.forEach(function (q) {
+            op(q, k >= 1 ? 1 : 0);
+          });
+          op(res, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s1_nazwy = {
+      steps: [
+        [
+          "Zapis $5^{3}$ ma dwie części. Duża liczba na dole to podstawa: liczba, którą mnożysz.",
+          "Dalej",
+        ],
+        [
+          "Mała liczba u góry to wykładnik: mówi, ile razy podstawa stoi w mnożeniu.",
+          "Rozpisz",
+        ],
+        ["$5^{3} = 5 * 5 * 5$. Liczby, które mnożysz, nazywają się czynnikami. Tu są trzy, bo wykładnik to 3.", "Policz"],
+        ["$5 * 5 = 25$, a $25 * 5 = 125$. Więc $5^{3} = 125$."],
+      ],
+      build: function (s) {
+        var b = TX(s, 120, 92, "5");
+        b.style.fontSize = "64px";
+        var e = TX(s, 143, 60, "3");
+        e.style.fontSize = "34px";
+        var l1 = G(s, "mv");
+        E("path", { d: "M106 100 L84 122", class: "brk" }, l1);
+        TX(l1, 62, 140, "podstawa", "val");
+        var l2 = G(s, "mv");
+        E("path", { d: "M164 46 L198 34", class: "brk" }, l2);
+        TX(l2, 250, 38, "wykładnik", "val");
+        var tl = [0, 1, 2].map(function (i) {
+          var q = TILE(s, "5", 44, 44);
+          at(q, 140 + i * 62, 172);
+          return q;
+        });
+        var dt = [171, 233].map(function (x) {
+          return TX(s, x, 184, "·", "big2");
+        });
+        var eqs = TX(s, 92, 184, "=", "big2");
+        var br = E(
+            "path",
+            { d: "M116 202 L116 208 L288 208 L288 202", class: "brk" },
+            s,
+          ),
+          bl = TX(s, 202, 226, "3 czynniki", "lb");
+        var res = TX(s, 258, 92, "= 125", "res");
+        return function (k) {
+          op(l2, k >= 1 ? 1 : 0);
+          [eqs, br, bl].concat(tl, dt).forEach(function (q) {
+            op(q, k >= 2 ? 1 : 0);
+          });
+          op(res, k >= 3 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s1_nie_razy = {
+      steps: [
+        [
+          "Mnożenie $2 * 5$ to dodawanie: pięć dwójek dodanych do siebie.",
+          "A potęga?",
+        ],
+        [
+          "Potęga $2^{5}$ to mnożenie: pięć dwójek pomnożonych przez siebie.",
+          "Porównaj",
+        ],
+        [
+          "Wyniki są różne: 10 i 32. Częsty błąd to liczenie $2^{5}$ jak $2 * 5$. Wykładnik nie jest drugim czynnikiem, tylko mówi, ile jest czynników.",
+        ],
+      ],
+      build: function (s) {
+        function row(y, sign, res) {
+          var g = G(s, "mv"),
+            xs = [80, 122, 164, 206, 248];
+          xs.forEach(function (x, i) {
+            at(TILE(g, "2", 24, 32), x, y);
+            if (i < 4)
+              TX(g, x + 22, y + 7, sign, "expb").style.fontSize = "19px";
+          });
+          TX(g, 306, y + 9, "= " + res, "res2");
+          return g;
+        }
+        var a = row(70, "+", "10");
+        TX(a, 36, 79, "2 · 5", "expb");
+        var b = row(150, "·", "32");
+        PW(b, 36, 159, "2", "5", "", 26);
+        var box = E(
+          "rect",
+          { x: 276, y: 44, width: 60, height: 136, rx: 8, class: "box" },
+          s,
+        );
+        return function (k) {
+          op(b, k >= 1 ? 1 : 0);
+          op(box, k >= 2 ? 1 : 0);
+        };
+      },
+    };
+
+    S.s1_zero = {
+      steps: [
+        [
+          "A co z zerem? $0^{3} = 0 * 0 * 0 = 0$. Tak samo $0^{2} = 0$ i $0^{1} = 0$.",
+          "Zejdź niżej",
+        ],
+        [
+          "Tabelka schodzi w dół, dzieląc przez podstawę. Tu podstawa to 0, a przez 0 dzielić nie wolno. Dlatego $0^{0}$ nie ma wartości.",
+        ],
+      ],
+      build: function (s) {
+        var ex = ["3", "2", "1", "0"],
+          v = ["0", "0", "0", "?"],
+          R = [];
+        ex.forEach(function (e, i) {
+          var y = 40 + i * 46,
+            g = G(s, "mv");
+          PW(g, 90, y + 8, "0", e, "", 26);
+          TX(g, 190, y + 8, "= " + v[i], "res2");
+          if (i === 3) TX(g, 286, y - 14, "↓ :0 nie wolno", "lb");
+          R.push(g);
+        });
+        return function (k) {
+          R.forEach(function (g, i) {
+            op(g, i < 3 || k ? 1 : 0);
+          });
+        };
+      },
+    };
+
+    S.s1_znaki = {
+      steps: [
+        [
+          "Wypisz kolejne potęgi $-2$. Każdy wiersz to jeden czynnik $-2$ więcej, więc znak za każdym razem się zmienia.",
+          "Pokaż wszystkie",
+        ],
+        [
+          "Plus i minus na zmianę. Parzysty wykładnik: każdy minus ma parę, wynik dodatni. Nieparzysty: jeden minus zostaje, wynik ujemny.",
+        ],
+      ],
+      build: function (s) {
+        var ex = ["1", "2", "3", "4", "5"],
+          v = ["−2", "4", "−8", "16", "−32"],
+          R = [];
+        ex.forEach(function (e, i) {
+          var y = 34 + i * 41,
+            g = G(s, "mv " + (i % 2 ? "ok" : "no"));
+          PW(g, 66, y + 8, "(−2)", e, "", 22);
+          TX(g, 168, y + 8, "= " + v[i], "res2");
+          E("circle", { cx: 236, cy: y, r: 12, class: "mk" }, g);
+          TX(g, 236, y + 7, i % 2 ? "+" : "−", "mtxt");
+          TX(g, 296, y + 5, i % 2 ? "parzysty" : "nieparzysty", "lb");
+          R.push(g);
+        });
+        return function (k) {
+          R.forEach(function (g, i) {
+            op(g, k || i < 2 ? 1 : 0);
+          });
+        };
+      },
+    };
+
+    S.s1_pole = {
+      steps: [
+        ["Kwadrat to cała jedynka.", "Weź połowę"],
+        [
+          "Mnożenie przez $~f{1}{2}$ to branie połowy: $~p{~f{1}{2}}^{1} = ~f{1}{2}$.",
+          "Jeszcze raz",
+        ],
+        [
+          "Połowa z połowy to ćwiartka: $~p{~f{1}{2}}^{2} = ~f{1}{4}$.",
+          "Jeszcze raz",
+        ],
+        ["$~p{~f{1}{2}}^{3} = ~f{1}{8}$.", "Jeszcze raz"],
+        [
+          "$~p{~f{1}{2}}^{4} = ~f{1}{16}$. Ułamek mniejszy od 1 z każdym mnożeniem przez siebie robi się mniejszy.",
+        ],
+      ],
+      build: function (s) {
+        var h = PW(s, 262, 122, "(½)", "0", " = 1", 28);
+        E("rect", { x: 30, y: 40, width: 150, height: 150, class: "zone" }, s);
+        var sh = E(
+          "rect",
+          { x: 0, y: 0, width: 150, height: 150, class: "hl" },
+          s,
+        );
+        sh.style.transition = "transform .6s cubic-bezier(.25,.8,.3,1)";
+        E("rect", { x: 30, y: 40, width: 150, height: 150, class: "box" }, s);
+        var sz = [
+            [1, 1],
+            [0.5, 1],
+            [0.5, 0.5],
+            [0.25, 0.5],
+            [0.25, 0.25],
+          ],
+          nm = ["1", "½", "¼", "⅛", "1/16"];
+        return function (k) {
+          sh.style.transform =
+            "translate(30px,40px) scale(" + sz[k][0] + "," + sz[k][1] + ")";
+          h.s.textContent = k;
+          h.tail.textContent = " = " + nm[k];
+        };
+      },
+    };
+
+    S.s1_minus_ulamek = rows(
+      [
+        "$~p{-~f{2}{3}}^{3}$",
+        "znak: jeden minus bez pary → wynik ujemny",
+        "$~f{2*2*2}{3*3*3} = ~f{8}{27}$",
+        "$~p{-~f{2}{3}}^{3} = -~f{8}{27}$",
+      ],
+      [
+        [
+          "Ułamek z minusem. Rozbij to na dwa osobne pytania: jaki znak i jaka liczba.",
+          "Znak",
+        ],
+        [
+          "Trzy czynniki z minusem: jedna para i jeden minus bez pary. Wynik będzie ujemny.",
+          "Liczba",
+        ],
+        ["Bez znaku: liczniki razem, mianowniki razem.", "Złóż"],
+        ["Znak i liczba razem: $~p{-~f{2}{3}}^{3} = -~f{8}{27}$."],
+      ],
+    );
+
+/* Nowe obrazki do lekcji 2 i 3 (wklejane do modułu SC przez buduj_lekcje_2_3.py). */
+/* wiersz z tekstem i wzorem naraz: jeden element, żeby nie łamał się na kawałki */
+function MIX(t) {
+  return function () {
+    return '<span class="mix">' + window.MT(t) + "</span>";
+  };
+}
+
+S.s2_pulapki = rows(
+  [
+    "$2^{3} * 2^{4}$",
+    MIX("nie $2^{12}$: to byłoby 12 dwójek, a jest ich 7"),
+    MIX("nie $4^{7}$: w mnożeniu stoją same dwójki, czwórek nie ma"),
+    "$2^{3} * 2^{4} = 2^{7}$",
+  ],
+  [
+    [
+      "Dwa częste błędy przy mnożeniu potęg. Sprawdź je na $2^{3} * 2^{4}$.",
+      "Błąd 1",
+    ],
+    [
+      "Pomnożenie wykładników daje $2^{12}$, czyli 12 dwójek. Na poprzednim obrazku było ich 7.",
+      "Błąd 2",
+    ],
+    [
+      "Pomnożenie podstaw daje $4^{7}$. Ale w mnożeniu stoją same dwójki, czwórek tam nie ma.",
+      "Dobrze",
+    ],
+    [
+      "Podstawa zostaje ta sama, wykładniki się dodają: $2^{3} * 2^{4} = 2^{3+4} = 2^{7}$.",
+    ],
+  ],
+);
+
+S.s2_rowne = cancel(4, 4, "5", "5⁴ : 5⁴", "5⁴⁻⁴ = 5⁰ = 1", "", [
+  ["$5^{4} : 5^{4}$: tyle samo piątek na górze i na dole.", "Skróć"],
+  [
+    "Każda piątka z góry skraca się z jedną z dołu. Nie zostaje żadna.",
+    "Co zostało?",
+  ],
+  [
+    "Zostaje 1, bo liczba podzielona przez siebie daje 1. Zasada daje $5^{4-4} = 5^{0}$. Stąd znowu $a^{0} = 1$, jak w tabelce z lekcji 1.",
+  ],
+]);
+
+S.s2_porown = rows(
+  [
+    "$(2^{3})^{2} = 2^{3} * 2^{3}$",
+    "$= 2^{3+3} = 2^{6}$",
+    "$2^{3} * 2^{2} = 2^{3+2} = 2^{5}$",
+  ],
+  [
+    [
+      "Potęga potęgi to ta sama potęga pomnożona kilka razy. $(2^{3})^{2}$ to dwa razy $2^{3}$.",
+      "Dodaj",
+    ],
+    [
+      "Mnożysz potęgi, więc dodajesz wykładniki: $3 + 3 = 6$. Wychodzi to samo co $3 * 2$.",
+      "Porównaj",
+    ],
+    [
+      "Uważaj na podobny zapis. $2^{3} * 2^{2}$ to nie potęga potęgi, tu dodajesz: $3 + 2 = 5$. Wykładniki mnożysz tylko wtedy, gdy potęga stoi w nawiasie z wykładnikiem.",
+    ],
+  ],
+);
+
+S.s2e = rows(
+  [
+    "$12^{3} : 4^{3} = ~f{12^{3}}{4^{3}}$",
+    "$= ~f{12*12*12}{4*4*4}$",
+    "$= ~f{12}{4} * ~f{12}{4} * ~f{12}{4}$",
+    "$= 3 * 3 * 3 = 3^{3} = 27$",
+  ],
+  [
+    [
+      "Dzielenie potęg z tym samym wykładnikiem, ale różnymi podstawami. Zapisz je jako ułamek.",
+      "Rozpisz",
+    ],
+    ["Trzy dwunastki na górze, trzy czwórki na dole.", "Połącz w pary"],
+    ["Każdą dwunastkę dzielisz przez jedną czwórkę.", "Policz"],
+    [
+      "Każda para daje $12 : 4 = 3$. Wynik: $12^{3} : 4^{3} = (12 : 4)^{3} = 3^{3} = 27$. Zasada: przy tym samym wykładniku dzielisz podstawy.",
+    ],
+  ],
+);
+
+S.s3_pol = {
+  steps: [
+    ["Kwadrat to cała jedynka: $2^{0} = 1$.", "Podziel przez 2"],
+    [
+      "Wykładnik o 1 mniejszy, wynik podzielony przez 2: $2^{-1} = ~f{1}{2}$. Zostaje połowa kwadratu.",
+      "Jeszcze raz",
+    ],
+    ["$2^{-2} = ~f{1}{4}$: połowa z połowy.", "Jeszcze raz"],
+    ["$2^{-3} = ~f{1}{8}$.", "Jeszcze raz"],
+    [
+      "$2^{-4} = ~f{1}{16} = ~f{1}{2^{4}}$. Minus w wykładniku mówi, ile razy dzielisz przez 2. Kawałek jest coraz mniejszy, ale nigdy nie robi się ujemny.",
+    ],
+  ],
+  build: function (s) {
+    var h = PW(s, 262, 122, "2", "0", " = 1", 28);
+    E("rect", { x: 30, y: 40, width: 150, height: 150, class: "zone" }, s);
+    var sh = E("rect", { x: 0, y: 0, width: 150, height: 150, class: "hl" }, s);
+    sh.style.transition = "transform .6s cubic-bezier(.25,.8,.3,1)";
+    E("rect", { x: 30, y: 40, width: 150, height: 150, class: "box" }, s);
+    var sz = [
+        [1, 1],
+        [0.5, 1],
+        [0.5, 0.5],
+        [0.25, 0.5],
+        [0.25, 0.25],
+      ],
+      ex = ["0", "−1", "−2", "−3", "−4"],
+      nm = ["1", "½", "¼", "⅛", "1/16"];
+    return function (k) {
+      sh.style.transform =
+        "translate(30px,40px) scale(" + sz[k][0] + "," + sz[k][1] + ")";
+      h.s.textContent = ex[k];
+      h.tail.textContent = " = " + nm[k];
+    };
+  },
+};
+
+S.s3_pulapka = rows(
+  [
+    "$2^{-3} = ?$",
+    MIX("nie $-8$: minus w wykładniku nie robi liczby ujemnej"),
+    MIX("nie $-6$: wykładnik to nie drugi czynnik"),
+    "$2^{-3} = ~f{1}{2^{3}} = ~f{1}{8}$",
+  ],
+  [
+    ["Dwa częste błędy przy wykładniku ujemnym.", "Błąd 1"],
+    [
+      "$-8$ to liczba ujemna. A w tabelce $2^{-3}$ wyszło jako mały ułamek, większy od zera.",
+      "Błąd 2",
+    ],
+    [
+      "$-6$ to $2 * (-3)$. Potęga nie mnoży podstawy przez wykładnik, to było już w lekcji 1.",
+      "Dobrze",
+    ],
+    ["Minus w wykładniku odwraca: $2^{-3} = ~f{1}{2^{3}} = ~f{1}{8}$."],
+  ],
+);
+
+S.s3_pp = rows(
+  [
+    "$(2^{-1})^{3}$",
+    "$= 2^{-1} * 2^{-1} * 2^{-1}$",
+    "$= ~f{1}{2} * ~f{1}{2} * ~f{1}{2} = ~f{1}{8}$",
+    "$= 2^{-1*3} = 2^{-3}$",
+  ],
+  [
+    ["Potęga potęgi z ujemnym wykładnikiem.", "Rozpisz"],
+    ["Do potęgi 3: trzy razy $2^{-1}$.", "Policz"],
+    ["$2^{-1} = ~f{1}{2}$, więc mnożysz trzy połówki.", "Zasadą"],
+    [
+      "Wyszło $~f{1}{8} = 2^{-3}$. Zasada potęgi potęgi działa bez zmian: mnożysz wykładniki, $-1 * 3 = -3$.",
+    ],
+  ],
+);
+
+    var NADPIS = {"s2a": [["$2^{3}$ to trzy dwójki. $2^{4}$ to cztery dwójki.", "Połącz"], ["Mnożysz obie potęgi, więc wszystkie dwójki stają w jednym mnożeniu.", "Policz"], ["Razem 3 + 4 = 7 dwójek: $2^{3} * 2^{4} = 2^{7}$. Zasada: mnożysz potęgi o tej samej podstawie, więc dodajesz wykładniki."]], "s2b": [["Zapisz $2^{9} : 2^{6}$ jako ułamek. Na górze 9 dwójek, na dole 6.", "Skróć"], ["Każda dwójka z dołu skraca się z jedną dwójką z góry.", "Co zostało?"], ["Zostały 3 dwójki: $2^{9} : 2^{6} = 2^{3} = 8$. Zasada: dzielisz potęgi o tej samej podstawie, więc odejmujesz wykładniki."]], "s2c": [["$2^{3}$ to rząd trzech dwójek.", "Do potęgi 4"], ["Do potęgi 4 znaczy: ten rząd bierzesz do mnożenia 4 razy.", "Policz"], ["4 rzędy po 3 dwójki to 12 dwójek: $(2^{3})^{4} = 2^{12}$. Zasada: przy potędze potęgi mnożysz wykładniki."]], "s2d": [["$2^{6} * 5^{6}$ to sześć dwójek i sześć piątek.", "Połącz w pary"], ["W mnożeniu możesz zmieniać kolejność. Ustaw więc dwójki i piątki w pary. Każda para to $2 * 5 = 10$.", "Wynik"], ["Sześć dziesiątek: $2^{6} * 5^{6} = 10^{6} = 1 000 000$. Zasada: przy tym samym wykładniku mnożysz podstawy."]], "s3a": [["Tabelka z lekcji 1: wiersz niżej ma wykładnik mniejszy o 1. Wynik dzielisz wtedy przez 2.", "Dalej w dół"], ["Pod zerem tabelka idzie dalej. Wynik znów dzielisz przez 2: $2^{-1} = 1 : 2 = ~f{1}{2}$.", "Dalej w dół"], ["$2^{-2} = ~f{1}{2} : 2 = ~f{1}{4} = ~f{1}{2^{2}}$. Ujemny wykładnik daje ułamek. Liczba nie robi się ujemna."]], "s3b": [["Podziel $2^{2}$ przez $2^{5}$ na dwa sposoby. Najpierw przez skracanie.", "Skróć"], ["Dwie dwójki z góry skracają się z dwiema z dołu.", "Co zostało?"], ["Na górze zostaje 1, na dole trzy dwójki. Wynik to $~f{1}{2^{3}}$.", "Teraz zasadą"], ["Zasada z lekcji 2 daje $2^{2-5} = 2^{-3}$. Oba sposoby muszą dać tę samą liczbę. Dlatego $2^{-3} = ~f{1}{2^{3}} = ~f{1}{8}$."]], "s3c": [["Ułamek z ujemnym wykładnikiem. Jak go policzyć?", "Rozpisz"], ["Z obrazka o dzieleniu $2^{2} : 2^{5}$ wiesz, że $a^{-2} = ~f{1}{a^{2}}$. Tu $a$ to $~f{2}{3}$.", "Policz"], ["$~p{~f{2}{3}}^{2} = ~f{4}{9}$. Dzielisz 1 przez $~f{4}{9}$, czyli mnożysz przez ułamek odwrócony: $~f{9}{4}$.", "Zapisz krócej"], ["$~f{9}{4} = ~p{~f{3}{2}}^{2}$. Krótko: odwróć ułamek i usuń minus z wykładnika."]], "s3d": [["$3^{-6} = ~f{1}{3^{6}}$. Dlatego $3^{9} * 3^{-6}$ to ułamek: 9 trójek na górze, 6 na dole.", "Skróć"], ["Sześć par trójek się skraca.", "Wynik"], ["Zostają 3 trójki: $3^{9} * 3^{-6} = 3^{3} = 27$. Ten sam wynik daje dodanie wykładników: $9 + (-6) = 3$."]]};
+    for (var k in NADPIS) {
+      if (S[k].steps.length !== NADPIS[k].length) throw new Error("kroki " + k);
+      S[k].steps = NADPIS[k];
+    }
+
+    S.clearT = clearT;
+    return S;
+  })();
+</script>
+
+<script>
+  /* Schematy do zadań z treścią: rysują zależność z zadania (kafelki, pasek, kratka, połówki), bez ozdób. */
+  window.RYS = (function () {
+    function e(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+      });
+    }
+    function t(x, y, s, cls, extra) {
+      return (
+        '<text x="' + x + '" y="' + y + '" class="' + (cls || "lb") +
+        '" text-anchor="' + ((extra && extra.anchor) || "middle") + '"' +
+        ((extra && extra.attr) || "") + ">" + e(s) + "</text>"
+      );
+    }
+    function rect(x, y, w, h, cls, rx) {
+      return (
+        '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h +
+        '" rx="' + (rx || 0) + '" class="' + cls + '"></rect>'
+      );
+    }
+    function line(x1, y1, x2, y2, cls) {
+      return (
+        '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+        '" class="' + cls + '"></line>'
+      );
+    }
+    function tile(x, y, w, h, lab, kol) {
+      return (
+        '<g class="' + (kol || "") + '">' + rect(x - w / 2, y - h / 2, w, h, "tile", 6) +
+        t(x, y + h * 0.17, lab, "tl", {
+          attr: ' style="font-size:' + Math.round(h * 0.5) + 'px"',
+        }) + "</g>"
+      );
+    }
+    /* klamra pod odcinkiem (dol) albo nad nim (gora) */
+    function klamra(x1, x2, y, gora) {
+      var d = gora ? 6 : -6;
+      return (
+        '<path class="brk" d="M' + x1 + " " + (y + d) + " L" + x1 + " " + y +
+        " L" + x2 + " " + y + " L" + x2 + " " + (y + d) + '"></path>'
+      );
+    }
+    var R = {};
+
+    /* kafelki: każdy to jedno mnożenie, grupy podpisane klamrą */
+    R.grupy = function (r) {
+      var w = 30, g = 6, lw = r.lead ? 52 : 0, n = 0, h = "";
+      r.grupy.forEach(function (q) {
+        n += q.n;
+      });
+      var tot = (r.lead ? lw + 2 * g : 0) + n * w + (n - 1) * g + (r.grupy.length - 1) * 10;
+      var x = 170 - tot / 2;
+      if (r.gora) h += t(170, 22, r.gora, "lb");
+      if (r.lead) {
+        h += tile(x + lw / 2, 66, lw, 38, r.lead.lab, "y");
+        h += klamra(x, x + lw, 96) + t(x + lw / 2, 116, r.lead.pod, "lb");
+        x += lw + 2 * g;
+      }
+      r.grupy.forEach(function (q) {
+        var x0 = x;
+        for (var i = 0; i < q.n; i++) {
+          h += tile(x + w / 2, 66, w, 38, q.lab, q.kol);
+          x += w + g;
+        }
+        h += klamra(x0, x - g, 96) + t((x0 + x - g) / 2, 116, q.pod, "lb");
+        x += 10;
+      });
+      if (r.wynik) h += t(170, 156, r.wynik, "res2");
+      return [h, 170];
+    };
+
+    /* prostokąt albo kwadrat z podpisanymi bokami, opcjonalnie w kratkę */
+    R.prost = function (r) {
+      var W = r.w || 150, H = r.h || 150, x = 170 - W / 2 + 12, y = 38, h = "", i;
+      h += rect(x, y, W, H, "zone", 4);
+      for (i = 1; i < (r.kol || 0); i++)
+        h += line(x + (W * i) / r.kol, y, x + (W * i) / r.kol, y + H, "siat");
+      for (i = 1; i < (r.wier || 0); i++)
+        h += line(x, y + (H * i) / r.wier, x + W, y + (H * i) / r.wier, "siat");
+      h += rect(x, y, W, H, "ln", 4);
+      h += t(x + W / 2, y - 10, r.a, "valm");
+      h += t(x - 14, y + H / 2, r.b, "valm", {
+        attr: ' transform="rotate(-90 ' + (x - 12) + " " + (y + H / 2) + ')"',
+      });
+      if (r.srodek) {
+        h += rect(x + W / 2 - 62, y + H / 2 - 16, 124, 30, "srf", 6);
+        h += t(x + W / 2, y + H / 2 + 6, r.srodek, "valm");
+      }
+      return [h, y + H + 16];
+    };
+
+    /* sześcian z podpisaną krawędzią */
+    R.kostka = function (r) {
+      var s = 96, d = 40, x = 92, y = 62, h = "";
+      function pg(pts, cls) {
+        return '<polygon class="' + cls + '" points="' + pts.map(function (p) {
+          return p[0] + "," + p[1];
+        }).join(" ") + '"></polygon>';
+      }
+      var front = [[x, y], [x + s, y], [x + s, y + s], [x, y + s]],
+        top = [[x, y], [x + d, y - d], [x + s + d, y - d], [x + s, y]],
+        side = [[x + s, y], [x + s + d, y - d], [x + s + d, y + s - d], [x + s, y + s]];
+      [top, side, front].forEach(function (f, i) {
+        h += pg(f, i === 2 ? "zone" : "zone2") + pg(f, "ln");
+      });
+      h += t(x + s / 2, y + s + 22, r.a, "valm");
+      h += t(x + s + d + 30, y + s / 2 - d / 2 + 6, r.a, "valm");
+      h += t(x + s / 2 + d / 2, y - d - 8, r.a, "valm");
+      h += t(170, y + s + 56, r.srodek, "res2");
+      return [h, y + s + 70];
+    };
+
+    /* pasek-całość i kawałki: ile kawałków się mieści albo jaką częścią jest kawałek */
+    R.pasek = function (r) {
+      var X = 20, L = 300, y = 62, H = 36, u = L / r.ile, h = "", i, kaw = r.tryb === "kawalek";
+      h += klamra(X, X + L, 44, true) + t(170, 34, r.calosc, "valm");
+      h += rect(X, y, L, H, "zone", 4);
+      if (kaw) h += rect(X, y, u * r.pokaz, H, "hl", 4);
+      else {
+        for (i = 0; i < r.pokaz; i++) h += rect(X + i * u + 1.5, y + 2, u - 3, H - 4, "bar", 3);
+        h += t(X + r.pokaz * u + (L - r.pokaz * u) / 2, y + H / 2 + 7, "…", "val");
+      }
+      h += rect(X, y, L, H, "ln", 4);
+      var pw = kaw ? u * r.pokaz : u;
+      h += klamra(X, X + pw, y + H + 10) + t(X, y + H + 30, r.czesc, "valm", { anchor: "start" });
+      h += t(170, y + H + 70, r.pyt, "res2");
+      return [h, y + H + 84];
+    };
+
+    /* arkusz dzielony na pół n razy (formaty A) */
+    R.polowki = function (r) {
+      var x = 30, y = 34, W = 280, H = 198, h = "", cx = x, cy = y, cw = W, ch = H, P = [], i;
+      for (i = 0; i < r.n; i++) {
+        if (cw >= ch) {
+          P.push([cx, cy, cw / 2, ch]);
+          cx += cw / 2;
+          cw /= 2;
+        } else {
+          P.push([cx, cy, cw, ch / 2]);
+          cy += ch / 2;
+          ch /= 2;
+        }
+      }
+      P.forEach(function (p, i) {
+        h += rect(p[0], p[1], p[2], p[3], i === r.n - 1 ? "hl" : "zone", 0) + rect(p[0], p[1], p[2], p[3], "ln", 0);
+        h += t(p[0] + p[2] / 2, p[1] + p[3] / 2 + 6, r.lab[i], "val");
+      });
+      h += rect(cx, cy, cw, ch, "ln", 0);
+      if (r.gora) h += t(170, 22, r.gora, "lb");
+      if (r.dol) h += t(170, y + H + 30, r.dol, "res2");
+      return [h, y + H + 44];
+    };
+
+    /* słupki: każdy następny to połowa poprzedniego */
+    R.spadek = function (r) {
+      var n = r.wart.length, gap = 300 / n, bw = Math.min(34, gap - 10), base = 172, H = 112, h = "", i;
+      for (i = 0; i < n; i++) {
+        var cx = 20 + gap * i + gap / 2, hh = Math.max(H * Math.pow(0.5, i), 2), ost = i === n - 1;
+        h += rect(cx - bw / 2, base - hh, bw, hh, ost ? "hl" : "bar", 2);
+        h += t(cx, base - hh - 8, r.wart[i], "val");
+        h += t(cx, base + 18, r.czas[i], "lb");
+        if (i) h += t(cx - gap / 2, 22, "· ½", "lb2");
+      }
+      h += line(14, base, 326, base, "ln");
+      if (r.dol) h += t(170, base + 48, r.dol, "lb");
+      return [h, base + 60];
+    };
+
+    return function (r) {
+      var o = R[r.typ](r);
+      return (
+        '<svg class="viz rys" viewBox="0 0 340 ' + o[1] + '" role="img" aria-label="' +
+        e(r.opis || "Schemat do zadania") + '">' + o[0] + "</svg>"
+      );
+    };
+  })();
+</script>
+
+<script>
+  (function () {
+    var D = JSON.parse(document.getElementById("dane").textContent);
+    var app = document.getElementById("app");
+    var KEY = "potegi-lekcje-v2";
+    var S = load(),
+      P = null,
+      clockT = null,
+      askReset = false;
+
+    function load() {
+      try {
+        var r = JSON.parse(localStorage.getItem(KEY) || "null");
+        if (r && r.done) return r;
+      } catch (e) {}
+      return { done: {}, best: {} };
+    }
+    function save() {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(S));
+      } catch (e) {}
+    }
+    function esc(c) {
+      return c === "&"
+        ? "&amp;"
+        : c === "<"
+          ? "&lt;"
+          : c === ">"
+            ? "&gt;"
+            : c === '"'
+              ? "&quot;"
+              : c;
+    }
+
+    /* zapis matematyki: ^{..} potęga, ~f{a}{b} ułamek, ~r{n}{x} pierwiastek, ~p{..} duży nawias */
+    function M(s) {
+      var i = 0;
+      function grp() {
+        if (s[i] === "{") {
+          i++;
+          var o = seq("}");
+          i++;
+          return o;
+        }
+        var c = s[i++] || "";
+        return c === "-" ? "−" : esc(c);
+      }
+      function seq(end) {
+        var o = "";
+        while (i < s.length && !(end && s[i] === end)) {
+          var c = s[i];
+          if (c === "^") {
+            i++;
+            o += "<sup>" + grp() + "</sup>";
+          } else if (c === "~" && "frp".indexOf(s[i + 1]) >= 0) {
+            var k = s[i + 1];
+            i += 2;
+            if (k === "f") {
+              var a = grp(),
+                b = grp();
+              o +=
+                '<span class="fr"><span>' +
+                a +
+                "</span><span>" +
+                b +
+                "</span></span>";
+            } else if (k === "r") {
+              var n = grp(),
+                x = grp();
+              o +=
+                '<span class="rt">' +
+                (n ? '<span class="ri">' + n + "</span>" : "") +
+                '<span class="rs">√</span><span class="rx">' +
+                x +
+                "</span></span>";
+            } else {
+              var y = grp();
+              o +=
+                '<span class="pa">(</span>' + y + '<span class="pa">)</span>';
+            }
+          } else if (c === "-") {
+            o += "−";
+            i++;
+          } else if (c === "*") {
+            o += "·";
+            i++;
+          } else {
+            o += esc(c);
+            i++;
+          }
+        }
+        return o;
+      }
+      return '<span class="m">' + seq(null) + "</span>";
+    }
+    function T(t) {
+      return String(t)
+        .split("$")
+        .map(function (p, j) {
+          return j % 2 ? M(p) : p.replace(/[&<>"]/g, esc);
+        })
+        .join("");
+    }
+    window.MT = T;
+
+    function dec(s) {
+      var neg = s[0] === "-";
+      if (neg) s = s.slice(1);
+      var parts = s.split("."),
+        w = parts[0] || "0",
+        f = parts[1] || "";
+      var d = Math.pow(10, f.length);
+      return { n: (neg ? -1 : 1) * (Number(w) * d + Number(f || 0)), d: d };
+    }
+    function rat(str) {
+      str = String(str)
+        .trim()
+        .replace(/−/g, "-")
+        .replace(/,/g, ".")
+        .replace(/\s/g, "");
+      if (!/^-?\d+(\.\d+)?(\/-?\d+(\.\d+)?)?$/.test(str)) return null;
+      var p = str.split("/"),
+        x = dec(p[0]),
+        y = dec(p[1] || "1");
+      if (y.n === 0) return null;
+      return { n: x.n * y.d, d: x.d * y.n };
+    }
+    function eq(a, b) {
+      return !!(a && b) && a.n * b.d === b.n * a.d;
+    }
+    function fmtAns(a) {
+      if (a.indexOf("/") >= 0) {
+        var p = a.split("/"),
+          neg = p[0][0] === "-";
+        return M(
+          (neg ? "-" : "") + "~f{" + p[0].replace("-", "") + "}{" + p[1] + "}",
+        );
+      }
+      return M(a.replace(".", ","));
+    }
+    function showIn(v) {
+      return v ? M(v) : "";
+    }
+
+    function session(nr) {
+      for (var i = 0; i < D.sesje.length; i++)
+        if (D.sesje[i].nr === nr) return D.sesje[i];
+    }
+    function nextNr() {
+      for (var i = 0; i < D.sesje.length; i++)
+        if (!S.done[D.sesje[i].nr]) return D.sesje[i].nr;
+      return null;
+    }
+
+    function home() {
+      P = null;
+      clearInterval(clockT);
+      SC.clearT();
+      var nx = nextNr(),
+        total = D.sesje.length,
+        done = Object.keys(S.done).length;
+      var h =
+        '<header class="band"><div class="wrap">' +
+        '<div class="kicker">Matematyka · klasa 1 · rozdziały 1.7–1.9</div>' +
+        "<h1>Potęgi w 7 lekcjach</h1>" +
+        "<p>20 minut dziennie. Najpierw widzisz, skąd bierze się zasada, potem ją ćwiczysz.</p>" +
+        '<div class="xpbar"><div><b>' +
+        done +
+        "/" +
+        total +
+        "</b> lekcji zrobione</div></div>" +
+        '</div></header><main class="wrap">';
+      h += '<section><h2>Lekcje</h2><div class="table">';
+      D.sesje.forEach(function (s) {
+        var d = S.done[s.nr],
+          b = S.best[s.nr],
+          isNext = s.nr === nx;
+        var chip = d
+          ? '<span class="chip done">' + b + "/" + s.test.length + "</span>"
+          : isNext
+            ? '<span class="chip go">Zacznij</span>'
+            : '<span class="chip">Otwórz</span>';
+        h +=
+          '<button class="row' +
+          (isNext ? " biezaca" : "") +
+          '" data-go="' +
+          s.nr +
+          '"><span class="nr">' +
+          s.nr +
+          '</span><span class="tt"><b>' +
+          T(s.tytul) +
+          "</b><small>Podręcznik, rozdz. " +
+          s.karty +
+          "</small></span>" +
+          chip +
+          "</button>";
+      });
+      h += "</div></section>";
+      h +=
+        '<section><h2>Jedna lekcja</h2><div class="flow"><span>Skąd to się bierze</span><i>→</i><span>Przykład</span><i>→</i><span>Ćwiczenia</span><i>→</i><span>Test</span></div>' +
+        '<p class="note">Przy złej odpowiedzi w ćwiczeniach dostajesz podpowiedź. Lekcja 7 to test z całości.</p></section>';
+      h += '<section><h2>Zakres z podręcznika</h2><div class="cards">';
+      D.karty.forEach(function (k) {
+        h +=
+          '<div class="topic"><b>' +
+          k.temat +
+          "</b><small>" +
+          k.strony +
+          " · lekcje " +
+          k.kolejki.join(" i ") +
+          ", potem test końcowy</small></div>";
+      });
+      h += "</div></section>";
+      h +=
+        '<section><details class="sciaga"><summary>Ściąga: wszystkie zasady</summary><ul>' +
+        D.sciaga
+          .map(function (x) {
+            return "<li>" + T(x) + "</li>";
+          })
+          .join("") +
+        "</ul></details></section>";
+      h +=
+        '<div class="reset">' +
+        (askReset
+          ? 'Na pewno wyzerować postępy? <button class="linkbtn" id="rsYes">Tak, zeruj</button><button class="linkbtn" id="rsNo">Nie</button>'
+          : '<button class="linkbtn" id="rs">Wyzeruj postępy</button>') +
+        "</div>";
+      h += "</main>";
+      app.innerHTML = h;
+      app.querySelectorAll("[data-go]").forEach(function (b) {
+        b.onclick = function () {
+          start(+b.getAttribute("data-go"));
+        };
+      });
+      var r = document.getElementById("rs");
+      if (r)
+        r.onclick = function () {
+          askReset = true;
+          home();
+        };
+      var y = document.getElementById("rsYes");
+      if (y)
+        y.onclick = function () {
+          S = { done: {}, best: {} };
+          save();
+          askReset = false;
+          home();
+        };
+      var n = document.getElementById("rsNo");
+      if (n)
+        n.onclick = function () {
+          askReset = false;
+          home();
+        };
+    }
+
+    function start(nr) {
+      var s = session(nr),
+        st = [];
+      (s.rozgrzewka || []).forEach(function (q, j, a) {
+        st.push({
+          type: "q",
+          stage: "Powtórka",
+          mode: "train",
+          q: q,
+          j: j,
+          n: a.length,
+        });
+      });
+      if (s.bloki)
+        s.bloki.forEach(function (b) {
+          st.push({ type: "sceny", stage: b.tytul, list: b.sceny });
+          b.pytania.forEach(function (q, j, a) {
+            st.push({
+              type: "q",
+              stage: "Sprawdź się",
+              mode: "train",
+              q: q,
+              j: j,
+              n: a.length,
+            });
+          });
+        });
+      else if (s.sceny)
+        st.push({
+          type: "sceny",
+          stage: s.final ? "Przypomnienie" : "Skąd to się bierze",
+          list: s.sceny,
+        });
+      if (s.przyklad)
+        st.push({ type: "kroki", stage: "Przykład krok po kroku" });
+      if (s.razem)
+        st.push({
+          type: "q",
+          stage: "Razem",
+          mode: "razem",
+          q: s.razem,
+          j: 0,
+          n: 1,
+        });
+      (s.trening || []).forEach(function (q, j, a) {
+        st.push({
+          type: "q",
+          stage: "Ćwiczenia",
+          mode: "train",
+          q: q,
+          j: j,
+          n: a.length,
+        });
+      });
+      s.test.forEach(function (q, j, a) {
+        st.push({
+          type: "q",
+          stage: s.final ? "Test końcowy" : "Test",
+          mode: "test",
+          q: q,
+          j: j,
+          n: a.length,
+        });
+      });
+      st.push({ type: "wynik", stage: "Wynik" });
+      P = {
+        s: s,
+        st: st,
+        i: 0,
+        ok: 0,
+        miss: [],
+        t0: Date.now(),
+        saved: false,
+        sc: 0,
+        ss: 0,
+      };
+      resetQ();
+      render();
+      clearInterval(clockT);
+      clockT = setInterval(tick, 1000);
+    }
+    function resetQ() {
+      if (P) {
+        P.tries = 0;
+        P.input = "";
+        P.done = false;
+        P.fb = "";
+        P.out = {};
+        P.shown = 1;
+      }
+    }
+    function tick() {
+      var el = document.getElementById("clock");
+      if (!el || !P) return;
+      var s = Math.floor((Date.now() - P.t0) / 1000);
+      el.textContent =
+        String(Math.floor(s / 60)).padStart(2, "0") +
+        ":" +
+        String(s % 60).padStart(2, "0");
+    }
+    function go() {
+      P.i++;
+      P.sc = 0;
+      P.ss = 0;
+      resetQ();
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function render() {
+      if (!P) {
+        home();
+        return;
+      }
+      SC.clearT();
+      var st = P.st[P.i],
+        s = P.s;
+      var h =
+        '<div class="top"><div class="wrap"><span class="ttl">Lekcja ' +
+        s.nr +
+        " · " +
+        T(s.tytul) +
+        '</span><span class="clock" id="clock">00:00</span><button class="x" id="quit" aria-label="Wróć do listy lekcji">×</button></div><div class="prog"><i style="width:' +
+        Math.round((100 * P.i) / (P.st.length - 1)) +
+        '%"></i></div></div><main class="wrap">';
+      var label =
+        st.stage +
+        (st.type === "q" && st.n > 1 ? " · " + (st.j + 1) + "/" + st.n : "") +
+        (st.type === "sceny" ? " · " + (P.sc + 1) + "/" + st.list.length : "");
+      h += '<div class="stage">' + label + "</div>";
+      if (st.type === "sceny") h += scena(s);
+      else if (st.type === "kroki") h += kroki(s);
+      else if (st.type === "q") h += question(st);
+      else h += wynik(s);
+      h += "</main>";
+      app.innerHTML = h;
+      tick();
+      document.getElementById("quit").onclick = home;
+      bind(st);
+    }
+
+    function sLab() {
+      var s = P.s,
+        list = P.st[P.i].list,
+        nx = P.st[P.i + 1],
+        sc = SC[list[P.sc]],
+        step = sc.steps[P.ss];
+      if (step[1]) return step[1];
+      if (P.sc < list.length - 1) return "Dalej";
+      if (nx && nx.stage === "Sprawdź się") return "Sprawdź się";
+      if (nx && nx.type === "kroki") return "Do przykładu";
+      return s.final ? "Do testu" : "Dalej";
+    }
+    function scena(s) {
+      var list = P.st[P.i].list,
+        sc = SC[list[P.sc]];
+      var h =
+        '<div class="card scene"><div class="dots">' +
+        list
+          .map(function (_, i) {
+            return (
+              '<i class="' + (i < P.sc ? "d" : i === P.sc ? "c" : "") + '"></i>'
+            );
+          })
+          .join("") +
+        "</div>";
+      h += sc.html
+        ? '<div class="vizh" id="viz"></div>'
+        : '<svg class="viz" id="viz" viewBox="0 0 340 230" role="img" aria-label="Rysunek do zasady"></svg>';
+      h +=
+        '<div class="cap" id="cap" aria-live="polite">' +
+        T(sc.steps[P.ss][0]) +
+        "</div>";
+      return (
+        h +
+        '<div class="sbtns"><button class="again" id="replay" aria-label="Od początku">↺</button><button class="next" id="nx">' +
+        sLab() +
+        "</button></div></div>"
+      );
+    }
+    function setupScene() {
+      var s = P.s,
+        list = P.st[P.i].list,
+        sc = SC[list[P.sc]],
+        upd = sc.build(document.getElementById("viz"));
+      upd(P.ss);
+      document.getElementById("replay").onclick = function () {
+        P.ss = 0;
+        render();
+      };
+      document.getElementById("nx").onclick = function () {
+        if (P.ss < sc.steps.length - 1) {
+          P.ss++;
+          upd(P.ss);
+          document.getElementById("cap").innerHTML = T(sc.steps[P.ss][0]);
+          this.textContent = sLab();
+        } else if (P.sc < list.length - 1) {
+          P.sc++;
+          P.ss = 0;
+          render();
+        } else go();
+      };
+    }
+    function kroki(s) {
+      var p = s.przyklad,
+        h =
+          '<div class="card"><div class="prompt">' +
+          T(p.t) +
+          '</div><ol class="steps">';
+      for (var k = 0; k < P.shown; k++)
+        h +=
+          '<li><span class="n">' +
+          (k + 1) +
+          "</span><div>" +
+          T(p.kroki[k]) +
+          "</div></li>";
+      h += "</ol>";
+      h +=
+        P.shown < p.kroki.length
+          ? '<button class="next ghost" id="more">Pokaż krok ' +
+            (P.shown + 1) +
+            "</button>"
+          : '<button class="next" id="nx">Dalej: twoja kolej</button>';
+      return h + "</div>";
+    }
+    function question(st) {
+      var q = st.q,
+        h = '<div class="card"><div class="prompt">' + T(q.t) + "</div>";
+      if (q.rys) h += window.RYS(q.rys);
+      if (st.mode === "razem")
+        h += '<div class="hintbox"><b>Podpowiedź:</b> ' + T(q.hint) + "</div>";
+      if (q.opts) {
+        h +=
+          '<div class="opts">' +
+          q.opts
+            .map(function (o, k) {
+              var c = P.out[k] || "";
+              return (
+                '<button data-opt="' +
+                k +
+                '" class="' +
+                c +
+                '"' +
+                (P.done || c === "wrong" ? " disabled" : "") +
+                ">" +
+                T(o) +
+                "</button>"
+              );
+            })
+            .join("") +
+          "</div>";
+      } else {
+        h +=
+          '<div class="ans' +
+          (P.done ? (P.right ? " ok" : " bad") : "") +
+          '" id="ans" aria-live="polite">' +
+          showIn(P.input) +
+          "</div>";
+        if (!P.done) {
+          var keys = [
+            "7",
+            "8",
+            "9",
+            "⌫",
+            "4",
+            "5",
+            "6",
+            "/",
+            "1",
+            "2",
+            "3",
+            ",",
+            "−",
+            "0",
+            "C",
+            "OK",
+          ];
+          h +=
+            '<div class="pad">' +
+            keys
+              .map(function (k) {
+                var cls =
+                  k === "OK" ? "go" : k === "⌫" || k === "C" ? "fn" : "";
+                var lab =
+                  k === "OK"
+                    ? "Sprawdź"
+                    : k === "C"
+                      ? "Wyczyść"
+                      : k === "/"
+                        ? "ułamek"
+                        : k;
+                return (
+                  '<button class="' +
+                  cls +
+                  '" data-k="' +
+                  k +
+                  '" aria-label="' +
+                  lab +
+                  '">' +
+                  (k === "OK" ? "Sprawdź" : k) +
+                  "</button>"
+                );
+              })
+              .join("") +
+            "</div>";
+          h +=
+            '<div class="padnote">Ułamek wpisz jak 3/4, liczbę dziesiętną z przecinkiem.</div>';
+        }
+      }
+      if (P.fb) h += P.fb;
+      if (P.done) h += '<button class="next" id="nx">Dalej</button>';
+      return h + "</div>";
+    }
+    function wynik(s) {
+      if (!P.saved) {
+        P.saved = true;
+        S.done[s.nr] = true;
+        S.best[s.nr] = Math.max(S.best[s.nr] || 0, P.ok);
+        save();
+        clearInterval(clockT);
+      }
+      var n = s.test.length,
+        bad = n - P.ok,
+        h = '<div class="card" style="text-align:center">';
+      h += "<h3>Lekcja " + s.nr + " zrobiona</h3>";
+      h +=
+        '<div class="score"><div><b>' +
+        P.ok +
+        '</b><small>dobrze</small></div><span class="colon">:</span><div><b>' +
+        bad +
+        "</b><small>źle</small></div></div>";
+      var msg =
+        bad === 0
+          ? "Wszystko dobrze. Ten temat masz opanowany."
+          : P.ok >= n - 1
+            ? "Prawie wszystko. Przejrzyj jeszcze rozwiązanie zadania z błędem."
+            : "Jutro zrób tę lekcję jeszcze raz, zanim przejdziesz dalej.";
+      if (s.final && bad > 0) {
+        var ks = [];
+        P.miss.forEach(function (k) {
+          if (ks.indexOf(k) < 0) ks.push(k);
+        });
+        ks.sort();
+        msg =
+          "Powtórz: " +
+          ks
+            .map(function (k) {
+              return "lekcja " + k + " (" + session(k).tytul + ")";
+            })
+            .join(", ") +
+          ". Potem zrób test jeszcze raz.";
+      }
+      if (s.final && bad === 0)
+        msg = "Komplet. Cały materiał o potęgach opanowany.";
+      h += "<p>" + msg + "</p>";
+      h +=
+        '<button class="next" id="home">Wróć do listy lekcji</button><button class="next ghost" id="again">Zrób tę lekcję jeszcze raz</button></div>';
+      return h;
+    }
+
+    function bind(st) {
+      var nx = document.getElementById("nx");
+      if (nx) nx.onclick = go;
+      var more = document.getElementById("more");
+      if (more)
+        more.onclick = function () {
+          P.shown++;
+          render();
+        };
+      var hm = document.getElementById("home");
+      if (hm) hm.onclick = home;
+      var ag = document.getElementById("again");
+      if (ag)
+        ag.onclick = function () {
+          start(P.s.nr);
+        };
+      app.querySelectorAll("[data-opt]").forEach(function (b) {
+        b.onclick = function () {
+          check(+b.getAttribute("data-opt"));
+        };
+      });
+      app.querySelectorAll("[data-k]").forEach(function (b) {
+        b.onclick = function () {
+          key(b.getAttribute("data-k"));
+        };
+      });
+      if (st.type === "sceny") setupScene();
+    }
+    function key(k) {
+      if (!P || P.done) return;
+      if (k === "OK") {
+        check();
+        return;
+      }
+      if (k === "⌫") P.input = P.input.slice(0, -1);
+      else if (k === "C") P.input = "";
+      else if (k === "−") {
+        P.input += "-";
+      } else if (P.input.length < 14) P.input += k;
+      var a = document.getElementById("ans");
+      if (a) a.innerHTML = showIn(P.input);
+    }
+    function check(choice) {
+      var st = P.st[P.i],
+        q = st.q,
+        right;
+      if (P.done) return;
+      if (q.opts) right = choice === q.ok;
+      else {
+        var r = rat(P.input);
+        if (!r) {
+          P.fb =
+            '<div class="fb warn">Wpisz liczbę: całą, ułamek jak 3/4 albo dziesiętną z przecinkiem, np. 0,6.</div>';
+          render();
+          return;
+        }
+        right = eq(r, rat(q.a));
+      }
+      P.tries++;
+      if (right) {
+        P.done = true;
+        P.right = true;
+        if (q.opts) P.out[choice] = "right";
+        if (st.mode === "test") P.ok++;
+        P.fb = '<div class="fb ok"><b>Dobrze.</b> ' + T(q.sol || "") + "</div>";
+      } else if (st.mode !== "test" && P.tries < 2) {
+        if (q.opts) P.out[choice] = "wrong";
+        P.fb =
+          '<div class="fb warn"><b>Jeszcze nie.</b> ' +
+          T(q.hint || "Sprawdź jeszcze raz znak i wykładnik.") +
+          " Spróbuj jeszcze raz.</div>";
+      } else {
+        P.done = true;
+        P.right = false;
+        if (q.opts) {
+          P.out[choice] = "wrong";
+          P.out[q.ok] = "right";
+        }
+        if (st.mode === "test" && q.k) P.miss.push(q.k);
+        P.fb =
+          '<div class="fb bad"><b>Źle.</b> Poprawnie: ' +
+          (q.opts ? T(q.opts[q.ok]) : fmtAns(q.a)) +
+          ". " +
+          T(q.sol || "") +
+          "</div>";
+      }
+      render();
+    }
+    document.addEventListener("keydown", function (e) {
+      if (!P) return;
+      var st = P.st[P.i];
+      if (e.key === "Enter") {
+        var nx =
+          document.getElementById("nx") || document.getElementById("more");
+        if (nx && (st.type !== "q" || P.done)) {
+          e.preventDefault();
+          nx.click();
+          return;
+        }
+      }
+      if (st.type !== "q" || st.q.opts || P.done) return;
+      if (/^[0-9]$/.test(e.key)) key(e.key);
+      else if (e.key === "," || e.key === ".") key(",");
+      else if (e.key === "/") key("/");
+      else if (e.key === "-") key("−");
+      else if (e.key === "Backspace") key("⌫");
+      else if (e.key === "Enter") key("OK");
+      else return;
+      e.preventDefault();
+    });
+    home();
+  })();
+</script>
