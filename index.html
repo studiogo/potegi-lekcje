@@ -1771,134 +1771,301 @@
       "nr": 4,
       "tytul": "Notacja wykładnicza",
       "karty": "1.8, s. 38 i 40",
-      "sceny": [
-        "s4a",
-        "s4b",
-        "s4c"
-      ],
       "rozgrzewka": [
         {
-          "t": "Powtórka z lekcji 3: oblicz $2^{-3}$.",
-          "a": "1/8",
-          "py": "F(2)**-3",
-          "hint": "$2^{-3} = ~f{1}{2^{3}}$.",
-          "sol": "$~f{1}{8}$."
+          "t": "Powtórka z lekcji 2: zapisz $10^{3} * 10^{4}$ jako potęgę $10^{?}$. Wpisz wykładnik.",
+          "a": "7",
+          "py": "math.log10(10**3*10**4)",
+          "hint": "Mnożysz potęgi tej samej podstawy: dodaj wykładniki.",
+          "sol": "$10^{3+4} = 10^{7}$."
         },
         {
-          "t": "Powtórka z lekcji 3: oblicz $~p{~f{2}{3}}^{-2}$.",
-          "a": "9/4",
-          "py": "F(2,3)**-2",
-          "hint": "Odwróć ułamek i usuń minus z wykładnika.",
-          "sol": "$~p{~f{3}{2}}^{2} = ~f{9}{4}$."
+          "t": "Powtórka z lekcji 3: oblicz $10^{-2}$. Wpisz ułamek.",
+          "a": "1/100",
+          "py": "F(10)**-2",
+          "hint": "Minus w wykładniku odwraca: $10^{-2} = ~f{1}{10^{2}}$.",
+          "sol": "$10^{-2} = ~f{1}{10^{2}} = ~f{1}{100}$."
         }
       ],
-      "przyklad": {
-        "t": "Zapisz $0,00027$ w notacji wykładniczej.",
-        "kroki": [
-          "Przesuń przecinek za pierwszą cyfrę różną od zera: $2,7$.",
-          "Policz przesunięcia: z 0,00027 do 2,7 są 4 miejsca w prawo, czyli mnożenie przez $10^{4}$.",
-          "Żeby wrócić do 0,00027, dzielisz przez $10^{4}$: $2,7 * 10^{-4}$."
-        ]
-      },
-      "razem": {
-        "t": "Twoja kolej: $6 320 000 = 6,32 * 10^{?}$. Wpisz wykładnik.",
-        "a": "6",
-        "py": "math.log10(6320000/6.32)",
-        "hint": "Ile razy trzeba podzielić przez 10, żeby przecinek stanął zaraz po szóstce?",
-        "sol": "6 razy: $6,32 * 10^{6}$."
-      },
+      "bloki": [
+        {
+          "tytul": "Potęgi dziesiątki",
+          "sceny": [
+            "s4_dziesiatki",
+            "s4_przecinek"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $10^{-3}$ jako ułamek dziesiętny.",
+              "a": "0.001",
+              "py": "F(10)**-3",
+              "hint": "W tabelce każdy wiersz niżej to dzielenie przez 10. Przy wykładniku $-3$ jedynka stoi na trzecim miejscu po przecinku.",
+              "sol": "$10^{-3} = ~f{1}{1000} = 0,001$."
+            },
+            {
+              "t": "Zapisz $4,7 * 10^{2}$ jako zwykłą liczbę.",
+              "a": "470",
+              "py": "F(47,10)*10**2",
+              "hint": "Mnożysz przez $10^{2}$, więc przecinek idzie o 2 miejsca w prawo, jak na obrazku z liczbą 3,7.",
+              "sol": "$4,7 * 100 = 470$."
+            },
+            {
+              "t": "Tona to $10^{3}$ kilogramów, a kilogram to $10^{3}$ gramów. Ile gramów ma tona? Zapisz jako potęgę $10^{?}$ i wpisz wykładnik.",
+              "a": "6",
+              "py": "math.log10(10**3*10**3)",
+              "hint": "Na rysunku są dwie strzałki: dwa razy mnożysz przez $10^{3}$. Dodaj wykładniki.",
+              "sol": "$10^{3} * 10^{3} = 10^{6}$, czyli milion gramów.",
+              "rys": {
+                "typ": "lancuch",
+                "wezly": [
+                  {
+                    "g": "1 t"
+                  },
+                  {
+                    "g": "10³ kg"
+                  },
+                  {
+                    "g": "? g",
+                    "hl": true
+                  }
+                ],
+                "strzalki": [
+                  "· 10³",
+                  "· 10³"
+                ],
+                "wynik": "10³ · 10³ = 10^{?}",
+                "opis": "Trzy pola połączone strzałkami: tona, kilogramy, gramy. Każda strzałka to mnożenie przez 10 do trzeciej"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Duże liczby",
+          "sceny": [
+            "s4a",
+            "s4c"
+          ],
+          "pytania": [
+            {
+              "t": "$45 000 = 4,5 * 10^{?}$. Wpisz wykładnik.",
+              "a": "4",
+              "py": "math.log10(45000/4.5)",
+              "hint": "Przecinek stoi na końcu liczby. Policz, ile razy przeskoczy w lewo, zanim stanie za czwórką, jak żółta kropka na obrazku.",
+              "sol": "4 skoki w lewo: $45 000 = 4,5 * 10^{4}$."
+            },
+            {
+              "t": "Który zapis liczby $3600$ to notacja wykładnicza?",
+              "opts": [
+                "$36 * 10^{2}$",
+                "$3,6 * 10^{3}$",
+                "$0,36 * 10^{4}$"
+              ],
+              "ok": 1,
+              "py": "36*10**2 == 3600 and F(36,10)*10**3 == 3600 and F(36,100)*10**4 == 3600",
+              "hint": "Wszystkie trzy mają wartość 3600. Liczba z przodu musi leżeć między 1 a 10, jak na odcinku z obrazka.",
+              "sol": "Tylko $3,6$ leży między 1 a 10. $36$ jest za duże, a $0,36$ za małe."
+            },
+            {
+              "t": "Ziemia jest oddalona od Słońca o około 150 000 000 km. Zapisz tę odległość jako $1,5 * 10^{?}$ km. Wpisz wykładnik.",
+              "a": "8",
+              "py": "math.log10(150000000/1.5)",
+              "hint": "Przecinek stoi na końcu liczby. Policz kratki, nad którymi przeskoczy w lewo, zanim stanie za jedynką.",
+              "sol": "8 skoków w lewo: $150 000 000 = 1,5 * 10^{8}$ km.",
+              "rys": {
+                "typ": "miejsca",
+                "cyfry": "150000000",
+                "od": 9,
+                "do": 1,
+                "skoki": "? skoków w lewo",
+                "dol": "150 000 000 = 1,5 · 10^{?}",
+                "opis": "Dziewięć cyfr w kratkach, żółty przecinek na końcu i strzałka do miejsca za jedynką"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Małe liczby",
+          "sceny": [
+            "s4b",
+            "s4_pulapka"
+          ],
+          "pytania": [
+            {
+              "t": "$0,0006 = 6 * 10^{?}$. Wpisz wykładnik.",
+              "a": "-4",
+              "py": "math.log10(F(6,10000)/6)",
+              "hint": "Liczba jest mniejsza od 1, więc wykładnik jest ujemny. Policz skoki przecinka w prawo, aż stanie za szóstką.",
+              "sol": "4 skoki w prawo: $0,0006 = 6 * 10^{-4}$."
+            },
+            {
+              "t": "Zapisz $3,5 * 10^{-3}$ jako ułamek dziesiętny.",
+              "a": "0.0035",
+              "py": "F(35,10)*F(10)**-3",
+              "hint": "Wykładnik $-3$ to dzielenie przez $10^{3}$: przecinek idzie o 3 miejsca w lewo. Brakujące miejsca wypełniasz zerami.",
+              "sol": "$3,5 : 1000 = 0,0035$."
+            },
+            {
+              "t": "Włos człowieka ma grubość około 0,00008 m. Zapisz to jako $8 * 10^{?}$ m. Wpisz wykładnik.",
+              "a": "-5",
+              "py": "math.log10(F(8,100000)/8)",
+              "hint": "Przecinek stoi za pierwszym zerem. Policz kratki, nad którymi przeskoczy w prawo, aż stanie za ósemką. Skoki w prawo dają wykładnik ujemny.",
+              "sol": "5 skoków w prawo: $0,00008 = 8 * 10^{-5}$ m.",
+              "rys": {
+                "typ": "miejsca",
+                "cyfry": "000008",
+                "od": 1,
+                "do": 6,
+                "skoki": "? skoków w prawo",
+                "dol": "0,00008 = 8 · 10^{?}",
+                "opis": "Sześć cyfr w kratkach, żółty przecinek za pierwszym zerem i strzałka do miejsca za ósemką"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Mnożenie i dzielenie",
+          "sceny": [
+            "s4_dzialania",
+            "s4_dzielenie"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $(2 * 10^{3}) * (4 * 10^{5})$ i zapisz wynik jako $8 * 10^{?}$. Wpisz wykładnik.",
+              "a": "8",
+              "py": "math.log10(2*10**3*4*10**5/8)",
+              "hint": "Liczby z przodu mnożysz osobno: $2 * 4 = 8$. Potęgi dziesiątki osobno: dodaj wykładniki.",
+              "sol": "$8 * 10^{3+5} = 8 * 10^{8}$."
+            },
+            {
+              "t": "$(6 * 10^{4}) * (5 * 10^{2}) = 30 * 10^{6}$. Jak zapisać ten wynik w notacji wykładniczej?",
+              "opts": [
+                "$30 * 10^{6}$",
+                "$3 * 10^{7}$",
+                "$3 * 10^{5}$"
+              ],
+              "ok": 1,
+              "py": "6*10**4*5*10**2 == 30*10**6 == 3*10**7 and 3*10**5 != 3*10**7",
+              "hint": "Liczba z przodu wyszła większa niż 10. Zapisz 30 jako $3 * 10$, jak na obrazku z mnożeniem.",
+              "sol": "$30 * 10^{6} = 3 * 10 * 10^{6} = 3 * 10^{7}$."
+            },
+            {
+              "t": "Serce człowieka uderza około $10^{5}$ razy na dobę. Rok ma 365 dni, czyli $3,65 * 10^{2}$ dni. Ile razy serce uderza w ciągu roku? Zapisz jako $3,65 * 10^{?}$ i wpisz wykładnik.",
+              "a": "7",
+              "py": "math.log10(10**5*365/F(365,100))",
+              "hint": "Uderzenia w ciągu roku to uderzenia w ciągu doby razy liczba dni. Liczby z przodu mnożysz osobno, potęgi dziesiątki osobno.",
+              "sol": "$10^{5} * 3,65 * 10^{2} = 3,65 * 10^{7}$, czyli 36 500 000 uderzeń.",
+              "rys": {
+                "typ": "lancuch",
+                "wezly": [
+                  {
+                    "g": "1 doba",
+                    "d": "10⁵ uderzeń"
+                  },
+                  {
+                    "g": "1 rok",
+                    "d": "? uderzeń",
+                    "hl": true
+                  }
+                ],
+                "strzalki": [
+                  "· 3,65 · 10²"
+                ],
+                "wynik": "10⁵ · 3,65 · 10² = ?",
+                "opis": "Dwa pola: doba i rok. Strzałka między nimi to mnożenie przez liczbę dni w roku"
+              }
+            }
+          ]
+        }
+      ],
       "trening": [
         {
-          "t": "$109 000 000 = 1,09 * 10^{?}$. Wpisz wykładnik.",
-          "a": "8",
-          "py": "math.log10(109000000/1.09)",
-          "hint": "Policz cyfry stojące za pierwszą jedynką.",
-          "sol": "8 miejsc: $1,09 * 10^{8}$."
+          "t": "Zapisz $7,1 * 10^{5}$ jako zwykłą liczbę.",
+          "a": "710000",
+          "py": "F(71,10)*10**5",
+          "hint": "Przecinek idzie o 5 miejsc w prawo. Brakujące miejsca wypełniasz zerami.",
+          "sol": "$7,1 * 100 000 = 710 000$."
         },
         {
-          "t": "$0,00065 = 6,5 * 10^{?}$. Wpisz wykładnik.",
+          "t": "Zapisz $0,00052$ jako $5,2 * 10^{?}$. Wpisz wykładnik.",
           "a": "-4",
-          "py": "math.log10(0.00065/6.5)",
-          "hint": "Mała liczba, więc wykładnik ujemny. Policz, o ile miejsc w prawo przesuwasz przecinek.",
-          "sol": "4 miejsca w prawo: $6,5 * 10^{-4}$."
+          "py": "math.log10(F(52,100000)/F(52,10))",
+          "hint": "Przecinek skacze w prawo, aż stanie za piątką. Skoki w prawo dają wykładnik ujemny.",
+          "sol": "4 skoki w prawo: $0,00052 = 5,2 * 10^{-4}$."
         },
         {
-          "t": "Który zapis liczby $8765,2$ to poprawna notacja wykładnicza?",
+          "t": "Która liczba jest największa?",
           "opts": [
-            "$87,652 * 10^{2}$",
-            "$8,7652 * 10^{3}$",
-            "$0,87652 * 10^{4}$"
+            "$9,9 * 10^{3}$",
+            "$1,1 * 10^{4}$",
+            "$9 * 10^{3}$"
           ],
           "ok": 1,
-          "py": "1 <= 8.7652 < 10 and abs(8.7652e3-8765.2) < 1e-9",
-          "hint": "Liczba z przodu musi być co najmniej 1 i mniejsza niż 10.",
-          "sol": "Wszystkie trzy mają tę samą wartość, ale tylko $8,7652$ mieści się między 1 a 10."
+          "py": "F(11,10)*10**4 > F(99,10)*10**3 > 9*10**3",
+          "hint": "Najpierw porównaj wykładniki. Większy wykładnik to więcej cyfr przed przecinkiem.",
+          "sol": "$1,1 * 10^{4} = 11 000$, a $9,9 * 10^{3} = 9 900$. Liczby z przodu porównujesz dopiero przy równych wykładnikach."
         },
         {
-          "t": "Zapisz $7,89 * 10^{-4}$ w postaci dziesiętnej.",
-          "a": "0.000789",
-          "py": "F(789,100)*F(10)**-4",
-          "hint": "Wykładnik $-4$: dzielisz przez $10^{4}$, czyli przesuwasz przecinek o 4 miejsca w lewo.",
-          "sol": "$0,000789$."
+          "t": "Pendrive mieści $6,4 * 10^{10}$ bajtów. Jedno zdjęcie zajmuje $3,2 * 10^{6}$ bajtów. Ile zdjęć się zmieści? Zapisz jako $2 * 10^{?}$ i wpisz wykładnik.",
+          "a": "4",
+          "py": "math.log10(F(64,10)*10**10/(F(32,10)*10**6)/2)",
+          "hint": "Ile razy zdjęcie mieści się w pendrivie: to dzielenie. Liczby z przodu dzielisz osobno, potęgi dziesiątki osobno.",
+          "sol": "$(6,4 : 3,2) * 10^{10-6} = 2 * 10^{4}$, czyli 20 000 zdjęć.",
+          "rys": {
+            "typ": "pasek",
+            "calosc": "pendrive: 6,4 · 10¹⁰ bajtów",
+            "czesc": "zdjęcie: 3,2 · 10⁶ bajtów",
+            "ile": 24,
+            "pokaz": 3,
+            "pyt": "ile zdjęć się zmieści?",
+            "opis": "Długi pasek to pendrive, krótkie kawałki na początku to zdjęcia"
+          }
         },
         {
-          "t": "Oblicz $(3,4 * 10^{7}) * (4 * 10^{-5})$. Podaj wynik dziesiętnie.",
-          "a": "1360",
-          "py": "F(34,10)*10**7*4*F(10)**-5",
-          "hint": "$3,4 * 4 = 13,6$ oraz $10^{7} * 10^{-5} = 10^{2}$.",
-          "sol": "$13,6 * 10^{2} = 1,36 * 10^{3} = 1360$."
-        },
-        {
-          "t": "Oblicz $(4,8 * 10^{-1}) : (1,6 * 10^{-3})$. Podaj wynik dziesiętnie.",
-          "a": "300",
-          "py": "(F(48,10)*F(10)**-1)/(F(16,10)*F(10)**-3)",
-          "hint": "$4,8 : 1,6 = 3$ oraz $10^{-1} : 10^{-3} = 10^{2}$.",
-          "sol": "$3 * 10^{2} = 300$."
-        },
-        {
-          "t": "Oblicz $50 000 * 19$ i zapisz wynik jako $9,5 * 10^{?}$. Wpisz wykładnik.",
-          "a": "5",
-          "py": "math.log10(50000*19/9.5)",
-          "hint": "$50 000 * 19 = 950 000$. Ile razy podzielić przez 10, żeby zostało 9,5?",
-          "sol": "$950 000 = 9,5 * 10^{5}$."
-        },
-        {
-          "t": "Ktoś zapisał $0,0042 = 4,2 * 10^{3}$. Co jest źle?",
+          "t": "Ola zapisała: $52 000 = 52 * 10^{3}$. Co jest nie tak?",
           "opts": [
-            "Liczba jest mniejsza od 1, więc wykładnik musi być ujemny: $4,2 * 10^{-3}$",
-            "Powinno być $42 * 10^{-4}$",
-            "Wszystko dobrze"
+            "Nic, jest dobrze",
+            "Liczba z przodu musi leżeć między 1 a 10: $5,2 * 10^{4}$",
+            "Powinno być $5,2 * 10^{3}$"
           ],
-          "ok": 0,
-          "py": "abs(4.2e-3-0.0042) < 1e-12",
-          "hint": "$4,2 * 10^{3}$ to 4200. Czy to ta sama liczba?",
-          "sol": "$0,0042 = 4,2 * 10^{-3}$."
+          "ok": 1,
+          "py": "52*10**3 == 52000 and F(52,10)*10**4 == 52000 and F(52,10)*10**3 != 52000",
+          "hint": "Wartość się zgadza. Sprawdź liczbę z przodu na odcinku od 1 do 10.",
+          "sol": "52 nie leży między 1 a 10. Przecinek przeskakuje o jeszcze jedno miejsce: $52 000 = 5,2 * 10^{4}$."
         }
       ],
       "test": [
         {
-          "t": "$0,100324 = 1,00324 * 10^{?}$. Wpisz wykładnik.",
-          "a": "-1",
-          "py": "math.log10(0.100324/1.00324)",
-          "sol": "Jedno miejsce w prawo: $10^{-1}$."
+          "t": "$0,0009 = 9 * 10^{?}$. Wpisz wykładnik.",
+          "a": "-4",
+          "py": "math.log10(F(9,10000)/9)",
+          "sol": "4 skoki w prawo: $0,0009 = 9 * 10^{-4}$."
         },
         {
-          "t": "Zapisz $8,34 * 10^{-5}$ w postaci dziesiętnej.",
-          "a": "0.0000834",
-          "py": "F(834,100)*F(10)**-5",
-          "sol": "$0,0000834$."
+          "t": "Zapisz $2,05 * 10^{4}$ jako zwykłą liczbę.",
+          "a": "20500",
+          "py": "F(205,100)*10**4",
+          "sol": "Przecinek o 4 miejsca w prawo: $20 500$."
         },
         {
-          "t": "Oblicz $(7,2 * 10^{-3}) : (1,2 * 10^{-2})$. Podaj wynik dziesiętnie.",
-          "a": "0.6",
-          "py": "(F(72,10)*F(10)**-3)/(F(12,10)*F(10)**-2)",
-          "sol": "$6 * 10^{-1} = 0,6$."
+          "t": "Oblicz $(4 * 10^{-3}) * (2 * 10^{5})$. Podaj wynik jako zwykłą liczbę.",
+          "a": "800",
+          "py": "4*F(10)**-3*2*10**5",
+          "sol": "$8 * 10^{-3+5} = 8 * 10^{2} = 800$."
         },
         {
-          "t": "Prędkość światła w próżni to 299 792 458 m/s. W notacji wykładniczej to $2,99792458 * 10^{?}$ m/s. Wpisz wykładnik.",
-          "a": "8",
-          "py": "math.log10(299792458/2.99792458)",
-          "sol": "8 miejsc w lewo: $10^{8}$."
+          "t": "Kropla wody ma objętość około $5 * 10^{-2}$ ml. Szklanka mieści $2,5 * 10^{2}$ ml. Ile kropel jest w pełnej szklance?",
+          "a": "5000",
+          "py": "F(25,10)*10**2/(5*F(10)**-2)",
+          "sol": "$(2,5 : 5) * 10^{2-(-2)} = 0,5 * 10^{4} = 5000$ kropel.",
+          "rys": {
+            "typ": "pasek",
+            "calosc": "szklanka: 2,5 · 10² ml",
+            "czesc": "kropla: 5 · 10^{−2} ml",
+            "ile": 30,
+            "pokaz": 3,
+            "pyt": "ile kropel w szklance?",
+            "opis": "Długi pasek to szklanka wody, krótkie kawałki na początku to krople"
+          }
         }
       ]
     },
@@ -1906,92 +2073,191 @@
       "nr": 5,
       "tytul": "Wykładnik w postaci ułamka",
       "karty": "1.9, s. 42",
-      "sceny": [
-        "s5a",
-        "s5b",
-        "s5c",
-        "s5d"
-      ],
       "rozgrzewka": [
         {
           "t": "Powtórka z lekcji 4: $0,0005 = 5 * 10^{?}$. Wpisz wykładnik.",
           "a": "-4",
-          "py": "math.log10(0.0005/5)",
-          "hint": "Mała liczba: wykładnik ujemny. Policz przesunięcia przecinka do piątki.",
-          "sol": "$5 * 10^{-4}$."
+          "py": "math.log10(F(5,10000)/5)",
+          "hint": "Mała liczba, więc wykładnik ujemny. Policz skoki przecinka w prawo, aż stanie za piątką.",
+          "sol": "4 skoki w prawo: $0,0005 = 5 * 10^{-4}$."
         },
         {
-          "t": "Powtórka z lekcji 3: oblicz $(-3)^{-2}$.",
-          "a": "1/9",
-          "py": "F(-3)**-2",
-          "hint": "$~f{1}{(-3)^{2}}$, a parzysty wykładnik daje plus.",
-          "sol": "$~f{1}{9}$."
+          "t": "Powtórka z lekcji 2: zapisz $(7^{3})^{2}$ jako potęgę $7^{?}$. Wpisz wykładnik.",
+          "a": "6",
+          "py": "math.log((7**3)**2,7)",
+          "hint": "Potęga potęgi: mnożysz wykładniki.",
+          "sol": "$(7^{3})^{2} = 7^{3*2} = 7^{6}$."
         }
       ],
-      "przyklad": {
-        "t": "Oblicz $27^{~f{2}{3}}$.",
-        "kroki": [
-          "Mianownik 3: rozbij 27 na trzy równe czynniki. $27 = 3*3*3$, więc $27^{~f{1}{3}} = 3$.",
-          "Licznik 2: mnożysz dwa takie czynniki, $3*3$.",
-          "$27^{~f{2}{3}} = 9$."
-        ]
-      },
-      "razem": {
-        "t": "Twoja kolej: oblicz $4^{~f{3}{2}}$.",
-        "a": "8",
-        "py": "4**1.5",
-        "hint": "Mianownik 2: $4 = 2*2$, więc $4^{~f{1}{2}} = 2$. Licznik 3: mnożysz trzy takie czynniki.",
-        "sol": "$2*2*2 = 8$."
-      },
+      "bloki": [
+        {
+          "tytul": "Wykładnik ½",
+          "sceny": [
+            "s5_kwadrat",
+            "s5a"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $25^{~f{1}{2}}$.",
+              "a": "5",
+              "py": "25**0.5",
+              "hint": "To bok kwadratu o polu 25: liczba, która pomnożona przez siebie daje 25.",
+              "sol": "$5 * 5 = 25$, więc $25^{~f{1}{2}} = ~r{}{25} = 5$."
+            },
+            {
+              "t": "Ile to $49^{~f{1}{2}}$?",
+              "opts": [
+                "$24,5$",
+                "$7$",
+                "$2401$"
+              ],
+              "ok": 1,
+              "py": "49**0.5 == 7 and 49*0.5 == 24.5 and 49**2 == 2401",
+              "hint": "Potęga to nie mnożenie przez wykładnik. Jaka liczba pomnożona przez siebie daje 49?",
+              "sol": "$7 * 7 = 49$, więc $49^{~f{1}{2}} = 7$. Wynik 24,5 to $49 * ~f{1}{2}$, a 2401 to $49^{2}$."
+            },
+            {
+              "t": "Kwadratowy ogród ma pole 64 m². Bok ogrodu to $64^{~f{1}{2}}$ m. Ile to metrów?",
+              "a": "8",
+              "py": "64**0.5",
+              "hint": "Pole kwadratu to bok razy bok. Jaka liczba pomnożona przez siebie daje 64?",
+              "sol": "$8 * 8 = 64$, więc bok ma $64^{~f{1}{2}} = 8$ m.",
+              "rys": {
+                "typ": "prost",
+                "a": "? m",
+                "b": "? m",
+                "srodek": "pole = 64 m²",
+                "w": 150,
+                "h": 150,
+                "opis": "Kwadratowy ogród o polu 64 metry kwadratowe, oba boki z pytajnikiem"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Wykładnik ⅓ i ¼",
+          "sceny": [
+            "s5_szescian",
+            "s5_ogolnie"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $27^{~f{1}{3}}$.",
+              "a": "3",
+              "py": "27**(1/3)",
+              "hint": "To krawędź sześcianu o objętości 27: liczba, która 3 razy pomnożona przez siebie daje 27.",
+              "sol": "$3 * 3 * 3 = 27$, więc $27^{~f{1}{3}} = 3$."
+            },
+            {
+              "t": "Oblicz $16^{~f{1}{4}}$.",
+              "a": "2",
+              "py": "16**0.25",
+              "hint": "Mianownik 4: szukasz liczby, która 4 razy pomnożona przez siebie daje 16. Sprawdź 2.",
+              "sol": "$2 * 2 * 2 * 2 = 16$, więc $16^{~f{1}{4}} = 2$."
+            },
+            {
+              "t": "Pudełko w kształcie sześcianu ma objętość 125 cm³. Jego krawędź to $125^{~f{1}{3}}$ cm. Ile to centymetrów?",
+              "a": "5",
+              "py": "125**(1/3)",
+              "hint": "Objętość sześcianu to krawędź razy krawędź razy krawędź. Jaka liczba 3 razy pomnożona przez siebie daje 125?",
+              "sol": "$5 * 5 * 5 = 125$, więc krawędź ma $125^{~f{1}{3}} = 5$ cm.",
+              "rys": {
+                "typ": "kostka",
+                "a": "? cm",
+                "srodek": "objętość = 125 cm³",
+                "opis": "Sześcian o objętości 125 centymetrów sześciennych, krawędzie z pytajnikiem"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Licznik w wykładniku",
+          "sceny": [
+            "s5_sciana",
+            "s5b",
+            "s5c"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $27^{~f{2}{3}}$.",
+              "a": "9",
+              "py": "27**(2/3)",
+              "hint": "Mianownik 3: rozbij 27 na trzy równe czynniki. Licznik 2: pomnóż dwa z nich, jak kafelki na obrazku.",
+              "sol": "$27 = 3 * 3 * 3$, więc $27^{~f{2}{3}} = 3 * 3 = 9$."
+            },
+            {
+              "t": "Oblicz $4^{~f{3}{2}}$.",
+              "a": "8",
+              "py": "4**1.5",
+              "hint": "Mianownik 2: $4^{~f{1}{2}} = 2$. Licznik 3: pomnóż trzy razy $4^{~f{1}{2}}$.",
+              "sol": "$4^{~f{1}{2}} = 2$, a $2 * 2 * 2 = 8$."
+            },
+            {
+              "t": "Sześcian ma objętość 64 cm³. Pole jednej jego ściany to $64^{~f{2}{3}}$ cm². Ile to cm²?",
+              "a": "16",
+              "py": "64**(2/3)",
+              "hint": "Najpierw krawędź: $64^{~f{1}{3}}$, liczba, która 3 razy pomnożona przez siebie daje 64. Ściana to krawędź razy krawędź.",
+              "sol": "$64^{~f{1}{3}} = 4$, a ściana ma $4 * 4 = 16$ cm². Tyle samo daje $64^{~f{2}{3}}$.",
+              "rys": {
+                "typ": "kostka2",
+                "a": "? cm",
+                "sciana": true,
+                "linie": [
+                  "objętość = 64 cm³",
+                  "pole ściany = 64^{⅔} = ?"
+                ],
+                "opis": "Sześcian o objętości 64 centymetrów sześciennych, przednia ściana zaznaczona na żółto"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Minus i ułamek w wykładniku",
+          "sceny": [
+            "s5d",
+            "s5_pulapka"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $4^{-~f{1}{2}}$.",
+              "a": "1/2",
+              "py": "4**-0.5",
+              "hint": "Najpierw bez minusa: $4^{~f{1}{2}} = 2$. Minus odwraca wynik, jak w lekcji 3.",
+              "sol": "$4^{-~f{1}{2}} = ~f{1}{4^{~f{1}{2}}} = ~f{1}{2}$."
+            },
+            {
+              "t": "Oblicz $8^{-~f{2}{3}}$.",
+              "a": "1/4",
+              "py": "8**(-2/3)",
+              "hint": "Bez minusa: $8^{~f{2}{3}} = 2 * 2 = 4$. Minus odwraca wynik.",
+              "sol": "$8^{-~f{2}{3}} = ~f{1}{8^{~f{2}{3}}} = ~f{1}{4}$."
+            },
+            {
+              "t": "Płytka ma szerokość $16^{-~f{1}{2}}$ m. Ile takich płytek ułożysz obok siebie na pasie długości 1 m?",
+              "a": "4",
+              "py": "1/16**-0.5",
+              "hint": "Najpierw szerokość płytki: $16^{~f{1}{2}} = 4$, więc $16^{-~f{1}{2}} = ~f{1}{4}$ m. Ile ćwiartek metra mieści się w metrze?",
+              "sol": "Płytka ma $~f{1}{4}$ m szerokości, więc na 1 m mieszczą się 4 płytki.",
+              "rys": {
+                "typ": "pasek",
+                "calosc": "pas: 1 m",
+                "czesc": "płytka: 16^{−½} m",
+                "ile": 4,
+                "pokaz": 1,
+                "pyt": "ile płytek? 1 : 16^{−½}",
+                "opis": "Pas długości jednego metra, na początku jedna płytka"
+              }
+            }
+          ]
+        }
+      ],
       "trening": [
         {
-          "t": "Oblicz $16^{~f{1}{2}}$.",
-          "a": "4",
-          "py": "16**0.5",
-          "hint": "Jaka liczba razy siebie daje 16?",
-          "sol": "$~r{}{16} = 4$."
-        },
-        {
-          "t": "Oblicz $27^{~f{1}{3}}$.",
-          "a": "3",
-          "py": "27**(1/3)",
-          "hint": "Jaka liczba razy siebie trzy razy daje 27?",
-          "sol": "$~r{3}{27} = 3$."
-        },
-        {
-          "t": "Oblicz $81^{~f{1}{4}}$.",
-          "a": "3",
-          "py": "81**0.25",
-          "hint": "Cztery równe czynniki, które dają 81. Sprawdź 3: $3*3*3*3$.",
-          "sol": "$~r{4}{81} = 3$."
-        },
-        {
-          "t": "Oblicz $8^{~f{4}{3}}$.",
-          "a": "16",
-          "py": "8**(4/3)",
-          "hint": "$8 = 2*2*2$, więc $8^{~f{1}{3}} = 2$. Licznik 4: mnożysz cztery takie czynniki.",
-          "sol": "$2^{4} = 16$."
-        },
-        {
-          "t": "Oblicz $32^{~f{3}{5}}$.",
-          "a": "8",
-          "py": "32**0.6",
-          "hint": "$32 = 2*2*2*2*2$, więc $32^{~f{1}{5}} = 2$. Mnożysz trzy takie czynniki.",
-          "sol": "$2^{3} = 8$."
-        },
-        {
-          "t": "Oblicz $125^{-~f{2}{3}}$.",
-          "a": "1/25",
-          "py": "125**(-2/3)",
-          "hint": "Najpierw bez minusa: $125^{~f{1}{3}} = 5$, a $5*5 = 25$. Minus daje odwrotność.",
-          "sol": "$~f{1}{25}$."
-        },
-        {
-          "t": "Oblicz $~p{~f{1}{81}}^{-~f{3}{4}}$.",
-          "a": "27",
-          "py": "(1/81)**(-0.75)",
-          "hint": "Minus odwraca ułamek, masz $81^{~f{3}{4}}$. $81^{~f{1}{4}} = 3$, potem $3*3*3$.",
-          "sol": "$3^{3} = 27$."
+          "t": "Oblicz $1000^{~f{2}{3}}$.",
+          "a": "100",
+          "py": "1000**(2/3)",
+          "hint": "$1000 = 10 * 10 * 10$, więc $1000^{~f{1}{3}} = 10$. Licznik 2: pomnóż dwa takie czynniki.",
+          "sol": "$10 * 10 = 100$."
         },
         {
           "t": "Maja napisała: $8^{~f{1}{3}} = ~f{8}{3}$. Co jest źle?",
@@ -2002,8 +2268,43 @@
           ],
           "ok": 1,
           "py": "abs(8**(1/3)-2) < 1e-9",
-          "hint": "Potęga to nie dzielenie. Jaka liczba razy siebie trzy razy daje 8?",
-          "sol": "$8 = 2*2*2$, więc $8^{~f{1}{3}} = 2$."
+          "hint": "Potęga to nie dzielenie. Jaka liczba 3 razy pomnożona przez siebie daje 8?",
+          "sol": "$8 = 2 * 2 * 2$, więc $8^{~f{1}{3}} = 2$."
+        },
+        {
+          "t": "Oblicz $~p{~f{1}{9}}^{~f{1}{2}}$. Wpisz ułamek.",
+          "a": "1/3",
+          "py": "F(1,9)**0.5",
+          "hint": "Ułamek do potęgi: osobno licznik, osobno mianownik, jak w lekcji 1.",
+          "sol": "Licznik: $1^{~f{1}{2}} = 1$. Mianownik: $9^{~f{1}{2}} = 3$. Wynik: $~f{1}{3}$."
+        },
+        {
+          "t": "W ciągu 3 godzin liczba bakterii wzrosła 27 razy. Co godzinę rosła tyle samo razy. Ile razy rosła w ciągu jednej godziny? To $27^{~f{1}{3}}$.",
+          "a": "3",
+          "py": "27**(1/3)",
+          "hint": "Trzy godziny, w każdej to samo mnożenie: $? * ? * ? = 27$.",
+          "sol": "$3 * 3 * 3 = 27$, więc co godzinę liczba bakterii rosła 3 razy.",
+          "rys": {
+            "typ": "grupy",
+            "gora": "co godzinę: liczba bakterii razy ?",
+            "grupy": [
+              {
+                "n": 3,
+                "lab": "?",
+                "pod": "3 godziny",
+                "kol": "b"
+              }
+            ],
+            "wynik": "? · ? · ? = 27",
+            "opis": "Trzy niebieskie kafelki z pytajnikiem, po jednym na godzinę"
+          }
+        },
+        {
+          "t": "Oblicz $32^{~f{3}{5}}$.",
+          "a": "8",
+          "py": "32**0.6",
+          "hint": "$32 = 2 * 2 * 2 * 2 * 2$, więc $32^{~f{1}{5}} = 2$. Licznik 3: pomnóż trzy takie czynniki.",
+          "sol": "$2 * 2 * 2 = 8$."
         }
       ],
       "test": [
@@ -2011,25 +2312,34 @@
           "t": "Oblicz $16^{~f{3}{4}}$.",
           "a": "8",
           "py": "16**0.75",
-          "sol": "$16^{~f{1}{4}} = 2$, a $2*2*2 = 8$."
+          "sol": "$16^{~f{1}{4}} = 2$, a $2 * 2 * 2 = 8$."
         },
         {
-          "t": "Oblicz $81^{1,5}$.",
-          "a": "729",
-          "py": "81**1.5",
-          "sol": "$1,5 = ~f{3}{2}$: $81^{~f{1}{2}} = 9$, a $9^{3} = 729$."
+          "t": "Oblicz $25^{~f{3}{2}}$.",
+          "a": "125",
+          "py": "25**1.5",
+          "sol": "$25^{~f{1}{2}} = 5$, a $5 * 5 * 5 = 125$."
         },
         {
-          "t": "Oblicz $~p{~f{8}{27}}^{-~f{2}{3}}$.",
-          "a": "9/4",
-          "py": "(8/27)**(-2/3)",
-          "sol": "Odwróć: $~p{~f{27}{8}}^{~f{2}{3}}$. Pierwiastek trzeciego stopnia to $~f{3}{2}$, do kwadratu $~f{9}{4}$."
+          "t": "Oblicz $27^{-~f{2}{3}}$.",
+          "a": "1/9",
+          "py": "27**(-2/3)",
+          "sol": "$27^{~f{2}{3}} = 3 * 3 = 9$, a minus odwraca wynik: $~f{1}{9}$."
         },
         {
-          "t": "Oblicz $~r{}{4^{10}}$.",
-          "a": "1024",
-          "py": "math.sqrt(4**10)",
-          "sol": "$(4^{10})^{~f{1}{2}} = 4^{5} = 1024$."
+          "t": "Kwadratowa działka ma pole 400 m². Bok działki to $400^{~f{1}{2}}$ m. Ile metrów siatki potrzeba, żeby ogrodzić całą działkę?",
+          "a": "80",
+          "py": "4*400**0.5",
+          "sol": "Bok ma $400^{~f{1}{2}} = 20$ m, bo $20 * 20 = 400$. Cztery boki: $4 * 20 = 80$ m siatki.",
+          "rys": {
+            "typ": "prost",
+            "a": "? m",
+            "b": "? m",
+            "srodek": "pole = 400 m²",
+            "w": 150,
+            "h": 150,
+            "opis": "Kwadratowa działka o polu 400 metrów kwadratowych, boki z pytajnikiem"
+          }
         }
       ]
     },
@@ -2037,134 +2347,292 @@
       "nr": 6,
       "tytul": "Prawa potęg z ułamkiem w wykładniku",
       "karty": "1.9, s. 43–44",
-      "sceny": [
-        "s6a",
-        "s6b",
-        "s6c"
-      ],
       "rozgrzewka": [
         {
           "t": "Powtórka z lekcji 5: oblicz $8^{~f{2}{3}}$.",
           "a": "4",
           "py": "8**(2/3)",
-          "hint": "$8^{~f{1}{3}} = 2$, a dwa takie czynniki to $2*2$.",
-          "sol": "$2*2 = 4$."
+          "hint": "Mianownik 3: rozbij 8 na trzy równe czynniki, $8 = 2 * 2 * 2$. Licznik 2: pomnóż dwa z nich.",
+          "sol": "$8^{~f{1}{3}} = 2$, a $2 * 2 = 4$."
         },
         {
-          "t": "Powtórka z lekcji 4: oblicz $(5 * 10^{3}) * (2 * 10^{-1})$. Podaj wynik dziesiętnie.",
-          "a": "1000",
-          "py": "5*10**3*2*F(1,10)",
-          "hint": "$5 * 2 = 10$ oraz $10^{3} * 10^{-1} = 10^{2}$.",
-          "sol": "$10 * 10^{2} = 1000$."
+          "t": "Powtórka z lekcji 2: zapisz $5^{3} * 5^{4}$ jako potęgę $5^{?}$. Wpisz wykładnik.",
+          "a": "7",
+          "py": "math.log(5**3*5**4,5)",
+          "hint": "Mnożysz potęgi o tej samej podstawie: dodajesz wykładniki.",
+          "sol": "$5^{3} * 5^{4} = 5^{3+4} = 5^{7}$."
         }
       ],
-      "przyklad": {
-        "t": "Zapisz $2~r{}{2}$ jako potęgę liczby 2.",
-        "kroki": [
-          "$2 = 2^{1}$.",
-          "$~r{}{2} = 2^{~f{1}{2}}$.",
-          "Mnożysz potęgi tej samej podstawy, więc dodajesz wykładniki: $1 + ~f{1}{2} = ~f{3}{2}$. Wynik: $2^{~f{3}{2}}$."
-        ]
-      },
-      "razem": {
-        "t": "Twoja kolej: oblicz $2^{~f{2}{3}} * 2^{~f{4}{3}}$.",
-        "a": "4",
-        "py": "2**(2/3)*2**(4/3)",
-        "hint": "Dodaj wykładniki: $~f{2}{3} + ~f{4}{3} = ~f{6}{3} = 2$.",
-        "sol": "$2^{2} = 4$."
-      },
+      "bloki": [
+        {
+          "tytul": "Pierwiastek jako potęga",
+          "sceny": [
+            "s6_pierw",
+            "s6a"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $~r{}{5}$ jako potęgę $5^{m}$. Podaj $m$ (może być ułamkiem, np. 3/2).",
+              "a": "1/2",
+              "kind": "exp",
+              "base": 5,
+              "py": "math.sqrt(5)",
+              "hint": "Pierwiastek kwadratowy to wykładnik $~f{1}{2}$, jak w pierwszym wierszu obrazka.",
+              "sol": "$~r{}{5} = 5^{~f{1}{2}}$."
+            },
+            {
+              "t": "Zapisz $~r{3}{25}$ jako potęgę $5^{m}$. Podaj $m$.",
+              "a": "2/3",
+              "kind": "exp",
+              "base": 5,
+              "py": "25**(1/3)",
+              "hint": "Najpierw $25 = 5 * 5 = 5^{2}$. Wykładnik 2 idzie do licznika, mała liczba 3 przy pierwiastku do mianownika, jak przy $~r{3}{4}$ na obrazku.",
+              "sol": "$~r{3}{25} = ~r{3}{5^{2}} = 5^{~f{2}{3}}$."
+            },
+            {
+              "t": "Kwadratowa płytka ma pole 8 dm². Jej bok to $~r{}{8}$ dm. Zapisz bok jako potęgę $2^{m}$ i podaj $m$.",
+              "a": "3/2",
+              "kind": "exp",
+              "base": 2,
+              "py": "math.sqrt(8)",
+              "hint": "Najpierw pole: $8 = 2 * 2 * 2 = 2^{3}$. Pierwiastek kwadratowy: wykładnik 3 idzie do licznika, 2 do mianownika.",
+              "sol": "$~r{}{8} = ~r{}{2^{3}} = 2^{~f{3}{2}}$ dm. To ta sama liczba co $2~r{}{2}$ z obrazka z paskami.",
+              "rys": {
+                "typ": "prost",
+                "a": "? dm",
+                "b": "? dm",
+                "srodek": "pole = 8 dm²",
+                "w": 150,
+                "h": 150,
+                "opis": "Kwadratowa płytka o polu 8 decymetrów kwadratowych, oba boki z pytajnikiem"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Mnożenie i dzielenie",
+          "sceny": [
+            "s6_trzecie",
+            "s6b",
+            "s6_pulapka"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $3^{~f{1}{2}} * 3^{~f{3}{2}}$.",
+              "a": "9",
+              "py": "3**0.5*3**1.5",
+              "hint": "Dodaj wykładniki, jak przy kafelkach: $~f{1}{2} + ~f{3}{2} = ~f{4}{2} = 2$.",
+              "sol": "$3^{~f{1}{2} + ~f{3}{2}} = 3^{2} = 9$."
+            },
+            {
+              "t": "Ile to $3^{~f{1}{4}} * 3^{~f{1}{2}}$?",
+              "opts": [
+                "$3^{~f{1}{8}}$",
+                "$3^{~f{2}{6}}$",
+                "$3^{~f{3}{4}}$"
+              ],
+              "ok": 2,
+              "py": "abs(3**0.25*3**0.5-3**0.75) < 1e-9 and abs(3**0.25*3**0.5-3**(1/8)) > 0.1 and abs(3**0.25*3**0.5-3**(2/6)) > 0.1",
+              "hint": "Przy mnożeniu dodajesz wykładniki. Ułamki dodajesz po sprowadzeniu do wspólnego mianownika, jak na obrazku z błędami.",
+              "sol": "$~f{1}{4} + ~f{1}{2} = ~f{1}{4} + ~f{2}{4} = ~f{3}{4}$. Wynik $3^{~f{1}{8}}$ to mnożenie wykładników, a $3^{~f{2}{6}}$ to dodanie osobno liczników i mianowników."
+            },
+            {
+              "t": "Pas ma długość $9^{~f{3}{2}}$ m, a jedna płytka $9^{~f{1}{2}}$ m. Ile płytek zmieścisz na pasie, kładąc je jedna za drugą?",
+              "a": "9",
+              "py": "9**1.5/9**0.5",
+              "hint": "Dzielisz długość pasa przez długość płytki. Przy dzieleniu odejmujesz wykładniki, jak przy paskach: $~f{3}{2} - ~f{1}{2}$.",
+              "sol": "$9^{~f{3}{2}} : 9^{~f{1}{2}} = 9^{1} = 9$ płytek. Sprawdzenie: pas ma 27 m, a płytka 3 m.",
+              "rys": {
+                "typ": "pasek",
+                "calosc": "pas: 9^{3/2} m",
+                "czesc": "płytka: 9^{½} m",
+                "ile": 9,
+                "pokaz": 2,
+                "pyt": "ile płytek? 9^{3/2} : 9^{½}",
+                "opis": "Długi pas, na początku dwie płytki"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Ten sam wykładnik",
+          "sceny": [
+            "s6_wspolny"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $2^{~f{1}{2}} * 8^{~f{1}{2}}$.",
+              "a": "4",
+              "py": "2**0.5*8**0.5",
+              "hint": "Ten sam wykładnik: pomnóż podstawy, $2 * 8 = 16$. Potem policz $16^{~f{1}{2}}$.",
+              "sol": "$(2 * 8)^{~f{1}{2}} = 16^{~f{1}{2}} = 4$."
+            },
+            {
+              "t": "Oblicz $54^{~f{1}{3}} : 2^{~f{1}{3}}$.",
+              "a": "3",
+              "py": "54**(1/3)/2**(1/3)",
+              "hint": "Ten sam wykładnik: podziel podstawy, $54 : 2 = 27$. Potem policz $27^{~f{1}{3}}$.",
+              "sol": "$(54 : 2)^{~f{1}{3}} = 27^{~f{1}{3}} = 3$, bo $3 * 3 * 3 = 27$."
+            },
+            {
+              "t": "Prostokątna rabata ma boki $18^{~f{1}{2}}$ m i $2^{~f{1}{2}}$ m. Ile m² ma jej pole?",
+              "a": "6",
+              "py": "18**0.5*2**0.5",
+              "hint": "Pole prostokąta to bok razy bok. Ten sam wykładnik: pomnóż podstawy, $18 * 2 = 36$.",
+              "sol": "$18^{~f{1}{2}} * 2^{~f{1}{2}} = 36^{~f{1}{2}} = 6$ m².",
+              "rys": {
+                "typ": "prost",
+                "a": "18^{½} m",
+                "b": "2^{½} m",
+                "srodek": "pole = ?",
+                "w": 240,
+                "h": 80,
+                "opis": "Długi, niski prostokąt o bokach 18 do potęgi jedna druga i 2 do potęgi jedna druga metra"
+              }
+            }
+          ]
+        },
+        {
+          "tytul": "Wykładnik dziesiętny",
+          "sceny": [
+            "s6_dziesietny",
+            "s6c"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $9^{1,5}$.",
+              "a": "27",
+              "py": "9**1.5",
+              "hint": "Zamień wykładnik na ułamek: $1,5 = ~f{3}{2}$. Potem $9^{~f{1}{2}} = 3$, a licznik 3 mówi, ile trójek pomnożyć.",
+              "sol": "$9^{~f{3}{2}} = 3 * 3 * 3 = 27$."
+            },
+            {
+              "t": "Oblicz $2^{3,7} : 2^{1,7}$.",
+              "a": "4",
+              "py": "2**3.7/2**1.7",
+              "hint": "Dzielisz potęgi o tej samej podstawie: odejmij wykładniki, $3,7 - 1,7$.",
+              "sol": "$2^{3,7 - 1,7} = 2^{2} = 4$."
+            },
+            {
+              "t": "Liczba bakterii rośnie 10 razy na dobę. Po 2,5 doby wzrosła $10^{2,5}$ razy. Wiesz, że $10^{0,5} ≈ 3,16$. Ile to razy? Użyj tej wartości.",
+              "a": "316",
+              "py": "round(10**2*3.16, 2)",
+              "hint": "Rozdziel wykładnik: $2,5 = 2 + 0,5$, więc $10^{2,5} = 10^{2} * 10^{0,5}$, jak na obrazku z $10^{2,3}$.",
+              "sol": "$10^{2} * 10^{0,5} ≈ 100 * 3,16 = 316$ razy.",
+              "rys": {
+                "typ": "lancuch",
+                "gora": "co dobę liczba bakterii razy 10",
+                "wezly": [
+                  {
+                    "g": "1",
+                    "d": "start"
+                  },
+                  {
+                    "g": "10²",
+                    "d": "2 doby"
+                  },
+                  {
+                    "g": "?",
+                    "d": "2,5 doby",
+                    "hl": true
+                  }
+                ],
+                "strzalki": [
+                  "· 10²",
+                  "· 10^{0,5}"
+                ],
+                "wynik": "10^{2,5} = 10² · 10^{0,5} = ?",
+                "opis": "Trzy pola połączone strzałkami: start, po 2 dobach i po 2,5 doby. Strzałki to mnożenie przez 10 do kwadratu i przez 10 do potęgi 0,5"
+              }
+            }
+          ]
+        }
+      ],
       "trening": [
         {
-          "t": "Oblicz $4^{~f{9}{2}} : 4^{~f{5}{2}}$.",
-          "a": "16",
-          "py": "4**4.5/4**2.5",
-          "hint": "Dzielenie: odejmij wykładniki, $~f{9}{2} - ~f{5}{2}$.",
-          "sol": "$4^{2} = 16$."
-        },
-        {
-          "t": "Oblicz $2^{7,5} : 2^{2,5}$.",
-          "a": "32",
-          "py": "2**7.5/2**2.5",
-          "hint": "Odejmij wykładniki: $7,5 - 2,5$.",
-          "sol": "$2^{5} = 32$."
-        },
-        {
-          "t": "Oblicz $12^{~f{3}{2}} * 3^{~f{3}{2}}$.",
-          "a": "216",
-          "py": "12**1.5*3**1.5",
-          "hint": "Ten sam wykładnik: połącz podstawy, $12*3 = 36$. Potem $36^{~f{1}{2}} = 6$ i $6^{3}$.",
-          "sol": "$36^{~f{3}{2}} = 6^{3} = 216$."
-        },
-        {
-          "t": "Oblicz $24^{~f{2}{3}} * 3^{~f{1}{3}}$.",
-          "a": "12",
-          "py": "24**(2/3)*3**(1/3)",
-          "hint": "Rozbij $24 = 8*3$. Wtedy $24^{~f{2}{3}} = 8^{~f{2}{3}} * 3^{~f{2}{3}} = 4 * 3^{~f{2}{3}}$. Trójki: $~f{2}{3} + ~f{1}{3} = 1$.",
-          "sol": "$4 * 3^{1} = 12$."
-        },
-        {
-          "t": "Zapisz $~r{}{512}$ jako $2^{m}$. Podaj $m$ (może być ułamkiem, np. 3/2).",
-          "a": "9/2",
-          "kind": "exp",
-          "base": 2,
-          "py": "math.sqrt(512)",
-          "hint": "$512 = 2^{9}$, a pierwiastek kwadratowy to wykładnik $~f{1}{2}$: $~f{9}{2}$.",
-          "sol": "$~r{}{512} = 2^{~f{9}{2}}$."
-        },
-        {
-          "t": "Zapisz $~r{3}{4}$ jako $2^{m}$. Podaj $m$.",
-          "a": "2/3",
-          "kind": "exp",
-          "base": 2,
-          "py": "4**(1/3)",
-          "hint": "$4 = 2^{2}$. Pierwiastek trzeciego stopnia dzieli wykładnik przez 3.",
-          "sol": "$~r{3}{4} = 2^{~f{2}{3}}$."
-        },
-        {
-          "t": "Zapisz $49~r{}{7}$ jako $7^{m}$. Podaj $m$.",
+          "t": "Zapisz $49~r{}{7}$ jako potęgę $7^{m}$. Podaj $m$.",
           "a": "5/2",
           "kind": "exp",
           "base": 7,
           "py": "49*math.sqrt(7)",
-          "hint": "$49 = 7^{2}$, $~r{}{7} = 7^{~f{1}{2}}$. Dodaj wykładniki.",
-          "sol": "$7^{2+~f{1}{2}} = 7^{~f{5}{2}}$."
+          "hint": "$49 = 7^{2}$, a $~r{}{7} = 7^{~f{1}{2}}$. Dodaj wykładniki, jak przy paskach.",
+          "sol": "$7^{2} * 7^{~f{1}{2}} = 7^{~f{5}{2}}$."
         },
         {
-          "t": "Wiesz, że $10^{0,3} ≈ 1,995262315$. Podaj $10^{2,3}$ z dokładnością do 4 miejsc po przecinku.",
-          "a": "199.5262",
-          "py": "round(100*1.995262315, 4)",
-          "hint": "$10^{2,3} = 10^{2} * 10^{0,3}$. Mnożenie przez 100 przesuwa przecinek o 2 miejsca w prawo.",
-          "sol": "$199,5262$."
+          "t": "Oblicz $27^{~f{5}{3}} : 27^{~f{4}{3}}$.",
+          "a": "3",
+          "py": "27**(5/3)/27**(4/3)",
+          "hint": "Odejmij wykładniki: $~f{5}{3} - ~f{4}{3} = ~f{1}{3}$.",
+          "sol": "$27^{~f{1}{3}} = 3$."
+        },
+        {
+          "t": "Ola napisała: $~p{8^{~f{1}{3}}}^{2} = 8^{~f{7}{3}}$. Co jest źle?",
+          "opts": [
+            "Nic, jest dobrze",
+            "Przy potędze potęgi mnożysz wykładniki: $~f{1}{3} * 2 = ~f{2}{3}$",
+            "Powinno być $8^{~f{1}{6}}$"
+          ],
+          "ok": 1,
+          "py": "abs((8**(1/3))**2 - 8**(2/3)) < 1e-9 and abs((8**(1/3))**2 - 8**(7/3)) > 1",
+          "hint": "Potęga potęgi z lekcji 2: wykładniki mnożysz, a nie dodajesz.",
+          "sol": "$~p{8^{~f{1}{3}}}^{2} = 8^{~f{2}{3}} = 4$."
+        },
+        {
+          "t": "Sześcienne pudełko ma krawędź $3^{~f{2}{3}}$ dm. Ile dm³ ma jego objętość?",
+          "a": "9",
+          "py": "(3**(2/3))**3",
+          "hint": "Objętość to krawędź razy krawędź razy krawędź: $~p{3^{~f{2}{3}}}^{3}$. Potęga potęgi: mnożysz wykładniki.",
+          "sol": "$~p{3^{~f{2}{3}}}^{3} = 3^{~f{2}{3} * 3} = 3^{2} = 9$ dm³.",
+          "rys": {
+            "typ": "kostka",
+            "a": "3^{⅔} dm",
+            "srodek": "objętość = ?",
+            "opis": "Sześcian, każda krawędź ma 3 do potęgi dwie trzecie decymetra"
+          }
+        },
+        {
+          "t": "Wiesz, że $10^{0,3} ≈ 1,995$. Ile wynosi w przybliżeniu $10^{1,3}$? Użyj tej wartości.",
+          "a": "19.95",
+          "py": "round(10*1.995, 2)",
+          "hint": "$10^{1,3} = 10^{1} * 10^{0,3}$. Mnożenie przez 10 przesuwa przecinek o jedno miejsce w prawo.",
+          "sol": "$10 * 1,995 = 19,95$."
         }
       ],
       "test": [
         {
-          "t": "Zapisz $9~r{}{3}$ jako $3^{m}$. Podaj $m$.",
-          "a": "5/2",
-          "kind": "exp",
-          "base": 3,
-          "py": "9*math.sqrt(3)",
-          "sol": "$3^{2} * 3^{~f{1}{2}} = 3^{~f{5}{2}}$."
-        },
-        {
-          "t": "Oblicz $2^{2} * 8^{~f{2}{3}}$.",
-          "a": "16",
-          "py": "2**2*8**(2/3)",
-          "sol": "$8^{~f{2}{3}} = 4$, więc $4*4 = 16$."
-        },
-        {
-          "t": "Oblicz $25^{~f{1}{2}} + 8^{~f{1}{3}}$.",
-          "a": "7",
-          "py": "25**0.5+8**(1/3)",
-          "sol": "$5 + 2 = 7$."
-        },
-        {
-          "t": "Zapisz $2^{~f{2}{5}} * ~r{}{2}$ jako $2^{m}$. Podaj $m$.",
-          "a": "9/10",
+          "t": "Zapisz $8~r{}{2}$ jako potęgę $2^{m}$. Podaj $m$.",
+          "a": "7/2",
           "kind": "exp",
           "base": 2,
-          "py": "2**0.4*math.sqrt(2)",
-          "sol": "$~f{2}{5} + ~f{1}{2} = ~f{4}{10} + ~f{5}{10} = ~f{9}{10}$."
+          "py": "8*math.sqrt(2)",
+          "sol": "$8 = 2^{3}$ i $~r{}{2} = 2^{~f{1}{2}}$. Dodajesz wykładniki, jak przy paskach: $2^{~f{7}{2}}$."
+        },
+        {
+          "t": "Oblicz $9^{~f{3}{4}} * 9^{~f{3}{4}}$.",
+          "a": "27",
+          "py": "9**0.75*9**0.75",
+          "sol": "$~f{3}{4} + ~f{3}{4} = ~f{3}{2}$, a $9^{~f{3}{2}} = 3 * 3 * 3 = 27$."
+        },
+        {
+          "t": "Oblicz $20^{~f{1}{2}} * 5^{~f{1}{2}}$.",
+          "a": "10",
+          "py": "20**0.5*5**0.5",
+          "sol": "Ten sam wykładnik: $(20 * 5)^{~f{1}{2}} = 100^{~f{1}{2}} = 10$."
+        },
+        {
+          "t": "Kwadrat ma bok $5^{~f{3}{2}}$ cm. Ile cm² ma jego pole?",
+          "a": "125",
+          "py": "(5**1.5)**2",
+          "sol": "Pole to bok razy bok: $~p{5^{~f{3}{2}}}^{2} = 5^{3} = 125$ cm².",
+          "rys": {
+            "typ": "prost",
+            "a": "5^{3/2} cm",
+            "b": "5^{3/2} cm",
+            "srodek": "pole = ?",
+            "w": 150,
+            "h": 150,
+            "opis": "Kwadrat, każdy bok ma 5 do potęgi trzy drugie centymetra"
+          }
         }
       ]
     },
@@ -2173,12 +2641,97 @@
       "tytul": "Test końcowy",
       "karty": "1.7–1.9, całość",
       "final": true,
-      "sceny": [
-        "s1c",
-        "s2a",
-        "s3b",
-        "s4a",
-        "s5b"
+      "bloki": [
+        {
+          "tytul": "Lekcja 1: minus w podstawie",
+          "sceny": [
+            "s1c"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $(-3)^{3}$.",
+              "a": "-27",
+              "py": "(-3)**3",
+              "hint": "Trzy czynniki $-3$. Dwa minusy łączą się w parę i dają plus, trzeci zostaje bez pary, jak na obrazku.",
+              "sol": "$(-3) * (-3) * (-3) = 9 * (-3) = -27$."
+            }
+          ]
+        },
+        {
+          "tytul": "Lekcja 2: mnożenie potęg",
+          "sceny": [
+            "s2a"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $3^{4} * 3^{5}$ jako potęgę $3^{?}$. Wpisz wykładnik.",
+              "a": "9",
+              "py": "math.log(3**4*3**5,3)",
+              "hint": "Cztery trójki i pięć trójek. Ile trójek razem? Policz kafelki jak na obrazku.",
+              "sol": "$3^{4} * 3^{5} = 3^{4+5} = 3^{9}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Lekcja 3: wykładnik ujemny",
+          "sceny": [
+            "s3b"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $2^{-4}$. Wpisz ułamek.",
+              "a": "1/16",
+              "py": "F(2)**-4",
+              "hint": "Minus w wykładniku odwraca: $2^{-4} = ~f{1}{2^{4}}$, jak przy skracaniu dwójek na obrazku.",
+              "sol": "$2^{-4} = ~f{1}{2^{4}} = ~f{1}{16}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Lekcja 4: notacja wykładnicza",
+          "sceny": [
+            "s4a"
+          ],
+          "pytania": [
+            {
+              "t": "$52 000 = 5,2 * 10^{?}$. Wpisz wykładnik.",
+              "a": "4",
+              "py": "math.log10(52000/5.2)",
+              "hint": "Przecinek stoi na końcu liczby. Policz, ile razy przeskoczy w lewo, zanim stanie za piątką, jak żółta kropka na obrazku.",
+              "sol": "4 skoki w lewo: $52 000 = 5,2 * 10^{4}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Lekcja 5: ułamek w wykładniku",
+          "sceny": [
+            "s5b"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $125^{~f{2}{3}}$.",
+              "a": "25",
+              "py": "125**(2/3)",
+              "hint": "Mianownik 3: rozbij 125 na trzy równe czynniki, $5 * 5 * 5$. Licznik 2: pomnóż dwa z nich, jak kafelki na obrazku.",
+              "sol": "$125^{~f{1}{3}} = 5$, a $5 * 5 = 25$."
+            }
+          ]
+        },
+        {
+          "tytul": "Lekcja 6: prawa z ułamkiem w wykładniku",
+          "sceny": [
+            "s6_trzecie"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $2^{~f{1}{3}} * 2^{~f{5}{3}}$.",
+              "a": "4",
+              "py": "2**(1/3)*2**(5/3)",
+              "hint": "Policz kafelki $2^{~f{1}{3}}$: jeden i pięć to sześć, czyli dwie trójki. Każda trójka daje 2.",
+              "sol": "$2^{~f{1}{3} + ~f{5}{3}} = 2^{~f{6}{3}} = 2^{2} = 4$."
+            }
+          ]
+        }
       ],
       "test": [
         {
@@ -2186,21 +2739,14 @@
           "a": "-32",
           "py": "(-2)**5",
           "k": 1,
-          "sol": "Nieparzysty wykładnik: $-32$."
+          "sol": "Nieparzysty wykładnik: jeden minus zostaje bez pary, jak na obrazku z lekcji 1. Wynik $-32$."
         },
         {
           "t": "Oblicz $-3^{2} + (-3)^{2}$.",
           "a": "0",
           "py": "-3**2+(-3)**2",
           "k": 1,
-          "sol": "$-9 + 9 = 0$."
-        },
-        {
-          "t": "Oblicz $(-2)^{4} + (-2)^{3}$.",
-          "a": "8",
-          "py": "(-2)**4+(-2)**3",
-          "k": 1,
-          "sol": "$16 + (-8) = 8$."
+          "sol": "Bez nawiasu potęgujesz samo 3: $-3^{2} = -9$. Z nawiasem całe $-3$: $(-3)^{2} = 9$. Razem $0$."
         },
         {
           "t": "Oblicz $(4^{2})^{2} - 4^{3} + 4^{2}$.",
@@ -2210,18 +2756,24 @@
           "sol": "$256 - 64 + 16 = 208$."
         },
         {
+          "t": "Sześcienne pudełko ma krawędź $2^{3}$ cm. Zapisz jego objętość jako potęgę $2^{?}$ cm³. Wpisz wykładnik.",
+          "a": "9",
+          "py": "math.log2((2**3)**3)",
+          "k": 2,
+          "sol": "Objętość to krawędź razy krawędź razy krawędź: $~p{2^{3}}^{3} = 2^{3 * 3} = 2^{9}$ cm³. Potęga potęgi: mnożysz wykładniki.",
+          "rys": {
+            "typ": "kostka",
+            "a": "2³ cm",
+            "srodek": "objętość = (2³)³ = 2^{?}",
+            "opis": "Sześcian, każda krawędź ma 2 do sześcianu centymetrów"
+          }
+        },
+        {
           "t": "Oblicz $(-0,2)^{-3}$.",
           "a": "-125",
           "py": "F(-1,5)**-3",
           "k": 3,
           "sol": "$~p{-~f{1}{5}}^{-3} = (-5)^{3} = -125$."
-        },
-        {
-          "t": "Oblicz $~p{~f{1}{3}}^{-2}$.",
-          "a": "9",
-          "py": "F(1,3)**-2",
-          "k": 3,
-          "sol": "$3^{2} = 9$."
         },
         {
           "t": "Zapisz $64^{2} : 32^{-3}$ jako $2^{m}$. Podaj $m$.",
@@ -2243,6 +2795,22 @@
           "py": "math.log10(0.000001)",
           "k": 4,
           "sol": "6 miejsc w prawo: $10^{-6}$."
+        },
+        {
+          "t": "Bakteria ma długość 0,000003 m. Zapisz ją jako $3 * 10^{?}$ m. Wpisz wykładnik.",
+          "a": "-6",
+          "py": "math.log10(0.000003/3)",
+          "k": 4,
+          "sol": "Przecinek przeskakuje 6 miejsc w prawo, aż stanie za trójką: $0,000003 = 3 * 10^{-6}$ m.",
+          "rys": {
+            "typ": "miejsca",
+            "cyfry": "0000003",
+            "od": 1,
+            "do": 7,
+            "skoki": "? skoków w prawo",
+            "dol": "0,000003 = 3 · 10^{?}",
+            "opis": "Siedem cyfr w kratkach, żółty przecinek za pierwszym zerem i strzałka do miejsca za trójką"
+          }
         },
         {
           "t": "Oblicz $16^{0,75}$.",
@@ -2271,6 +2839,30 @@
           "sol": "$x = 16 * ~f{1}{16} = 1$, a $y = 2^{-8} : 2^{-6} = 2^{-2} = ~f{1}{4}$."
         },
         {
+          "t": "Piłka spada z wysokości 1 m. Po każdym odbiciu wznosi się na połowę poprzedniej wysokości. Na jaką wysokość wzniesie się po 3. odbiciu? To $2^{-3}$ m. Wpisz ułamek.",
+          "a": "1/8",
+          "py": "F(2)**-3",
+          "k": 3,
+          "sol": "Trzy razy połowa: $~p{~f{1}{2}}^{3} = 2^{-3} = ~f{1}{8}$ m.",
+          "rys": {
+            "typ": "spadek",
+            "wart": [
+              "1 m",
+              "½",
+              "¼",
+              "?"
+            ],
+            "czas": [
+              "start",
+              "1. odbicie",
+              "2. odbicie",
+              "3. odbicie"
+            ],
+            "dol": "każde odbicie: połowa poprzedniej wysokości",
+            "opis": "Cztery słupki wysokości piłki, każdy o połowę niższy od poprzedniego"
+          }
+        },
+        {
           "t": "Oblicz $9^{-~f{1}{2}} - 27^{-~f{1}{3}}$.",
           "a": "0",
           "py": "9**-0.5-27**(-1/3)",
@@ -2283,6 +2875,22 @@
           "py": "F(-1,2)**8*F(-1,2)**-3/F(-1,2)**2",
           "k": 3,
           "sol": "$a^{8-3-2} = a^{3} = -~f{1}{8}$."
+        },
+        {
+          "t": "Zapisz $4~r{}{2}$ jako potęgę $2^{m}$. Podaj $m$.",
+          "a": "5/2",
+          "kind": "exp",
+          "base": 2,
+          "py": "4*math.sqrt(2)",
+          "k": 6,
+          "sol": "$4 = 2^{2}$ i $~r{}{2} = 2^{~f{1}{2}}$. Dodajesz wykładniki, jak przy paskach w lekcji 6: $2^{~f{5}{2}}$."
+        },
+        {
+          "t": "Oblicz $27^{~f{1}{2}} * 3^{~f{1}{2}}$.",
+          "a": "9",
+          "py": "27**0.5*3**0.5",
+          "k": 6,
+          "sol": "Ten sam wykładnik: $(27 * 3)^{~f{1}{2}} = 81^{~f{1}{2}} = 9$."
         }
       ]
     }
@@ -3795,6 +4403,630 @@ S.s3_pp = rows(
       S[k].steps = NADPIS[k];
     }
 
+/* Nowe obrazki do lekcji 4 i 5 (wklejane do modułu SC przez buduj_lekcje_4_5.py, po obrazkach z lekcji 2 i 3). */
+
+/* tabelka potęg dziesiątki: wiersz niżej = wykładnik o 1 mniejszy = wynik podzielony przez 10 */
+S.s4_dziesiatki = {
+  steps: [
+    [
+      "Potęgi dziesiątki: wykładnik mówi, ile zer stoi za jedynką. $10^{3} = 1000$ ma trzy zera.",
+      "Zejdź niżej",
+    ],
+    [
+      "Każdy wiersz niżej to wynik podzielony przez 10. Po $10^{0} = 1$ przychodzi $10^{-1} = 1 : 10 = 0,1$.",
+      "Jeszcze niżej",
+    ],
+    [
+      "$10^{-2} = 0,01$ i $10^{-3} = 0,001$. Wykładnik ujemny mówi, na którym miejscu po przecinku stoi jedynka: w $10^{-3}$ na trzecim.",
+    ],
+  ],
+  build: function (s) {
+    var ex = ["3", "2", "1", "0", "−1", "−2", "−3"],
+      v = ["1000", "100", "10", "1", "0,1", "0,01", "0,001"],
+      R = [];
+    ex.forEach(function (e, i) {
+      var y = 34 + i * 28,
+        g = G(s, "mv");
+      PW(g, 92, y + 8, "10", e, "", 22);
+      TX(g, 150, y + 8, "= " + v[i], "res2").setAttribute(
+        "text-anchor",
+        "start",
+      );
+      if (i) TX(g, 296, y - 6, "↓ :10", "lb");
+      R.push(g);
+    });
+    var ile = [3, 4, 6];
+    return function (k) {
+      R.forEach(function (g, i) {
+        op(g, i <= ile[k] ? 1 : 0);
+      });
+    };
+  },
+};
+
+S.s4_przecinek = rows(
+  [
+    "$3,7 * 10 = 37$",
+    "$3,7 * 10^{2} = 370$",
+    "$3,7 * 10^{3} = 3700$",
+    "$3,7 * 10^{-2} = 3,7 : 10^{2} = 0,037$",
+  ],
+  [
+    [
+      "Mnożenie przez 10 przesuwa przecinek o jedno miejsce w prawo: z 3,7 robi się 37.",
+      "Razy 100",
+    ],
+    [
+      "$10^{2}$ to dwa razy po 10, więc przecinek idzie o 2 miejsca w prawo. Puste miejsce wypełnia zero.",
+      "Razy 1000",
+    ],
+    [
+      "$10^{3}$: trzy miejsca w prawo. Wykładnik mówi, o ile miejsc przesuwasz przecinek.",
+      "Wykładnik ujemny",
+    ],
+    [
+      "$10^{-2} = ~f{1}{10^{2}}$ (lekcja 3), więc mnożenie przez $10^{-2}$ to dzielenie przez 100. Przecinek idzie o 2 miejsca w lewo, a z przodu dochodzą zera.",
+    ],
+  ],
+);
+
+S.s4_pulapka = rows(
+  [
+    "$0,0042 = 4,2 * 10^{?}$",
+    MIX("nie $4,2 * 10^{3}$: to jest 4200, liczba większa od 1"),
+    MIX("nie $42 * 10^{-4}$: liczba z przodu musi być mniejsza niż 10"),
+    "$0,0042 = 4,2 * 10^{-3}$",
+  ],
+  [
+    [
+      "Dwa częste błędy przy małych liczbach. Sprawdź je na $0,0042$.",
+      "Błąd 1",
+    ],
+    [
+      "$4,2 * 10^{3}$ to przecinek przesunięty o 3 miejsca w prawo, czyli 4200. A 0,0042 jest mniejsze od 1, więc wykładnik musi być ujemny.",
+      "Błąd 2",
+    ],
+    [
+      "$42 * 10^{-4}$ ma tę samą wartość, ale 42 jest większe niż 10. To nie jest notacja wykładnicza, jak na obrazku z odcinkiem od 1 do 10.",
+      "Dobrze",
+    ],
+    [
+      "Przecinek przeskakuje 3 miejsca w prawo, do 4,2. Wracasz dzieleniem przez $10^{3}$: $0,0042 = 4,2 * 10^{-3}$.",
+    ],
+  ],
+);
+
+S.s4_dzialania = rows(
+  [
+    "$(3 * 10^{4}) * (2 * 10^{5})$",
+    "$= (3 * 2) * (10^{4} * 10^{5})$",
+    "$= 6 * 10^{9}$",
+    MIX("gdy z przodu wyjdzie 10 albo więcej:"),
+    "$20 * 10^{5} = 2 * 10^{6}$",
+  ],
+  [
+    ["Mnożysz dwie liczby zapisane w notacji wykładniczej.", "Pogrupuj"],
+    [
+      "Kolejność mnożenia nie zmienia wyniku. Liczby z przodu mnożysz ze sobą, potęgi dziesiątki ze sobą.",
+      "Policz",
+    ],
+    [
+      "$3 * 2 = 6$. Potęgi dziesiątki mnożysz jak w lekcji 2: dodajesz wykładniki, $4 + 5 = 9$.",
+      "Uwaga",
+    ],
+    [
+      "Czasem liczba z przodu wychodzi 10 albo więcej, na przykład $(5 * 10^{3}) * (4 * 10^{2}) = 20 * 10^{5}$.",
+      "Popraw",
+    ],
+    [
+      "$20 = 2 * 10$, więc $20 * 10^{5} = 2 * 10 * 10^{5} = 2 * 10^{6}$. Liczba z przodu znowu leży między 1 a 10.",
+    ],
+  ],
+);
+
+S.s4_dzielenie = rows(
+  [
+    "$(8 * 10^{6}) : (2 * 10^{2})$",
+    "$= (8 : 2) * (10^{6} : 10^{2})$",
+    "$= 4 * 10^{4}$",
+  ],
+  [
+    [
+      "Dzielisz tak samo jak mnożysz: osobno liczby z przodu, osobno potęgi dziesiątki.",
+      "Rozdziel",
+    ],
+    [
+      "Liczby z przodu: $8 : 2 = 4$. Potęgi dziesiątki dzielisz jak w lekcji 2: odejmujesz wykładniki.",
+      "Policz",
+    ],
+    ["$6 - 2 = 4$, więc wynik to $4 * 10^{4}$, czyli 40 000."],
+  ],
+);
+
+/* kwadrat z 9 kratek: bok to liczba, która pomnożona przez siebie daje pole */
+S.s5_kwadrat = {
+  steps: [
+    ["Kwadrat ułożony z 9 jednakowych kratek ma pole 9.", "Jaki bok?"],
+    [
+      "Pole kwadratu to bok razy bok. Szukasz liczby, która pomnożona przez siebie daje 9.",
+      "Policz",
+    ],
+    [
+      "Wzdłuż boku leżą 3 kratki, a $3 * 3 = 9$. Taką liczbę nazywasz pierwiastkiem: $~r{}{9} = 3$.",
+    ],
+  ],
+  build: function (s) {
+    var c = 40,
+      x = 70,
+      y = 26,
+      dol = G(s, null),
+      i;
+    for (i = 0; i < 9; i++)
+      E(
+        "rect",
+        {
+          x: x + (i % 3) * c + 2,
+          y: y + Math.floor(i / 3) * c + 2,
+          width: c - 4,
+          height: c - 4,
+          rx: 5,
+          class: "tile",
+        },
+        i >= 6 ? dol : s,
+      );
+    var B = y + 3 * c,
+      bd = E(
+        "path",
+        {
+          d:
+            "M" +
+            x +
+            " " +
+            (B + 8) +
+            " L" +
+            x +
+            " " +
+            (B + 14) +
+            " L" +
+            (x + 3 * c) +
+            " " +
+            (B + 14) +
+            " L" +
+            (x + 3 * c) +
+            " " +
+            (B + 8),
+          class: "brk",
+        },
+        s,
+      ),
+      bl = E(
+        "path",
+        {
+          d:
+            "M" +
+            (x - 8) +
+            " " +
+            y +
+            " L" +
+            (x - 14) +
+            " " +
+            y +
+            " L" +
+            (x - 14) +
+            " " +
+            B +
+            " L" +
+            (x - 8) +
+            " " +
+            B,
+          class: "brk",
+        },
+        s,
+      ),
+      td = TX(s, x + 1.5 * c, B + 38, "?", "val"),
+      tl = TX(s, x - 30, y + 1.5 * c + 6, "?", "val");
+    TX(s, 262, 76, "pole = 9", "val");
+    var rw = TX(s, 262, 116, "? · ? = 9", "val"),
+      wyn = TX(s, 262, 166, "√9 = 3", "res2");
+    return function (k) {
+      [bd, bl, td, tl, rw].forEach(function (q) {
+        op(q, k >= 1 ? 1 : 0);
+      });
+      td.textContent = tl.textContent = k >= 2 ? "3" : "?";
+      rw.textContent = k >= 2 ? "3 · 3 = 9" : "? · ? = 9";
+      dol.setAttribute("class", k >= 2 ? "y" : "");
+      op(wyn, k >= 2 ? 1 : 0);
+    };
+  },
+};
+
+/* sześcian z 8 małych kostek (2 · 2 · 2); tryb „ściana” zaczyna od znanej krawędzi i zaznacza przednią ścianę */
+function KOSTKA8(caps, sciana) {
+  return {
+    steps: caps,
+    build: function (s) {
+      var x = 34,
+        y = 82,
+        a = 104,
+        d = 42,
+        p = a / 2,
+        q = d / 2;
+      function pg(pts, cls) {
+        return E(
+          "polygon",
+          {
+            points: pts
+              .map(function (t) {
+                return t[0] + "," + t[1];
+              })
+              .join(" "),
+            class: cls,
+          },
+          s,
+        );
+      }
+      var top = [
+          [x, y],
+          [x + d, y - d],
+          [x + a + d, y - d],
+          [x + a, y],
+        ],
+        side = [
+          [x + a, y],
+          [x + a + d, y - d],
+          [x + a + d, y + a - d],
+          [x + a, y + a],
+        ],
+        front = [
+          [x, y],
+          [x + a, y],
+          [x + a, y + a],
+          [x, y + a],
+        ];
+      pg(top, "zone2");
+      pg(side, "zone2");
+      var fr = pg(front, "zone");
+      [
+        [x + p, y, x + p, y + a],
+        [x, y + p, x + a, y + p],
+        [x + q, y - q, x + a + q, y - q],
+        [x + p, y, x + p + d, y - d],
+        [x + a + q, y - q, x + a + q, y + a - q],
+        [x + a, y + p, x + a + d, y + p - d],
+      ].forEach(function (l) {
+        E(
+          "line",
+          { x1: l[0], y1: l[1], x2: l[2], y2: l[3], class: "ln" },
+          s,
+        ).style.strokeWidth = 1.2;
+      });
+      [top, side, front].forEach(function (f) {
+        pg(f, "ln");
+      });
+      var kr = E("line", { x1: x, y1: y + a, x2: x + a, y2: y + a }, s);
+      kr.style.stroke = "var(--yellow)";
+      kr.style.strokeWidth = 7;
+      kr.style.strokeLinecap = "round";
+      var kl = TX(s, x + a / 2, y + a + 28, "?", "val"),
+        cx = 262;
+      TX(s, cx, 60, "objętość = 8", "val");
+      var L2 = TX(s, cx, 96, "", "val"),
+        L3 = TX(s, cx, 132, "ściana: 2 · 2 = 4", "val"),
+        P = PW(
+          s,
+          cx,
+          186,
+          "8",
+          sciana ? "⅔" : "⅓",
+          sciana ? " = 4" : " = 2",
+          30,
+        );
+      return function (k) {
+        var znana = sciana || k >= 2,
+          widac = sciana || k >= 1;
+        op(kr, widac ? 1 : 0);
+        op(kl, widac ? 1 : 0);
+        op(L2, widac ? 1 : 0);
+        kl.textContent = znana ? "2" : "?";
+        L2.textContent = "krawędź = " + (znana ? "2" : "?");
+        fr.setAttribute("class", sciana && k >= 1 ? "hl" : "zone");
+        op(L3, sciana && k >= 1 ? 1 : 0);
+        op(P, k >= 2 ? 1 : 0);
+      };
+    },
+  };
+}
+
+S.s5_szescian = KOSTKA8(
+  [
+    ["Sześcian ułożony z 8 jednakowych kostek ma objętość 8.", "Jaka krawędź?"],
+    [
+      "Objętość sześcianu to krawędź razy krawędź razy krawędź. Szukasz liczby, która 3 razy pomnożona przez siebie daje 8.",
+      "Policz",
+    ],
+    [
+      "Wzdłuż krawędzi leżą 2 kostki, a $2 * 2 * 2 = 8$. Taką liczbę zapisujesz $~r{3}{8}$ albo $8^{~f{1}{3}}$. Na następnym obrazku zobaczysz, skąd ten ułamek.",
+    ],
+  ],
+  false,
+);
+
+S.s5_ogolnie = rows(
+  [
+    "$~p{8^{~f{1}{3}}}^{3}$",
+    "$= 8^{~f{1}{3} * 3} = 8^{1} = 8$",
+    MIX("$8^{~f{1}{3}}$ pomnożone 3 razy przez siebie daje 8"),
+    "$8^{~f{1}{3}} = ~r{3}{8} = 2$",
+    "$81^{~f{1}{4}} = 3$, bo $3 * 3 * 3 * 3 = 81$",
+  ],
+  [
+    [
+      "Skąd ułamek $~f{1}{3}$ w wykładniku? Podnieś $8^{~f{1}{3}}$ do potęgi 3.",
+      "Pomnóż wykładniki",
+    ],
+    [
+      "Potęga potęgi z lekcji 2: mnożysz wykładniki. $~f{1}{3} * 3 = 1$, więc wychodzi $8^{1} = 8$.",
+      "Co to znaczy?",
+    ],
+    [
+      "Liczba $8^{~f{1}{3}}$ pomnożona 3 razy przez siebie daje 8. To krawędź sześcianu z poprzedniego obrazka.",
+      "Wynik",
+    ],
+    [
+      "$8^{~f{1}{3}} = 2$. Mianownik mówi, ile razy liczba ma być pomnożona przez siebie.",
+      "Inny mianownik",
+    ],
+    [
+      "Mianownik 4: szukasz liczby, która 4 razy pomnożona przez siebie daje 81. To 3, więc $81^{~f{1}{4}} = 3$.",
+    ],
+  ],
+);
+
+S.s5_sciana = KOSTKA8(
+  [
+    [
+      "Ten sam sześcian z 8 kostek. Jego krawędź to $8^{~f{1}{3}} = 2$.",
+      "Ściana",
+    ],
+    ["Ściana to kwadrat: krawędź razy krawędź, $2 * 2 = 4$.", "Zapisz potęgą"],
+    [
+      "Ściana to $8^{~f{1}{3}} * 8^{~f{1}{3}} = 8^{~f{2}{3}}$, bo przy mnożeniu dodajesz wykładniki. Licznik mówi, ile razy mnożysz $8^{~f{1}{3}}$, więc $8^{~f{4}{3}} = 2 * 2 * 2 * 2 = 16$.",
+    ],
+  ],
+  true,
+);
+
+S.s5_pulapka = rows(
+  [
+    "$8^{~f{1}{3}} = ?$",
+    MIX("nie $~f{8}{3}$: potęga to nie dzielenie przez mianownik"),
+    MIX(
+      "$8^{-~f{1}{3}}$ to nie $-2$: minus w wykładniku odwraca, a nie zmienia znaku",
+    ),
+    "$8^{~f{1}{3}} = 2$, a $8^{-~f{1}{3}} = ~f{1}{2}$",
+  ],
+  [
+    ["Dwa częste błędy przy wykładniku w postaci ułamka.", "Błąd 1"],
+    [
+      "$~f{8}{3}$ wychodzi z podzielenia 8 przez 3. A $8^{~f{1}{3}}$ to krawędź sześcianu z 8 kostek: liczba, która 3 razy pomnożona przez siebie daje 8.",
+      "Błąd 2",
+    ],
+    [
+      "Minus w wykładniku nie robi liczby ujemnej, to było już w lekcji 3. Odwraca wynik: $8^{-~f{1}{3}} = ~f{1}{8^{~f{1}{3}}}$.",
+      "Dobrze",
+    ],
+    ["$8^{~f{1}{3}} = 2$, bo $2 * 2 * 2 = 8$. A $8^{-~f{1}{3}} = ~f{1}{2}$."],
+  ],
+);
+
+    var NADPIS45 = {"s4a": [["Chcesz zapisać 326 000 000 000 krócej. W liczbie całkowitej przecinek stoi na końcu.", "Dziel przez 10"], ["Każde dzielenie przez 10 przesuwa przecinek o jedno miejsce w lewo. Po 11 razach zostaje 3,26.", "Zapisz"], ["Podzieliłeś przez 10 jedenaście razy. Żeby wrócić do liczby, mnożysz przez $10^{11}$: $326 000 000 000 = 3,26 * 10^{11}$. Taki zapis to notacja wykładnicza."]], "s4b": [["Liczba 0,00000097 jest bardzo mała. Przecinek stoi zaraz za pierwszym zerem.", "Mnóż przez 10"], ["Każde mnożenie przez 10 przesuwa przecinek o jedno miejsce w prawo. Po 7 razach masz 9,7.", "Zapisz"], ["Pomnożyłeś przez $10^{7}$. Żeby wrócić, dzielisz przez $10^{7}$, czyli mnożysz przez $10^{-7}$ (lekcja 3): $9,7 * 10^{-7}$."]], "s4c": [["Trzy zapisy mają tę samą wartość: 8765,2. Tylko jeden z nich to notacja wykładnicza. Który?", "Sprawdź 87,652"], ["$87,652 * 10^{2}$: liczba z przodu jest większa niż 10. Za duża.", "Sprawdź 0,87652"], ["$0,87652 * 10^{4}$: liczba z przodu jest mniejsza niż 1. Za mała.", "Sprawdź 8,7652"], ["$8,7652 * 10^{3}$: liczba z przodu leży między 1 a 10. Taki zapis to notacja wykładnicza."]], "s5a": [["Co znaczy wykładnik $~f{1}{2}$? Sprawdź, co wyjdzie, gdy podniesiesz $9^{~f{1}{2}}$ do kwadratu.", "Do kwadratu"], ["Przy potędze potęgi mnożysz wykładniki (lekcja 2): $~f{1}{2} * 2 = 1$. Wychodzi 9. Szukasz więc liczby, która razy ona sama daje 9.", "Szukaj"], ["$3 * 3 = 9$. To bok kwadratu z 9 kropek.", "Wynik"], ["Dlatego $9^{~f{1}{2}} = ~r{}{9} = 3$. Wykładnik $~f{1}{2}$ oznacza pierwiastek kwadratowy."]], "s5b": [["$8^{~f{1}{3}}$ to liczba, która pomnożona 3 razy przez siebie daje 8. Sprawdź: $(8^{~f{1}{3}})^{3} = 8^{1} = 8$.", "Rozbij 8"], ["$8 = 2 * 2 * 2$. To trzy równe czynniki.", "Jeden czynnik"], ["Jeden czynnik to $8^{~f{1}{3}} = 2$.", "A 2/3?"], ["$8^{~f{2}{3}} = 2 * 2 = 4$. Mianownik mówi, na ile równych czynników rozbijasz liczbę. Licznik mówi, ile z nich mnożysz."]], "s5c": [["$16^{~f{3}{4}}$. Mianownik to 4, więc rozbij 16 na cztery równe czynniki.", "Rozbij 16"], ["$16 = 2 * 2 * 2 * 2$. Jeden czynnik to $16^{~f{1}{4}} = 2$.", "Licznik 3"], ["Licznik to 3, więc mnożysz trzy czynniki: $16^{~f{3}{4}} = 2 * 2 * 2 = 8$."]], "s5d": [["Tu wykładnik jest ujemny i jest ułamkiem.", "Rozpisz"], ["Minus w wykładniku działa jak w lekcji 3: $a^{-n} = ~f{1}{a^{n}}$.", "Policz"], ["$9^{~f{1}{2}} = 3$, więc $9^{-~f{1}{2}} = ~f{1}{3}$."]]};
+    for (var k in NADPIS45) {
+      if (S[k].steps.length !== NADPIS45[k].length) throw new Error("kroki " + k);
+      S[k].steps = NADPIS45[k];
+    }
+
+/* Nowe obrazki do lekcji 6 (wklejane do modułu SC przez buduj_lekcje_6_7.py, po obrazkach z lekcji 4 i 5); lekcja 7 korzysta z obrazków lekcji 1–6. */
+
+S.s6_pierw = rows(
+  [
+    "$~r{}{2} = 2^{~f{1}{2}}$",
+    "$4 = 2 * 2 = 2^{2}$",
+    "$~p{2^{~f{2}{3}}}^{3} = 2^{~f{2}{3} * 3} = 2^{2} = 4$",
+    "$~r{3}{4} = 2^{~f{2}{3}}$",
+    MIX(
+      "$~r{n}{a^{m}} = a^{~f{m}{n}}$: wykładnik do licznika, mała liczba przy pierwiastku do mianownika",
+    ),
+  ],
+  [
+    [
+      "Z lekcji 5 wiesz, że pierwiastek kwadratowy to wykładnik $~f{1}{2}$. Tak samo zapiszesz jako potęgę każdy pierwiastek.",
+      "Inny pierwiastek",
+    ],
+    [
+      "Weź $~r{3}{4}$. Najpierw zapisz 4 jako potęgę dwójki: $4 = 2^{2}$.",
+      "Sprawdź",
+    ],
+    [
+      "Szukasz liczby, która 3 razy pomnożona przez siebie daje 4. Sprawdź $2^{~f{2}{3}}$: przy potędze potęgi mnożysz wykładniki, $~f{2}{3} * 3 = 2$. Wychodzi 4.",
+      "Wynik",
+    ],
+    ["Dlatego $~r{3}{4} = 2^{~f{2}{3}}$.", "Zasada"],
+    [
+      "Wykładnik liczby pod pierwiastkiem idzie do licznika. Mała liczba przy znaku pierwiastka idzie do mianownika.",
+    ],
+  ],
+);
+
+/* kafelki 2^⅓: licznik mówi, ile kafelków; trzy kafelki pomnożone dają 2 */
+S.s6_trzecie = {
+  steps: [
+    [
+      "$2^{~f{2}{3}} * 2^{~f{4}{3}}$. Każdy kafelek to $2^{~f{1}{3}}$, czyli $~r{3}{2}$ z lekcji 5. Licznik mówi, ile kafelków: 2 żółte i 4 niebieskie.",
+      "Połącz",
+    ],
+    [
+      "Mnożysz wszystko razem: 6 kafelków $2^{~f{1}{3}}$. To $2^{~f{6}{3}}$, bo wykładniki się dodały: $~f{2}{3} + ~f{4}{3} = ~f{6}{3}$.",
+      "Pogrupuj",
+    ],
+    [
+      "Trzy kafelki $2^{~f{1}{3}}$ pomnożone przez siebie dają 2, tak działa wykładnik $~f{1}{3}$ z lekcji 5. Sześć kafelków to dwie takie trójki.",
+      "Wynik",
+    ],
+    [
+      "$2^{~f{2}{3}} * 2^{~f{4}{3}} = 2^{2} = 4$. Przy mnożeniu potęg dodajesz wykładniki, także gdy są ułamkami.",
+    ],
+  ],
+  build: function (s) {
+    var w = 40,
+      st = 46,
+      y = 78,
+      T = [],
+      i;
+    for (i = 0; i < 6; i++) T.push(TILE(s, "∛2", w, w, i < 2 ? "y" : "b"));
+    var x0 = [43, 89, 159, 205, 251, 297],
+      x1 = [];
+    for (i = 0; i < 6; i++) x1.push(170 + (i - 2.5) * st);
+    var kr = TX(s, 124, y + 6, "·", "big2"),
+      pa = PW(s, 66, 146, "2", "2/3", "", 24),
+      pb = PW(s, 228, 146, "2", "4/3", "", 24),
+      p6 = PW(s, 170, 146, "2", "6/3", "", 26),
+      kl = [],
+      dw = [];
+    [0, 3].forEach(function (j) {
+      var a = x1[j] - w / 2,
+        b = x1[j + 2] + w / 2;
+      kl.push(
+        E(
+          "path",
+          {
+            d:
+              "M" +
+              a +
+              " " +
+              (y + 30) +
+              " L" +
+              a +
+              " " +
+              (y + 36) +
+              " L" +
+              b +
+              " " +
+              (y + 36) +
+              " L" +
+              b +
+              " " +
+              (y + 30),
+            class: "brk",
+          },
+          s,
+        ),
+      );
+      dw.push(TX(s, (a + b) / 2, y + 64, "= 2", "val"));
+    });
+    var wyn = PW(s, 170, 204, "2", "2", " = 2 · 2 = 4", 28);
+    return function (k) {
+      T.forEach(function (t, i) {
+        at(t, k ? x1[i] : x0[i], y);
+      });
+      op(kr, k ? 0 : 1);
+      op(pa, k ? 0 : 1);
+      op(pb, k ? 0 : 1);
+      op(p6, k === 1 ? 1 : 0);
+      kl.concat(dw).forEach(function (q) {
+        op(q, k >= 2 ? 1 : 0);
+      });
+      op(wyn, k >= 3 ? 1 : 0);
+    };
+  },
+};
+
+S.s6_pulapka = rows(
+  [
+    "$2^{~f{1}{2}} * 2^{~f{1}{3}} = ?$",
+    MIX(
+      "nie $2^{~f{1}{6}}$: przy mnożeniu potęg wykładniki dodajesz, a nie mnożysz",
+    ),
+    MIX(
+      "nie $2^{~f{2}{5}}$: nie dodajesz licznika do licznika i mianownika do mianownika",
+    ),
+    "$~f{1}{2} + ~f{1}{3} = ~f{3}{6} + ~f{2}{6} = ~f{5}{6}$",
+    "$2^{~f{1}{2}} * 2^{~f{1}{3}} = 2^{~f{5}{6}}$",
+  ],
+  [
+    ["Dwa częste błędy przy mnożeniu potęg z ułamkiem w wykładniku.", "Błąd 1"],
+    [
+      "$~f{1}{2} * ~f{1}{3} = ~f{1}{6}$ to mnożenie wykładników. Wykładniki mnożysz tylko przy potędze potęgi, na przykład w $~p{2^{~f{1}{2}}}^{3}$.",
+      "Błąd 2",
+    ],
+    [
+      "$1 + 1 = 2$ na górze i $2 + 3 = 5$ na dole daje $~f{2}{5}$, ale tak ułamków się nie dodaje.",
+      "Dobrze",
+    ],
+    [
+      "Sprowadź ułamki do wspólnego mianownika 6: $~f{3}{6} + ~f{2}{6} = ~f{5}{6}$.",
+      "Wynik",
+    ],
+    ["$2^{~f{1}{2}} * 2^{~f{1}{3}} = 2^{~f{5}{6}}$."],
+  ],
+);
+
+S.s6_wspolny = rows(
+  [
+    "$12^{~f{1}{2}} * 3^{~f{1}{2}} = ?$",
+    "$= (12 * 3)^{~f{1}{2}} = 36^{~f{1}{2}}$",
+    "$36^{~f{1}{2}} = 6$, bo $6 * 6 = 36$",
+    MIX("sprawdzenie: $~p{12^{~f{1}{2}} * 3^{~f{1}{2}}}^{2} = 12 * 3 = 36$"),
+    "$50^{~f{1}{2}} : 2^{~f{1}{2}} = 25^{~f{1}{2}} = 5$",
+  ],
+  [
+    [
+      "Różne podstawy, ten sam wykładnik. Osobno nie policzysz: żadna liczba całkowita pomnożona przez siebie nie daje 12.",
+      "Połącz podstawy",
+    ],
+    [
+      "Zasada z lekcji 2: $a^{n} * b^{n} = (a * b)^{n}$. Działa też, gdy wykładnik jest ułamkiem.",
+      "Policz",
+    ],
+    ["$12 * 3 = 36$, a $36^{~f{1}{2}} = 6$.", "Skąd pewność?"],
+    [
+      "Podnieś iloczyn do kwadratu. $12^{~f{1}{2}}$ do kwadratu daje 12, a $3^{~f{1}{2}}$ do kwadratu daje 3. Razem 36, więc sam iloczyn to 6.",
+      "Dzielenie",
+    ],
+    [
+      "Dzielenie działa tak samo: $a^{n} : b^{n} = ~p{~f{a}{b}}^{n}$. $50 : 2 = 25$, a $25^{~f{1}{2}} = 5$.",
+    ],
+  ],
+);
+
+S.s6_dziesietny = rows(
+  [
+    "$16^{0,25} = ?$",
+    "$0,25 = ~f{25}{100} = ~f{1}{4}$",
+    "$16^{~f{1}{4}} = 2$, bo $2 * 2 * 2 * 2 = 16$",
+    "$4^{1,5} = 4^{~f{3}{2}} = 2 * 2 * 2 = 8$",
+  ],
+  [
+    [
+      "Wykładnik może być liczbą dziesiętną. Zamień go na ułamek zwykły.",
+      "Zamień",
+    ],
+    ["$0,25$ to 25 setnych. Skróć przez 25: wychodzi $~f{1}{4}$.", "Policz"],
+    [
+      "Mianownik 4: szukasz liczby, która 4 razy pomnożona przez siebie daje 16. To 2.",
+      "Inny przykład",
+    ],
+    [
+      "$1,5 = ~f{3}{2}$. Mianownik 2: $4^{~f{1}{2}} = 2$. Licznik 3: mnożysz trzy dwójki i wychodzi 8.",
+    ],
+  ],
+);
+
+    var NADPIS67 = {"s6a": [["Masz $2 * ~r{}{2}$. Zapisz obie liczby jako potęgi dwójki. Długość paska pokazuje wykładnik.", "Pokaż paski"], ["$2 = 2^{1}$, czyli pasek długości 1. $~r{}{2} = 2^{~f{1}{2}}$, czyli pasek długości $~f{1}{2}$.", "Połącz"], ["Mnożysz potęgi o tej samej podstawie, więc dodajesz wykładniki (lekcja 2): $1 + ~f{1}{2} = ~f{3}{2}$.", "Wynik"], ["$2~r{}{2} = 2^{~f{3}{2}}$"]], "s6b": [["$4^{~f{9}{2}} : 4^{~f{5}{2}}$. Paski pokazują oba wykładniki.", "Odejmij"], ["Dzielisz potęgi, więc odejmujesz wykładniki (lekcja 2): $~f{9}{2} - ~f{5}{2} = 2$.", "Wynik"], ["$4^{~f{9}{2}} : 4^{~f{5}{2}} = 4^{2} = 16$"]], "s6c": [["Policz $10^{2,3}$. Wykładnik to 2,3.", "Rozdziel"], ["2,3 = 2 + 0,3. Dlatego $10^{2,3} = 10^{2} * 10^{0,3}$. To zasada mnożenia potęg czytana od końca.", "Policz części"], ["$10^{2} = 100$. Wartość $10^{0,3} ≈ 1,995262315$ podaje kalkulator.", "Pomnóż"], ["Mnożenie przez 100 przesuwa przecinek o 2 miejsca w prawo: $10^{2,3} ≈ 199,5262$."]]};
+    for (var k in NADPIS67) {
+      if (S[k].steps.length !== NADPIS67[k].length) throw new Error("kroki " + k);
+      S[k].steps = NADPIS67[k];
+    }
+
     S.clearT = clearT;
     return S;
   })();
@@ -3977,6 +5209,115 @@ S.s3_pp = rows(
       );
     };
   })();
+</script>
+
+<script>
+  /* Schematy do lekcji 4 i 5: przecinek w kratkach, łańcuch przeliczeń, sześcian z zaznaczoną ścianą. W napisach ^{…} to wykładnik. */
+  window.RYS = (function (stary) {
+    function e(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+      });
+    }
+    function t(x, y, s, cls, anchor) {
+      return (
+        '<text x="' + x + '" y="' + y + '" class="' + (cls || "lb") +
+        '" text-anchor="' + (anchor || "middle") + '">' + e(s) + "</text>"
+      );
+    }
+    function rect(x, y, w, h, cls, rx, styl) {
+      return (
+        '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h +
+        '" rx="' + (rx || 0) + '" class="' + cls + '"' + (styl ? ' style="' + styl + '"' : "") + "></rect>"
+      );
+    }
+    /* grot strzałki w punkcie (x, y), skierowany w dół albo w prawo */
+    function grot(x, y, kier) {
+      var p = kier === "dol" ? [[x - 6, y - 10], [x + 6, y - 10], [x, y]] : [[x - 10, y - 6], [x - 10, y + 6], [x, y]];
+      return '<polygon style="fill:var(--pitch)" points="' + p.map(function (q) {
+        return q.join(",");
+      }).join(" ") + '"></polygon>';
+    }
+    var R = {};
+
+    /* cyfry w kratkach, żółty przecinek i strzałka jego skoków; od i do = za iloma cyframi stoi przecinek */
+    R.miejsca = function (r) {
+      var n = r.cyfry.length, w = Math.min(32, 300 / n), X = 170 - (n * w) / 2, y = 84, H = 40, h = "", i;
+      for (i = 0; i < n; i++) {
+        h += rect(X + i * w + 1, y, w - 2, H, "zone", 4);
+        h += t(X + i * w + w / 2, y + 27, r.cyfry[i], "valm");
+      }
+      var a = X + r.od * w, b = X + r.do * w, y0 = y - 4, luk = Math.min(44, Math.abs(b - a) / 2 + 12);
+      h += '<path class="arcp" d="M' + a + " " + y0 + " Q " + (a + b) / 2 + " " + (y0 - 2 * luk) + " " + b + " " + y0 + '"></path>';
+      h += grot(b, y0 + 2, "dol");
+      h += '<circle cx="' + b + '" cy="' + (y + H) + '" r="7" class="ln" style="stroke-dasharray:3 3"></circle>';
+      h += '<circle cx="' + a + '" cy="' + (y + H) + '" r="7" class="comma"></circle>';
+      h += t((a + b) / 2, y0 - luk - 10, r.skoki, "lb");
+      h += t(170, y + H + 26, "żółta kropka = przecinek", "lb");
+      h += t(170, y + H + 62, r.dol, "res2");
+      return [h, y + H + 76];
+    };
+
+    /* pola połączone strzałkami: każda strzałka to jedno mnożenie */
+    R.lancuch = function (r) {
+      var n = r.wezly.length, gap = n > 2 ? 46 : 90, W = (320 - gap * (n - 1)) / n, x = 10, y = 64, H = 58, h = "";
+      if (r.gora) h += t(170, 20, r.gora, "lb");
+      r.wezly.forEach(function (q, i) {
+        h += rect(x, y, W, H, "zone", 8);
+        h += rect(x, y, W, H, "ln", 8, q.hl ? "stroke:var(--yellow);stroke-width:4" : "");
+        h += t(x + W / 2, y + (q.d ? 26 : 36), q.g, "valm");
+        if (q.d) h += t(x + W / 2, y + 46, q.d, "lb");
+        if (i < n - 1) {
+          var x1 = x + W + 6, x2 = x + W + gap - 6;
+          h += '<line x1="' + x1 + '" y1="' + (y + H / 2) + '" x2="' + (x2 - 8) + '" y2="' + (y + H / 2) + '" class="ln"></line>';
+          h += grot(x2, y + H / 2, "prawo");
+          h += t((x1 + x2) / 2, y - 12, r.strzalki[i], "valm");
+        }
+        x += W + gap;
+      });
+      if (r.wynik) h += t(170, y + H + 42, r.wynik, "res2");
+      return [h, y + H + 56];
+    };
+
+    /* sześcian z podpisaną krawędzią, przednia ściana na żółto, pod spodem linijki opisu */
+    R.kostka2 = function (r) {
+      var s = 96, d = 40, x = 92, y = 62, h = "";
+      function pg(pts, cls) {
+        return '<polygon class="' + cls + '" points="' + pts.map(function (p) {
+          return p[0] + "," + p[1];
+        }).join(" ") + '"></polygon>';
+      }
+      var front = [[x, y], [x + s, y], [x + s, y + s], [x, y + s]],
+        top = [[x, y], [x + d, y - d], [x + s + d, y - d], [x + s, y]],
+        side = [[x + s, y], [x + s + d, y - d], [x + s + d, y + s - d], [x + s, y + s]];
+      h += pg(top, "zone2") + pg(top, "ln") + pg(side, "zone2") + pg(side, "ln");
+      h += pg(front, r.sciana ? "hl" : "zone") + pg(front, "ln");
+      h += t(x + s / 2, y + s + 22, r.a, "valm");
+      h += t(x + s + d + 30, y + s / 2 - d / 2 + 6, r.a, "valm");
+      var yy = y + s + 56;
+      (r.linie || []).forEach(function (l, i) {
+        h += t(170, yy + i * 30, l, i ? "res2" : "valm");
+      });
+      return [h, yy + (r.linie || []).length * 30 - 14];
+    };
+
+    /* wykładnik w napisie: 16^{−½} → mała liczba podniesiona do góry */
+    function wykl(svg) {
+      return svg.replace(/>([^<]*\^\{[^<]*)</g, function (_, s) {
+        return ">" + s.replace(/\^\{([^}]*)\}([^^]*)/g,
+          '<tspan font-size="70%" dy="-0.55em">$1</tspan><tspan dy="0.385em">$2</tspan>') + "<";
+      });
+    }
+
+    return function (r) {
+      if (!R[r.typ]) return wykl(stary(r));
+      var o = R[r.typ](r);
+      return wykl(
+        '<svg class="viz rys" viewBox="0 0 340 ' + o[1] + '" role="img" aria-label="' +
+        e(r.opis || "Schemat do zadania") + '">' + o[0] + "</svg>"
+      );
+    };
+  })(window.RYS);
 </script>
 
 <script>
