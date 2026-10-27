@@ -1,3 +1,4 @@
+<meta charset="utf-8" />
 <title>Potęgi w 7 lekcjach</title>
 <meta name="claude:viewport-fit-sides" content="cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -667,6 +668,8 @@
     flex: 1;
     margin-top: 8px;
   }
+  .sbtns .lektor { width: auto; padding: 0 12px; font-size: 16px; white-space: nowrap; }
+  .sbtns .lektor.on { border-color: var(--yellow); }
   .again {
     margin-top: 8px;
     width: 56px;
@@ -2893,6 +2896,240 @@
           "sol": "Ten sam wykładnik: $(27 * 3)^{~f{1}{2}} = 81^{~f{1}{2}} = 9$."
         }
       ]
+    },
+    {
+      "nr": 8,
+      "poprawka": true,
+      "tytul": "Część 1: notacja wykładnicza",
+      "opis": "Zadania 7a, 5c i 8 ze sprawdzianu",
+      "karty": "1.8, s. 38 i 40",
+      "bloki": [
+        {
+          "tytul": "Zadanie 7a: przecinek skacze nad każdą cyfrą",
+          "sceny": [
+            "p8_skoki",
+            "p8_cyfry",
+            "p8_sprawdz"
+          ],
+          "pytania": [
+            {
+              "t": "$380 000 = 3,8 * 10^{?}$. Wpisz wykładnik.",
+              "a": "5",
+              "py": "math.log10(380000/3.8)",
+              "hint": "Przecinek skacze nad każdą cyfrą po trójce, także nad ósemką. Zer jest tylko 4.",
+              "sol": "6 cyfr, więc 5 skoków: $380 000 = 3,8 * 10^{5}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Zadanie 5c: ułamek dziesiętny to zapis z przecinkiem",
+          "sceny": [
+            "p8_forma",
+            "p8_dziel"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $10^{-4}$ jako ułamek dziesiętny.",
+              "a": "0.0001",
+              "py": "F(10)**-4",
+              "hint": "$10^{-4} = ~f{1}{10 000}$. Dzielenie przez 10 000 to cztery skoki przecinka w lewo od jedynki.",
+              "sol": "$10^{-4} = ~f{1}{10 000} = 0,0001$."
+            }
+          ]
+        },
+        {
+          "tytul": "Zadanie 8: ile kropel, czyli dzielenie",
+          "sceny": [
+            "p8_krople_co",
+            "p8_krople_licz"
+          ],
+          "pytania": [
+            {
+              "t": "Wiadro mieści $1,2 * 10^{4}$ ml wody, a kubek $3 * 10^{2}$ ml. Ile kubków wody wlejesz do pełnego wiadra? Zapisz wynik jako $4 * 10^{?}$ i wpisz wykładnik.",
+              "a": "1",
+              "py": "math.log10(F(12,10)*10**4/(3*10**2)/4)",
+              "hint": "Ile razy kubek mieści się w wiadrze: wiadro przez kubek. Liczby z przodu osobno ($1,2 : 3 = 0,4$), potęgi osobno ($10^{4-2}$). Potem popraw 0,4 na liczbę od 1 do 10.",
+              "sol": "$(1,2 : 3) * 10^{4-2} = 0,4 * 10^{2} = 4 * 10^{1}$, czyli 40 kubków.",
+              "rys": {
+                "typ": "pasek",
+                "calosc": "wiadro: 1,2 · 10⁴ ml",
+                "czesc": "kubek: 3 · 10² ml",
+                "ile": 40,
+                "pokaz": 3,
+                "pyt": "ile kubków?",
+                "opis": "Długi pasek to woda w wiadrze, krótkie kawałki na początku to kubki"
+              }
+            }
+          ]
+        }
+      ],
+      "test": [
+        {
+          "t": "$6 080 000 = 6,08 * 10^{?}$. Wpisz wykładnik.",
+          "a": "6",
+          "py": "math.log10(6080000/6.08)",
+          "sol": "7 cyfr, więc 6 skoków: $6 080 000 = 6,08 * 10^{6}$."
+        },
+        {
+          "t": "Zapisz $~f{1}{100}$ jako ułamek dziesiętny.",
+          "a": "0.01",
+          "py": "F(1,100)",
+          "sol": "$~f{1}{100} = 1 : 100 = 0,01$."
+        },
+        {
+          "t": "$(9 * 10^{5}) : (3 * 10^{-2}) = 3 * 10^{?}$. Wpisz wykładnik.",
+          "a": "7",
+          "py": "math.log10(9*10**5/(3*F(10)**-2)/3)",
+          "sol": "$9 : 3 = 3$, a $10^{5-(-2)} = 10^{7}$: wynik $3 * 10^{7}$."
+        }
+      ]
+    },
+    {
+      "nr": 9,
+      "poprawka": true,
+      "tytul": "Część 2: minus z ułamkiem w wykładniku i dno",
+      "opis": "Zadania 9c i 10b ze sprawdzianu",
+      "karty": "1.9, s. 42–44",
+      "bloki": [
+        {
+          "tytul": "Zadanie 9c: minus i ułamek w wykładniku",
+          "sceny": [
+            "p9_minus"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $16^{-~f{1}{4}}$. Wpisz ułamek.",
+              "a": "1/2",
+              "py": "16**-0.25",
+              "hint": "Najpierw minus: jedynka nad kreską. Potem szukasz liczby, która pomnożona 4 razy przez siebie daje 16, i wpisujesz ją do mianownika.",
+              "sol": "$2 * 2 * 2 * 2 = 16$, więc $16^{-~f{1}{4}} = ~f{1}{2}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Zadanie 10b: pole dna akwarium",
+          "sceny": [
+            "p9_dno"
+          ],
+          "pytania": [
+            {
+              "t": "Sześcienne pudełko ma objętość 125 cm³. Jego krawędź to $125^{~f{1}{3}}$ cm. Ile cm² ma dno pudełka?",
+              "a": "25",
+              "py": "(125**(1/3))**2",
+              "hint": "Krawędź: $5 * 5 * 5 = 125$, więc 5 cm. Dno to kwadrat o boku 5 cm, jak na obrazku z kratkami.",
+              "sol": "Krawędź 5 cm, dno $5 * 5 = 25$ cm².",
+              "rys": {
+                "typ": "kostka",
+                "a": "? cm",
+                "srodek": "objętość = 125 cm³",
+                "opis": "Sześcian o objętości 125 centymetrów sześciennych, krawędzie z pytajnikiem"
+              }
+            }
+          ]
+        }
+      ],
+      "test": [
+        {
+          "t": "Oblicz $625^{-~f{1}{4}}$. Wpisz ułamek.",
+          "a": "1/5",
+          "py": "625**-0.25",
+          "sol": "$5 * 5 * 5 * 5 = 625$, więc $625^{-~f{1}{4}} = ~f{1}{5}$."
+        },
+        {
+          "t": "Sześcian ma objętość 1000 dm³. Jego krawędź to $1000^{~f{1}{3}}$ dm. Ile dm² ma jego dno?",
+          "a": "100",
+          "py": "(1000**(1/3))**2",
+          "sol": "Krawędź 10 dm, bo $10 * 10 * 10 = 1000$. Dno: $10 * 10 = 100$ dm².",
+          "rys": {
+            "typ": "kostka",
+            "a": "? dm",
+            "srodek": "objętość = 1000 dm³",
+            "opis": "Sześcian o objętości 1000 decymetrów sześciennych, krawędzie z pytajnikiem"
+          }
+        }
+      ]
+    },
+    {
+      "nr": 10,
+      "poprawka": true,
+      "tytul": "Część 3: ułamki w wykładniku",
+      "opis": "Zadania 11a, 11c i 12b ze sprawdzianu",
+      "karty": "1.9, s. 42–44",
+      "bloki": [
+        {
+          "tytul": "Zadanie 11a: liczba razy pierwiastek jako jedna potęga",
+          "sceny": [
+            "p10_pierw"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $4~r{}{2}$ jako potęgę $2^{m}$. Podaj $m$ (może być ułamkiem, np. 3/2).",
+              "a": "5/2",
+              "kind": "exp",
+              "base": 2,
+              "py": "4*math.sqrt(2)",
+              "hint": "$4 = 2^{2}$, a $~r{}{2} = 2^{~f{1}{2}}$. Dodaj wykładniki: $2 + ~f{1}{2}$.",
+              "sol": "$2^{2 + ~f{1}{2}} = 2^{~f{5}{2}}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Zadanie 11c: dodawanie ułamków w wykładniku",
+          "sceny": [
+            "p10_dodaj"
+          ],
+          "pytania": [
+            {
+              "t": "Zapisz $3^{~f{1}{2}} * 3^{~f{1}{3}}$ jako potęgę $3^{m}$. Podaj $m$.",
+              "a": "5/6",
+              "kind": "exp",
+              "base": 3,
+              "py": "3**0.5*3**(1/3)",
+              "hint": "Dodajesz wykładniki. Wspólny mianownik to 6: $~f{1}{2} = ~f{3}{6}$, $~f{1}{3} = ~f{2}{6}$.",
+              "sol": "$~f{3}{6} + ~f{2}{6} = ~f{5}{6}$, więc $3^{~f{5}{6}}$."
+            }
+          ]
+        },
+        {
+          "tytul": "Zadanie 12b: wykładnik z przecinkiem",
+          "sceny": [
+            "p10_dziesietny"
+          ],
+          "pytania": [
+            {
+              "t": "Oblicz $16^{0,75}$.",
+              "a": "8",
+              "py": "16**0.75",
+              "hint": "$0,75 = ~f{3}{4}$. Najpierw $16^{~f{1}{4}}$, potem wynik do potęgi 3.",
+              "sol": "$16^{~f{1}{4}} = 2$, a $2^{3} = 8$."
+            }
+          ]
+        }
+      ],
+      "test": [
+        {
+          "t": "Zapisz $2^{~f{3}{4}} * 2^{~f{1}{2}}$ jako potęgę $2^{m}$. Podaj $m$.",
+          "a": "5/4",
+          "kind": "exp",
+          "base": 2,
+          "py": "2**0.75*2**0.5",
+          "sol": "$~f{3}{4} + ~f{2}{4} = ~f{5}{4}$, więc $2^{~f{5}{4}}$."
+        },
+        {
+          "t": "Zapisz $64~r{}{2}$ jako potęgę $2^{m}$. Podaj $m$.",
+          "a": "13/2",
+          "kind": "exp",
+          "base": 2,
+          "py": "64*math.sqrt(2)",
+          "sol": "$64 = 2^{6}$, $~r{}{2} = 2^{~f{1}{2}}$: $2^{6 + ~f{1}{2}} = 2^{~f{13}{2}}$."
+        },
+        {
+          "t": "Oblicz $81^{1,25}$.",
+          "a": "243",
+          "py": "81**1.25",
+          "sol": "$1,25 = 1 + ~f{1}{4}$: $81 * 81^{~f{1}{4}} = 81 * 3 = 243$."
+        }
+      ]
     }
   ]
 }
@@ -5027,6 +5264,438 @@ S.s6_dziesietny = rows(
       S[k].steps = NADPIS67[k];
     }
 
+/* Obrazki poprawy sprawdzianu 27.10 (lekcje 8–10 w sekcji „Poprawa sprawdzianu”): wklejane do modułu SC przez buduj_poprawke_1.py.
+   Każdy obrazek przechodzi przez każdy krok, na którym mógł powstać błąd z danego zadania. */
+
+/* --- Poprawa 1: zadanie 7a --- */
+
+/* 4 300 000: najpierw zera policzone osobno, potem skoki przecinka nad każdą cyfrą po czwórce */
+S.p8_skoki = {
+  steps: [
+    [
+      "Liczba 4 300 000 ma pięć zer. Czy wykładnik to 5? Sprawdź, ile razy przeskoczy przecinek.",
+      "Skacz",
+    ],
+    [
+      "Przecinek stoi na końcu liczby i skacze w lewo, aż stanie za czwórką. Każdy skok to dzielenie przez 10. Wyszło 6 skoków.",
+      "Nad czym skakał?",
+    ],
+    [
+      "Przecinek przeskoczył nad pięcioma zerami i nad trójką. Sześć dzieleń przez 10 to dzielenie przez $10^{6}$, więc wracasz mnożeniem: $4 300 000 = 4,3 * 10^{6}$.",
+    ],
+  ],
+  build: function (s) {
+    var ds = "4300000".split(""),
+      n = ds.length,
+      st = 30,
+      x0 = 170 - ((n - 1) * st) / 2,
+      T = [];
+    ds.forEach(function (d, i) {
+      var t = TILE(s, d, st - 4, 38, "d");
+      at(t, x0 + i * st, 80);
+      T.push(t);
+    });
+    var c = E("g", { class: "mv" }, s);
+    c.style.transition = "transform .13s linear";
+    E("circle", { r: 7, class: "comma" }, c);
+    TX(s, 170, 30, "żółta kropka = przecinek", "lb");
+    var zl = TX(s, 170, 152, "zer: 5", "val"),
+      tc = TX(s, 170, 152, "", "val"),
+      r = TX(s, 170, 200, "4,3 · 10⁶", "res");
+    var bx = function (j) {
+        return x0 + j * st + st / 2;
+      },
+      cur = n - 1,
+      last = 0;
+    return function (k) {
+      if (k === 0) {
+        clearT();
+        cur = n - 1;
+        at(c, bx(cur), 112);
+        tc.textContent = "";
+      } else if (k === 1 && last === 0) {
+        (function krok() {
+          TIM.push(
+            setTimeout(function () {
+              if (cur === 0) return;
+              cur--;
+              at(c, bx(cur), 112);
+              tc.textContent = "skoki: " + (n - 1 - cur);
+              if (cur) krok();
+            }, 320),
+          );
+        })();
+      } else {
+        clearT();
+        cur = 0;
+        at(c, bx(0), 112);
+        tc.textContent = "skoki: " + (n - 1);
+      }
+      T.forEach(function (t, i) {
+        var zolta = (k === 0 && ds[i] === "0") || (k === 2 && i === 1);
+        t.setAttribute("class", "mv " + (zolta ? "y" : "d"));
+      });
+      op(zl, k === 0 ? 1 : 0);
+      op(tc, k === 0 ? 0 : 1);
+      op(r, k >= 2 ? 1 : 0);
+      last = k;
+    };
+  },
+};
+
+S.p8_cyfry = rows(
+  [
+    MIX("$1000$: 3 zera, 3 skoki → $10^{3}$"),
+    MIX("$4 300 000$: 7 cyfr, 6 skoków → $10^{6}$"),
+    MIX("$52 000 000$: 8 cyfr, 7 skoków → $10^{7}$"),
+  ],
+  [
+    [
+      "W liczbie 1000 za jedynką stoją same zera. Tylko w takiej liczbie zer jest tyle samo, co skoków.",
+      "A z innymi cyframi?",
+    ],
+    [
+      "Przecinek zawsze staje za pierwszą cyfrą, więc skacze nad wszystkimi pozostałymi. 4 300 000 ma 7 cyfr: jedna zostaje z przodu, nad 6 przecinek skacze.",
+      "Inna liczba",
+    ],
+    [
+      "52 000 000 ma 8 cyfr. Piątka zostaje przed przecinkiem, nad 7 cyframi przecinek skacze: $5,2 * 10^{7}$. Liczysz wszystkie cyfry po pierwszej, nie same zera.",
+    ],
+  ],
+);
+
+S.p8_sprawdz = rows(
+  [
+    "$4,3 * 10^{5} = ?$",
+    MIX("$= 430 000$: o jedno zero za mało"),
+    "$4,3 * 10^{6} = 4 300 000$",
+  ],
+  [
+    [
+      "Wynik sprawdzisz w kilka sekund: pomnóż z powrotem. Mnożenie przez $10^{5}$ przesuwa przecinek o 5 miejsc w prawo.",
+      "Policz",
+    ],
+    [
+      "Z 4,3 robi się 430 000. To mniej niż 4 300 000, więc wykładnik 5 jest za mały.",
+      "Popraw",
+    ],
+    [
+      "$10^{6}$ przesuwa przecinek o 6 miejsc: wychodzi 4 300 000, tak jak w zadaniu. Teraz wynik jest dobry.",
+    ],
+  ],
+);
+
+/* --- Poprawa 1: zadanie 5c --- */
+
+S.p8_forma = rows(
+  [
+    MIX("$~f{1}{1000}$ i $0,001$: ta sama liczba"),
+    MIX("„zapisz jako ułamek dziesiętny” → $0,001$"),
+  ],
+  [
+    [
+      "$~f{1}{1000}$ to ułamek zwykły, $0,001$ to ułamek dziesiętny. Wartość ta sama, zapis inny.",
+      "Co każe zadanie?",
+    ],
+    [
+      "Gdy zadanie mówi „zapisz jako ułamek dziesiętny”, wynik ma mieć przecinek. Za $~f{1}{1000}$ nie dostaniesz wtedy punktu.",
+    ],
+  ],
+);
+
+/* 1 : 1000: przecinek skacze w lewo od jedynki przez dopisane z przodu zera */
+S.p8_dziel = hop(
+  "0001".split(""),
+  3,
+  0,
+  [],
+  "1 : 10³ = 0,001",
+  "dzielisz przez 10",
+  [
+    [
+      "$10^{-3} = ~f{1}{10^{3}} = ~f{1}{1000}$, jak w lekcji 3. Jak zapisać to z przecinkiem? Zacznij od jedynki. Zera przed nią nie zmieniają liczby.",
+      "Dziel przez 10",
+    ],
+    [
+      "Dzielenie przez 1000 to trzy dzielenia przez 10. Każde przesuwa przecinek o jedno miejsce w lewo.",
+      "Zapisz",
+    ],
+    [
+      "Przecinek stanął za pierwszym zerem: $~f{1}{1000} = 0,001$. Po przecinku stoją 3 cyfry, tyle, ile mówi wykładnik bez minusa.",
+    ],
+  ],
+);
+
+/* --- Poprawa 1: zadanie 8 --- */
+
+S.p8_krople_co = rows(
+  [
+    MIX("butelka: $1,5 * 10^{3}$ ml, kropla: $5 * 10^{-2}$ ml"),
+    MIX("ile kropel = butelka : kropla"),
+  ],
+  [
+    [
+      "„Ile kropel jest w butelce” znaczy: ile razy jedna kropla mieści się w całej butelce.",
+      "Jakim działaniem?",
+    ],
+    [
+      "Ile razy mała ilość mieści się w dużej, liczysz dzieleniem: duża przez małą. Tak samo $6 : 2 = 3$: w 6 litrach mieszczą się 3 butelki po 2 litry.",
+    ],
+  ],
+);
+
+S.p8_krople_licz = rows(
+  [
+    "$(1,5 * 10^{3}) : (5 * 10^{-2})$",
+    "$= (1,5 : 5) * (10^{3} : 10^{-2})$",
+    "$= 0,3 * 10^{3-(-2)} = 0,3 * 10^{5}$",
+    "$= 3 * 10^{-1} * 10^{5} = 3 * 10^{4}$",
+  ],
+  [
+    ["Dzielisz to, co mieści butelka, przez jedną kroplę.", "Rozdziel"],
+    [
+      "Liczby z przodu dzielisz osobno, potęgi dziesiątki osobno, tak jak przy mnożeniu w lekcji 4.",
+      "Policz",
+    ],
+    [
+      "$1,5 : 5 = 0,3$, bo $0,3 * 5 = 1,5$. Przy dzieleniu potęg odejmujesz wykładniki: $3 - (-2) = 3 + 2 = 5$. Odjęcie minusa to dodawanie.",
+      "Popraw zapis",
+    ],
+    [
+      "0,3 jest mniejsze od 1, a w notacji wykładniczej liczba z przodu musi leżeć między 1 a 10. $0,3 = 3 * 10^{-1}$, więc wynik to $3 * 10^{4}$, czyli 30 000 kropel.",
+    ],
+  ],
+);
+
+/* --- Poprawa 2: zadanie 9c --- */
+
+S.p9_minus = rows(
+  [
+    "$81^{-~f{1}{4}}$",
+    "$= ~f{1}{81^{~f{1}{4}}}$",
+    MIX("$81^{~f{1}{4}}$: jaka liczba pomnożona 4 razy przez siebie daje 81?"),
+    MIX("$3 * 3 * 3 * 3 = 81$, więc $81^{-~f{1}{4}} = ~f{1}{3}$"),
+  ],
+  [
+    [
+      "W tym wykładniku są naraz minus i ułamek. Rozbierz je po kolei, zaczynając od minusa.",
+      "Minus",
+    ],
+    [
+      "Minus w wykładniku nie daje liczby ujemnej. Odwraca: wynik to 1 podzielone przez $81^{~f{1}{4}}$, jak w lekcji 3.",
+      "Ułamek",
+    ],
+    [
+      "Czwórka w mianowniku to pierwiastek czwartego stopnia. Mówi, ile razy mnożysz szukaną liczbę przez siebie. Sama nie jest wynikiem.",
+      "Szukaj liczby",
+    ],
+    [
+      "$2 * 2 * 2 * 2 = 16$, za mało. $3 * 3 * 3 * 3 = 81$. Do mianownika wpisujesz tę trójkę: $81^{-~f{1}{4}} = ~f{1}{3}$, a nie $~f{1}{4}$.",
+    ],
+  ],
+);
+
+/* --- Poprawa 2: zadanie 10b --- */
+
+/* akwarium-sześcian z zaznaczonym dnem, obok to samo dno rozłożone na 6 × 6 kwadracików 1 dm × 1 dm */
+S.p9_dno = {
+  steps: [
+    [
+      "Akwarium to sześcian o objętości 216 dm³. Krawędź to $216^{~f{1}{3}} = 6$ dm, bo $6 * 6 * 6 = 216$.",
+      "Gdzie jest dno?",
+    ],
+    [
+      "Dno to ściana, na której akwarium stoi, na obrazku zaznaczona. Jak każda ściana sześcianu, jest kwadratem o boku 6 dm.",
+      "Policz pole",
+    ],
+    [
+      "Na dnie mieści się 6 rzędów po 6 kwadracików o boku 1 dm: $6 * 6 = 36$ dm². Objętość 216 dm³ to coś innego: ile kostek mieści się w całym akwarium.",
+    ],
+  ],
+  build: function (s) {
+    var x = 44,
+      y = 84,
+      a = 100,
+      d = 40,
+      i;
+    function pg(pts, cls) {
+      return E(
+        "polygon",
+        {
+          points: pts
+            .map(function (t) {
+              return t[0] + "," + t[1];
+            })
+            .join(" "),
+          class: cls,
+        },
+        s,
+      );
+    }
+    var dnoPts = [
+      [x, y + a],
+      [x + a, y + a],
+      [x + a + d, y + a - d],
+      [x + d, y + a - d],
+    ];
+    var dno = pg(dnoPts, "zone");
+    pg(
+      [
+        [x, y],
+        [x + d, y - d],
+        [x + a + d, y - d],
+        [x + a, y],
+      ],
+      "zone2",
+    );
+    pg(
+      [
+        [x + a, y],
+        [x + a + d, y - d],
+        [x + a + d, y + a - d],
+        [x + a, y + a],
+      ],
+      "zone2",
+    );
+    pg(
+      [
+        [x, y],
+        [x + a, y],
+        [x + a, y + a],
+        [x, y + a],
+      ],
+      "ln",
+    );
+    pg(dnoPts, "ln");
+    [
+      [x + d, y - d, x + d, y + a - d],
+      [x + d, y + a - d, x + a + d, y + a - d],
+      [x, y + a, x + d, y + a - d],
+    ].forEach(function (l) {
+      E(
+        "line",
+        { x1: l[0], y1: l[1], x2: l[2], y2: l[3], class: "ln" },
+        s,
+      ).style.strokeDasharray = "4 4";
+    });
+    TX(s, x + a / 2, y + a + 22, "6 dm", "lb");
+    TX(s, x + a + d / 2 + 22, y + a - d / 2 + 4, "6 dm", "lb");
+    TX(s, x - 2, y + a / 2, "6 dm", "lb").setAttribute("text-anchor", "end");
+    var napis = TX(s, x + a / 2 + d / 2, y + a - d / 2 + 5, "dno", "val");
+    var siatka = G(s, "mv"),
+      c = 17;
+    for (i = 0; i < 36; i++)
+      E(
+        "rect",
+        {
+          x: 214 + (i % 6) * c,
+          y: 40 + Math.floor(i / 6) * c,
+          width: c - 2,
+          height: c - 2,
+          rx: 3,
+          class: "tile",
+        },
+        siatka,
+      );
+    TX(siatka, 214 + 3 * c, 40 + 6 * c + 26, "6 · 6 = 36", "val");
+    TX(siatka, 214 + 3 * c, 40 + 6 * c + 54, "dno = 36 dm²", "res2");
+    return function (k) {
+      op(dno, k >= 1 ? 1 : 0.15);
+      op(napis, k >= 1 ? 1 : 0);
+      op(siatka, k >= 2 ? 1 : 0);
+    };
+  },
+};
+
+/* --- Poprawa 3: zadanie 11a --- */
+
+S.p10_pierw = rows(
+  [
+    "$16~r{}{2}$",
+    "$= 2^{4} * 2^{~f{1}{2}}$",
+    "$= 2^{4 + ~f{1}{2}}$",
+    MIX("$4 + ~f{1}{2} = ~f{8}{2} + ~f{1}{2} = ~f{9}{2}$, więc $2^{~f{9}{2}}$"),
+  ],
+  [
+    [
+      "Żeby zapisać całość jako potęgę dwójki, każdą część zamieniasz na potęgę dwójki.",
+      "Zamień części",
+    ],
+    [
+      "$16 = 2 * 2 * 2 * 2 = 2^{4}$. Pierwiastek kwadratowy to wykładnik $~f{1}{2}$, jak w lekcji 6, więc $~r{}{2} = 2^{~f{1}{2}}$.",
+      "Mnożenie",
+    ],
+    [
+      "Mnożysz potęgi tej samej liczby, więc dodajesz wykładniki, jak w lekcji 2.",
+      "Dodaj",
+    ],
+    [
+      "4 to $~f{8}{2}$, więc $4 + ~f{1}{2} = ~f{9}{2}$. Wynik to $2^{~f{9}{2}}$. Zapis $~f{2}{9}$ to zupełnie inna liczba: dwie dziewiąte, mniej niż 1.",
+    ],
+  ],
+);
+
+/* --- Poprawa 3: zadanie 11c --- */
+
+S.p10_dodaj = rows(
+  [
+    "$2^{~f{2}{3}} * 2^{~f{1}{2}} = 2^{~f{2}{3} + ~f{1}{2}}$",
+    MIX(
+      "nie $2^{~f{2}{3} * ~f{1}{2}} = 2^{~f{1}{3}}$: wykładników się tu nie mnoży",
+    ),
+    MIX("nie $~f{2+1}{3+2} = ~f{3}{5}$: tak ułamków się nie dodaje"),
+    "$~f{2}{3} + ~f{1}{2} = ~f{4}{6} + ~f{3}{6} = ~f{7}{6}$",
+  ],
+  [
+    [
+      "Mnożysz potęgi tej samej liczby, więc dodajesz wykładniki, tak samo jak $2^{3} * 2^{4} = 2^{7}$. Ułamki w wykładniku niczego tu nie zmieniają.",
+      "Błąd 1",
+    ],
+    [
+      "Pomnożenie wykładników daje $2^{~f{1}{3}}$. Wykładniki mnożysz tylko przy potędze potęgi, a tu jest zwykłe mnożenie.",
+      "Błąd 2",
+    ],
+    [
+      "Dodanie osobno liczników i osobno mianowników daje $~f{3}{5}$. To nie działa: $~f{1}{2} + ~f{1}{2}$ dałoby wtedy $~f{2}{4}$, czyli znowu połowę.",
+      "Dobrze",
+    ],
+    [
+      "Ułamki sprowadzasz do wspólnego mianownika: $~f{2}{3} = ~f{4}{6}$ i $~f{1}{2} = ~f{3}{6}$. Razem $~f{7}{6}$, więc wynik to $2^{~f{7}{6}}$.",
+    ],
+  ],
+);
+
+/* --- Poprawa 3: zadanie 12b --- */
+
+S.p10_dziesietny = rows(
+  [
+    MIX("nie $16 * 1,25 = 20$: wykładnik to nie mnożnik"),
+    "$1,25 = 1 + 0,25 = 1 + ~f{1}{4}$",
+    "$16^{1,25} = 16^{1} * 16^{~f{1}{4}}$",
+    "$= 16 * 2 = 32$",
+  ],
+  [
+    [
+      "$16^{1,25}$ to nie $16 * 1,25$. Wykładnik mówi, ile razy mnożysz 16 przez siebie, a nie przez co mnożysz 16.",
+      "Rozbij wykładnik",
+    ],
+    [
+      "Ułamek dziesiętny w wykładniku zamieniasz na zwykły: $1,25 = 1 + ~f{1}{4}$.",
+      "Rozdziel potęgę",
+    ],
+    [
+      "Dodawanie w wykładniku to mnożenie potęg, jak w lekcji 2, tylko czytane od końca: $16^{1 + ~f{1}{4}} = 16^{1} * 16^{~f{1}{4}}$.",
+      "Policz",
+    ],
+    ["$16^{~f{1}{4}} = 2$, bo $2 * 2 * 2 * 2 = 16$. Wynik: $16 * 2 = 32$."],
+  ],
+);
+
+    window.LEKTOR = {"p8_skoki": ["audio/p8_skoki_0.mp3", "audio/p8_skoki_1.mp3", "audio/p8_skoki_2.mp3"], "p8_cyfry": ["audio/p8_cyfry_0.mp3", "audio/p8_cyfry_1.mp3", "audio/p8_cyfry_2.mp3"], "p8_sprawdz": ["audio/p8_sprawdz_0.mp3", "audio/p8_sprawdz_1.mp3", "audio/p8_sprawdz_2.mp3"], "p8_forma": ["audio/p8_forma_0.mp3", "audio/p8_forma_1.mp3"], "p8_dziel": ["audio/p8_dziel_0.mp3", "audio/p8_dziel_1.mp3", "audio/p8_dziel_2.mp3"], "p8_krople_co": ["audio/p8_krople_co_0.mp3", "audio/p8_krople_co_1.mp3"], "p8_krople_licz": ["audio/p8_krople_licz_0.mp3", "audio/p8_krople_licz_1.mp3", "audio/p8_krople_licz_2.mp3", "audio/p8_krople_licz_3.mp3"], "p9_minus": ["audio/p9_minus_0.mp3", "audio/p9_minus_1.mp3", "audio/p9_minus_2.mp3", "audio/p9_minus_3.mp3"], "p9_dno": ["audio/p9_dno_0.mp3", "audio/p9_dno_1.mp3", "audio/p9_dno_2.mp3"], "p10_pierw": ["audio/p10_pierw_0.mp3", "audio/p10_pierw_1.mp3", "audio/p10_pierw_2.mp3", "audio/p10_pierw_3.mp3"], "p10_dodaj": ["audio/p10_dodaj_0.mp3", "audio/p10_dodaj_1.mp3", "audio/p10_dodaj_2.mp3", "audio/p10_dodaj_3.mp3"], "p10_dziesietny": ["audio/p10_dziesietny_0.mp3", "audio/p10_dziesietny_1.mp3", "audio/p10_dziesietny_2.mp3", "audio/p10_dziesietny_3.mp3"]};
+    for (var k in LEKTOR) {
+      if (S[k].steps.length !== LEKTOR[k].length) throw new Error("lektor " + k);
+    }
+
     S.clearT = clearT;
     return S;
   })();
@@ -6078,7 +6747,9 @@ S.s6_dziesietny = rows(
     }
     function nextNr() {
       for (var i = 0; i < D.sesje.length; i++)
-        if (!S.done[D.sesje[i].nr]) return D.sesje[i].nr;
+        if (D.sesje[i].poprawka && !S.done[D.sesje[i].nr]) return D.sesje[i].nr;
+      for (var j = 0; j < D.sesje.length; j++)
+        if (!D.sesje[j].poprawka && !S.done[D.sesje[j].nr]) return D.sesje[j].nr;
       return null;
     }
 
@@ -6086,9 +6757,10 @@ S.s6_dziesietny = rows(
       P = null;
       clearInterval(clockT);
       SC.clearT();
+      lektorStop();
       var nx = nextNr(),
-        total = D.sesje.length,
-        done = Object.keys(S.done).length;
+        total = D.sesje.filter(function (s) { return !s.poprawka; }).length,
+        done = D.sesje.filter(function (s) { return !s.poprawka && S.done[s.nr]; }).length;
       var h =
         '<header class="band"><div class="wrap">' +
         '<div class="kicker">Matematyka · klasa 1 · rozdziały 1.7–1.9</div>' +
@@ -6100,8 +6772,24 @@ S.s6_dziesietny = rows(
         total +
         "</b> lekcji zrobione</div></div>" +
         '</div></header><main class="wrap">';
+      D.sesje.filter(function (s) { return s.poprawka; }).forEach(function (s, i) {
+        if (!i)
+          h +=
+            '<section><h2>Poprawa sprawdzianu</h2><p class="note">Zacznij tutaj: tylko to, co na sprawdzianie poszło źle.</p><div class="table">';
+        h +=
+          '<button class="row' + (s.nr === nx ? " biezaca" : "") + '" data-go="' + s.nr + '"><span class="nr">' + (i + 1) + '</span><span class="tt"><b>' +
+          T(s.tytul) + "</b><small>" + T(s.opis) + "</small></span>" +
+          (S.done[s.nr]
+            ? '<span class="chip done">' + S.best[s.nr] + "/" + s.test.length + "</span>"
+            : s.nr === nx
+              ? '<span class="chip go">Zacznij</span>'
+              : '<span class="chip">Otwórz</span>') +
+          "</button>";
+      });
+      if (D.sesje.some(function (s) { return s.poprawka; })) h += "</div></section>";
       h += '<section><h2>Lekcje</h2><div class="table">';
       D.sesje.forEach(function (s) {
+        if (s.poprawka) return;
         var d = S.done[s.nr],
           b = S.best[s.nr],
           isNext = s.nr === nx;
@@ -6186,6 +6874,8 @@ S.s6_dziesietny = rows(
     }
 
     function start(nr) {
+      LK.on = false;
+      lektorStop();
       var s = session(nr),
         st = [];
       (s.rozgrzewka || []).forEach(function (q, j, a) {
@@ -6300,11 +6990,12 @@ S.s6_dziesietny = rows(
         return;
       }
       SC.clearT();
+      lektorStop();
       var st = P.st[P.i],
         s = P.s;
       var h =
-        '<div class="top"><div class="wrap"><span class="ttl">Lekcja ' +
-        s.nr +
+        '<div class="top"><div class="wrap"><span class="ttl">' +
+        (s.poprawka ? "Poprawa" : "Lekcja " + s.nr) +
         " · " +
         T(s.tytul) +
         '</span><span class="clock" id="clock">00:00</span><button class="x" id="quit" aria-label="Wróć do listy lekcji">×</button></div><div class="prog"><i style="width:' +
@@ -6338,6 +7029,26 @@ S.s6_dziesietny = rows(
       if (nx && nx.type === "kroki") return "Do przykładu";
       return s.final ? "Do testu" : "Dalej";
     }
+    /* lektor: przycisk przy obrazku czyta krok; raz włączony gra przy każdym kolejnym kroku tej wizyty */
+    var LK = { on: false, a: null };
+    function lektorStop() {
+      if (LK.a) {
+        LK.a.pause();
+        LK.a = null;
+      }
+    }
+    function lektorBtn(key) {
+      return window.LEKTOR && LEKTOR[key]
+        ? '<button class="again lektor' + (LK.on ? " on" : "") + '" id="lek" aria-pressed="' + LK.on + '">' + (LK.on ? "■ Lektor" : "▶ Lektor") + "</button>"
+        : "";
+    }
+    function lektorGraj(key, k) {
+      lektorStop();
+      var f = window.LEKTOR && LEKTOR[key] && LEKTOR[key][k];
+      if (!LK.on || !f) return;
+      LK.a = new Audio(f);
+      LK.a.play().catch(function () {});
+    }
     function scena(s) {
       var list = P.st[P.i].list,
         sc = SC[list[P.sc]];
@@ -6360,7 +7071,7 @@ S.s6_dziesietny = rows(
         "</div>";
       return (
         h +
-        '<div class="sbtns"><button class="again" id="replay" aria-label="Od początku">↺</button><button class="next" id="nx">' +
+        '<div class="sbtns"><button class="again" id="replay" aria-label="Od początku">↺</button>' + lektorBtn(list[P.sc]) + '<button class="next" id="nx">' +
         sLab() +
         "</button></div></div>"
       );
@@ -6371,6 +7082,9 @@ S.s6_dziesietny = rows(
         sc = SC[list[P.sc]],
         upd = sc.build(document.getElementById("viz"));
       upd(P.ss);
+      lektorGraj(list[P.sc], P.ss);
+      var lb = document.getElementById("lek");
+      if (lb) lb.onclick = function () { LK.on = !LK.on; lb.className = "again lektor" + (LK.on ? " on" : ""); lb.setAttribute("aria-pressed", LK.on); lb.textContent = LK.on ? "■ Lektor" : "▶ Lektor"; if (LK.on) lektorGraj(list[P.sc], P.ss); else lektorStop(); };
       document.getElementById("replay").onclick = function () {
         P.ss = 0;
         render();
@@ -6379,6 +7093,7 @@ S.s6_dziesietny = rows(
         if (P.ss < sc.steps.length - 1) {
           P.ss++;
           upd(P.ss);
+          lektorGraj(list[P.sc], P.ss);
           document.getElementById("cap").innerHTML = T(sc.steps[P.ss][0]);
           this.textContent = sLab();
         } else if (P.sc < list.length - 1) {
@@ -6509,7 +7224,7 @@ S.s6_dziesietny = rows(
       var n = s.test.length,
         bad = n - P.ok,
         h = '<div class="card" style="text-align:center">';
-      h += "<h3>Lekcja " + s.nr + " zrobiona</h3>";
+      h += "<h3>" + (s.poprawka ? "Poprawa" : "Lekcja " + s.nr) + " zrobiona</h3>";
       h +=
         '<div class="score"><div><b>' +
         P.ok +
